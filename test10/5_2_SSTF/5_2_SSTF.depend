@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1545717112 source:/media/davion/Work/StudyWork/OS/test10/5_2_SSTF/main.cpp
+	<malloc.h>
+	<stdio.h>
+	<math.h>
+
+1545741461 source:e:\studywork\os\test10\5_2_sstf\main.cpp
+	<malloc.h>
+	<stdio.h>
+	<math.h>
+

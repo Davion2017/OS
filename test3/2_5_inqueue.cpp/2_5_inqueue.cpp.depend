@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1541527163 source:e:\studywork\os\test3\2_5_inqueue.cpp\main.cpp
+	<malloc.h>
+	<stdio.h>
+	<string.h>
+

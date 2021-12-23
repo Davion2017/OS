@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1539792467 source:e:\studywork\os\test5\2_10_banksafety\main.cpp
+	<malloc.h>
+	<stdio.h>
+	<string.h>
+

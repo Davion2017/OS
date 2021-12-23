@@ -1,0 +1,1633 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./5-1.files/filelist.xml">
+<link rel=Edit-Time-Data href="./5-1.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>实验5 存储管理</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Zhou Su</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>mummer</o:LastAuthor>
+  <o:Revision>8</o:Revision>
+  <o:TotalTime>44</o:TotalTime>
+  <o:LastPrinted>2003-05-27T04:27:00Z</o:LastPrinted>
+  <o:Created>2003-07-14T03:59:00Z</o:Created>
+  <o:LastSaved>2003-07-20T12:11:00Z</o:LastSaved>
+  <o:Pages>7</o:Pages>
+  <o:Words>1110</o:Words>
+  <o:Characters>6330</o:Characters>
+  <o:Company>Zx co.</o:Company>
+  <o:Lines>52</o:Lines>
+  <o:Paragraphs>12</o:Paragraphs>
+  <o:CharactersWithSpaces>7773</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:HideSpellingErrors/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>0.1 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>0.1 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimHei;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:楷体_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@楷体_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-next:正文;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:15.0pt;
+	mso-bidi-font-size:22.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:22.0pt;}
+h2
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:12.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:Arial;
+	mso-font-kerning:1.0pt;}
+h3
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:10.5pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h4
+	{mso-style-next:正文;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:14.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:155%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:10.5pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	text-transform:uppercase;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	font-variant:small-caps;
+	mso-font-kerning:1.0pt;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:21.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-style:italic;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:31.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:42.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:52.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:63.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:73.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	background:navy;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.a, li.a, div.a
+	{mso-style-name:图表标题;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-facing-pages:yes;}
+@page Section1
+	{size:515.95pt 728.6pt;
+	margin:92.15pt 2.0cm 92.15pt 76.55pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-page-numbers:112;
+	mso-title-page:yes;
+	mso-even-header:url("./5-1.files/header.htm") eh1;
+	mso-header:url("./5-1.files/header.htm") h1;
+	mso-first-header:url("./5-1.files/header.htm") fh1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:1908684635;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-741077908 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1620" style='mso-position-horizontal:left;
+  mso-position-vertical:top;mso-position-vertical-relative:line'
+  o:allowoverlap="f" fill="f" fillcolor="window" stroke="f">
+  <v:fill color="window" on="f"/>
+  <v:stroke on="f"/>
+  <o:colormenu v:ext="edit" fillcolor="none" strokecolor="none"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+  <o:regrouptable v:ext="edit">
+   <o:entry new="1" old="0"/>
+   <o:entry new="2" old="0"/>
+   <o:entry new="3" old="0"/>
+   <o:entry new="4" old="0"/>
+   <o:entry new="5" old="0"/>
+   <o:entry new="6" old="0"/>
+   <o:entry new="7" old="0"/>
+   <o:entry new="8" old="0"/>
+   <o:entry new="9" old="0"/>
+   <o:entry new="10" old="0"/>
+   <o:entry new="11" old="10"/>
+   <o:entry new="12" old="11"/>
+   <o:entry new="13" old="12"/>
+   <o:entry new="14" old="12"/>
+   <o:entry new="15" old="12"/>
+   <o:entry new="16" old="0"/>
+   <o:entry new="17" old="0"/>
+   <o:entry new="18" old="17"/>
+   <o:entry new="19" old="18"/>
+   <o:entry new="20" old="19"/>
+   <o:entry new="21" old="20"/>
+   <o:entry new="22" old="21"/>
+   <o:entry new="23" old="22"/>
+   <o:entry new="24" old="23"/>
+   <o:entry new="25" old="24"/>
+   <o:entry new="26" old="0"/>
+  </o:regrouptable>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=right style='text-align:right'><a name="_top"></a><b><span
+style='font-size:26.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:#993366'>实验</span></b><b><i
+style='mso-bidi-font-style:normal'><span lang=EN-US style='font-size:55.0pt;
+mso-bidi-font-size:12.0pt;color:#993366'>5</span></i><span lang=EN-US
+style='color:#993366'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=right style='text-align:right;word-break:break-all'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1616" type="#_x0000_t75" style='position:absolute;
+ left:0;text-align:left;margin-left:0;margin-top:0;width:546.85pt;height:34.15pt;
+ z-index:-1;mso-wrap-edited:f;mso-position-horizontal:left;
+ mso-position-vertical:top;mso-position-vertical-relative:line' wrapcoords="-26 0 -26 21176 21600 21176 21600 0 -26 0"
+ o:allowoverlap="f">
+ <v:imagedata src="./5-1.files/image001.jpg" o:title="image_bk"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=729 height=46
+src="./5-1.files/image002.jpg" align=left hspace=12 v:shapes="_x0000_s1616"><![endif]><b><span
+style='font-size:24.0pt;mso-bidi-font-size:12.0pt;font-family:黑体;mso-ascii-font-family:
+"Times New Roman";color:navy'>存储管理</span></b><b><span lang=EN-US
+style='font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体;
+color:navy'><span style="mso-spacerun: yes">&nbsp; </span></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h2><a name="_Toc39798101"></a><a name="_Toc45715729"><span style='mso-bookmark:
+_Toc39798101'><span lang=EN-US style='mso-bidi-font-family:宋体'>5.1<span
+style="mso-spacerun: yes">&nbsp; </span>提高Windows 2000内存性能</span></span></a><span
+lang=EN-US style='mso-bidi-font-family:宋体'><o:p></o:p></span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>(</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验估计时间：</span><span lang=EN-US>60</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分钟</span><span lang=EN-US>)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_背景知识"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>背景知识</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_实验目的"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验目的</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_工具/准备工作"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>工具</span>/<span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>准备工作</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_实验内容与步骤"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验内容与步骤</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h3><a name="_Toc45715730"></a><a name="_Toc39798102"></a><a name="_背景知识"></a><span
+style='mso-bookmark:_Toc45715730'><span style='mso-bookmark:_Toc39798102'><span
+style='mso-bidi-font-family:宋体'>背景知识</span></span></span><span lang=EN-US
+style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><a href="#_1._分页过程">1. <span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分页过程</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><a href="#_2._内存共享">2. <span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>内存共享</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><a href="#_3._未分页合并内存与分页合并内存">3. <span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>未分页合并内存与分页合并内存</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US><a href="#_4._提高分页性能">4. <span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>提高分页性能</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><a name="_Toc39798103"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>耗尽内存是</span><span lang=EN-US>Windows 2000</span></a><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统中最常见的问题之一。当系统耗尽内存时，所有进程对内存的总需求超出了系统的物理内存总量。随后，</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>必须借助它的虚拟内存来维持系统和进程的运行。虚拟内存机制是</span><span lang=EN-US>Windows
+2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>操作系统的重要组成部分，但它的速度比物理内存慢得多，因此，应该尽量避免耗尽物理内存资源，以免导致性能下降。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>解决内存不足问题的一个有效的方法就是添加更多的内存。但是，一旦提供了更多的内存，</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>很可以会立即“吞食”。而事实上，添加更多的内存并非总是可行的，也可能只是推迟了实际问题的发生。因此，应该相信，优化所拥有的内存是非常关键的。</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc39798103'><a name="_1._分页过程"></a><span
+lang=EN-US style='mso-bidi-font-family:宋体'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>1.
+分页过程<o:p></o:p></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>当</span><span lang=EN-US>Windows 2000</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>求助于硬盘以获得虚拟内存时，这个过程被称为分页</span><span
+lang=EN-US> (paging) </span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。分页就是将信息从主内存移动到磁盘进行临时存储的过程。应用程序将物理内存和虚拟内存视为一个独立的实体，甚至不知道</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用了两种内存方案，而认为系统拥有比实际内存更多的内存。例如，系统的内存数量可能只有</span><span
+lang=EN-US>16MB</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，但每一个应用程序仍然认为有</span><span lang=EN-US>4GB</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内存可供使用。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用分页方案带来了很多好处，不过这是有代价的。当进程需要已经交换到硬盘上的代码或数据时，系统要将数据送回物理内存，并在必要时将其他信息传输到硬盘上，而硬盘与物理内存在性能上的差异极大。例如，硬盘的访问时间通常大约为</span><span
+lang=EN-US>4-10</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>毫秒，而物理内存的访问时间为</span><span lang=EN-US>60 us</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，甚至更快。</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc39798103'><a name="_2._内存共享"></a><span
+lang=EN-US style='mso-bidi-font-family:宋体'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>2.
+内存共享<o:p></o:p></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>应用程序经常需要彼此通信和共享信息。为了提供这种能力，</span><span lang=EN-US>Windows
+2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>必须允许访问某些内存空间而不危及它和其他应用程序的安全性和完整性。从性能的角度来看，共享内存的能力大大减少了应用程序使用的内存数量。运行一个应用程序的多个副本时，每一个实例都可以使用相同的代码和数据，这意味着不必维护所加载应用程序代码的单独副本并使用相同的内存资源。无论正在运行多少个应用程序实例，充分支持应用程序代码所需求的内存数量都相对保持不变。</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc39798103'><a name="_3._未分页合并内存与分页合并内存"></a><span
+lang=EN-US style='mso-bidi-font-family:宋体'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>3.
+未分页合并内存与分页合并内存<o:p></o:p></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>决定了系统内存组件哪些可以以及哪些不可以交换到磁盘上。显然，不应该将某些代码</span><span
+lang=EN-US> (</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>例如内核</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>交换出主内存。因此，</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>将系统使用的内存进一步划分为未分页合并内存和分页合并内存。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分页合并内存是存储迟早需要的可分页代码或数据的内存部分。虽然可以将分页合并内存中的任何系统进程交换到磁盘上，但是它临时存储在主内存的这一部分，以防系统立刻需要它。在将系统进程交换到磁盘上之前，</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>会交换其他进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>未分页合并内存包含必须驻留在内存中的占用代码或数据。这种结构类似于早期的</span><span lang=EN-US>MS-DOS</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序使用的结构，在</span><span
+lang=EN-US>MS-DOS</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中，相对较小的终止并驻留程序</span><span lang=EN-US> (Terminate and Stay
+Resident</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，</span><span lang=EN-US>TSR) </span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在启动时加载到内存中。这些程序在系统重新启动或关闭之前一直驻留在内存的特定部分中。例如，防病毒程序将加载为</span><span
+lang=EN-US>TSR</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>程序，以预防可能的病毒袭击。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>未分页合并内存中包含的进程保留在主内存中，并且不能交换到磁盘上。物理内存的这个部分用于内核模式操作（例如，驱动程序）和必须保留在主内存中才能有效工作的其他进程。没有主内存的这个部分，内核组件就将是可分页的，系统本身就有变得不稳定的危险。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分配到未分页内存池的主内存数量取决于服务器拥有的物理内存数量以及进程对系统上的内存地空间的需求。不过，</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>将未分页合并内存限制为</span><span lang=EN-US>256MB (</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在</span><span
+lang=EN-US>Windows NT 4</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中的限制为</span><span lang=EN-US>128MB) </span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。根据系统中的物理内存数量，复杂的算法在启动时动态确定</span><span
+lang=EN-US>Windows 2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统上的未分页合并内存的最大数量。</span><span lang=EN-US>Windows 2000</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内部的这一自我调节机制可以根据当前的内存配置自动调整大小。例如，如果增加或减少系统中的内存数量，那么</span><span
+lang=EN-US>Windows2000</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>将自动调整未分页合并内存的大小，以反映这一更改。</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc39798103'><a name="_4._提高分页性能"></a><span
+lang=EN-US style='mso-bidi-font-family:宋体'><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span>4.
+提高分页性能<o:p></o:p></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>只有一个物理硬盘驱动器的系统限制了优化分页性能的能力。驱动器必须处理系统和应用程序的请求以及对分页文件的访问。虽然物理驱动器可能有多个分区，但是将分页文件分布到多个分区的分页文件并不能提高硬盘驱动器的能力。只有当一个分区没有足够的空间来包含整个分页文件时，才将分页文件放在同一个硬盘的多个分区上。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>拥有多个物理驱动器的服务器可以使用多个分页文件来提高分页性能。关键是将分页请求的负载分布到多个物理硬盘上。实际上，使用独立物理驱动器上的分页文件，系统可以同时处理多个分页请求。各个物理驱动器可以同时访问它自己的分页文件并写入信息，这将增加可以传输的信息量。多个分页文件的最佳配置是将各个分页文件放在拥有自己的控制器的独立驱动器上。不过，由于额外的费用并且系统上的可用中断很有限，因此对于大多数基于服务器的配置来说，这可能是不切实际的解决方案。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分页文件最重要的配置参数是大小。无论系统中有多少个分页文件，如果它们的大小不合适，那么系统就可能遇到性能问题。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果初始值太小，那么系统可能必须扩大分页文件，以补偿额外的分页活动。当系统临时增加分页文件时，它必须在处理分页请求的同时创建新的空间。这时，系统将出现大量的页面错误，甚至可能出现系统失效。当系统必须在进程的工作区外部</span><span
+lang=EN-US> (</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在物理内存或分页文件中的其他位置</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>查找信息时，就会出现页面错误。当系统缺乏存储资源</span><span
+lang=EN-US> (</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>物理内存及虚拟内存</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来满足使用需求，从而遇到过多的分页时，就会出现系统失效。系统将花更多的时间来分页而不是执行应用程序。当系统失效时，</span><span
+lang=EN-US>Memory</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span><span lang=EN-US>Pages/see</span></span><span
+style='mso-bookmark:_Toc39798103'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>计数器将持续高于每秒</span><span
+lang=EN-US>100</span></span><span style='mso-bookmark:_Toc39798103'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>页。系统失效严重降低了系统的性能。此外，动态扩展分页文件将导致碎片化。分页文件将散布在整个磁盘上而不是在启动时的连续空间中创建，从而增加了系统的开销，并导致系统性能降低。因此，应该尽量避免系统增加分页文件的大小。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc39798103'><span lang=EN-US>&nbsp;<o:p></o:p></span></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.35pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:77.4pt;mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+  <td width=511 style='width:383.3pt;border:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:77.4pt'>
+  <p class=MsoNormal style='text-indent:18.05pt;mso-char-indent-count:2.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc39798103'><b><span style='font-size:9.0pt;font-family:黑体;color:red'>提示：<span
+  lang=EN-US><o:p></o:p></span></span></b></span></p>
+  <p class=MsoNormal style='text-indent:18.0pt;mso-char-indent-count:2.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc39798103'><span lang=EN-US style='font-size:9.0pt'>1) </span></span><span
+  style='mso-bookmark:_Toc39798103'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在</span></span><span
+  style='mso-bookmark:_Toc39798103'><span lang=EN-US style='font-size:9.0pt'>NTFS</span></span><span
+  style='mso-bookmark:_Toc39798103'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>驱动器上，总是至少保留</span></span><span
+  style='mso-bookmark:_Toc39798103'><span lang=EN-US style='font-size:9.0pt'>25</span></span><span
+  style='mso-bookmark:_Toc39798103'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>％的空闲驱动器空间，以确保可以在连续的空间中创建分页文件。</span></span><span
+  style='mso-bookmark:_Toc39798103'><span lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></p>
+  <p class=MsoNormal style='text-indent:18.0pt;mso-char-indent-count:2.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc39798103'><span lang=EN-US style='font-size:9.0pt'>2) Windows 2000</span></span><span
+  style='mso-bookmark:_Toc39798103'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用内存数量的</span></span><span
+  style='mso-bookmark:_Toc39798103'><span lang=EN-US style='font-size:9.0pt'>1.5</span></span><span
+  style='mso-bookmark:_Toc39798103'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>倍作为分页文件的最小容量，这个最小容量的两倍作为最大容量。它减少了系统因为错误配置的分页文件而崩溃的可能性。系统在崩溃之后能够将内存转储写入磁盘，所以系统分区必须有一个至少等于物理内存数量加上</span></span><span
+  style='mso-bookmark:_Toc39798103'><span lang=EN-US style='font-size:9.0pt'>1</span></span><span
+  style='mso-bookmark:_Toc39798103'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的分页文件。</span></span><span
+  style='mso-bookmark:_Toc39798103'><span lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc39798103'></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc39798103'><span lang=EN-US>&nbsp;</span></span><a
+href="#_top"><span style='mso-bookmark:_Toc39798103'><span lang=EN-US
+style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1025" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./5-1.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./5-1.files/image003.gif" v:shapes="_x0000_i1025"><![endif]></span></span><span
+style='mso-bookmark:_Toc39798103'></span></a><span style='mso-bookmark:_Toc39798103'></span></p>
+
+<h3><span style='mso-bookmark:_Toc39798103'><a name="_Toc45715731"></a><a
+name="_实验目的"></a><span style='mso-bookmark:_Toc45715731'><span
+style='mso-bidi-font-family:宋体'>实验目的</span></span></span><span lang=EN-US
+style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>通过对</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“任务管理器”、“计算机管理”、“我的电脑”属性、“系统信息”、“系统监视器”等程序的应用，学习提高</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内存的性能，，加深理解</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统的内存管理功能，理解操作系统存储管理、虚拟存储管理的知识。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./5-1.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./5-1.files/image003.gif" v:shapes="_x0000_i1026"><![endif]></span></a></span></p>
+
+<h3><a name="_Toc45715732"></a><a name="_Toc39798104"></a><a name="_工具/准备工作"></a><span
+style='mso-bookmark:_Toc45715732'><span style='mso-bookmark:_Toc39798104'><span
+style='mso-bidi-font-family:宋体'>工具<span lang=EN-US>/准备工作</span></span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在开始本实验之前，请回顾教科书的相关内容。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>需要准备一台运行</span><span
+lang=EN-US>Windows 2000 Professional</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统的计算机。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1027" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./5-1.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./5-1.files/image003.gif" v:shapes="_x0000_i1027"><![endif]></span></a></span></p>
+
+<h3><a name="_Toc45715733"></a><a name="_Toc39798105"></a><a name="_实验内容与步骤"></a><span
+style='mso-bookmark:_Toc45715733'><span style='mso-bookmark:_Toc39798105'><span
+style='mso-bidi-font-family:宋体'>实验内容与步骤</span></span></span><span lang=EN-US
+style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>判断和维护</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的内存性能有许多方法。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>1</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：阅读“背景知识”，请回答：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>1) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>什么是“分页过程”？</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+lang=EN-US>____________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>2) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>什么是“内存共享”？</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+lang=EN-US>____________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>3) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>什么是“未分页合并内存”和“分页合并内存”？</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>Windows 2000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中，未分页合并内存的最大限制是多少？</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+lang=EN-US>____________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>4) Windows 2000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分页文件默认设置的最小容量和最大容量是多少？</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+lang=EN-US>____________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>2</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：登录进入</span><span lang=EN-US>Windows
+2000 Professional</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>3</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：查看包含多个实例的应用程序的内存需求。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>1) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>启动想要监视的应用程序，例如</span><span lang=EN-US>Word</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>2) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>右键单击任务栏以启动“任务管理器”。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>3) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在“</span><span lang=EN-US>Windows</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>任务管理器”对话框中选定“进程”选项卡。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>4) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>向下滚动在系统上运行的进程列表，查找想要监视的应用程序。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>请在表</span><span
+lang=EN-US>5-1</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中记录：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=a>表<span lang=EN-US>5-1<span style="mso-spacerun: yes">&nbsp; </span>实验记录<o:p></o:p></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.0pt;mso-yfti-irow:0'>
+  <td width=127 style='width:95.6pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>映像名称<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=75 style='width:56.4pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:9.0pt;font-family:黑体'>PID<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.1pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:9.0pt;font-family:黑体'>CPU<o:p></o:p></span></p>
+  </td>
+  <td width=101 style='width:75.7pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:9.0pt;font-family:黑体'>CPU时间<o:p></o:p></span></p>
+  </td>
+  <td width=121 style='width:90.5pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>内存使用<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=127 style='width:95.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=75 style='width:56.4pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.1pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=101 style='width:75.7pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=121 style='width:90.5pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“内存使用”列显示了该应用程序的一个实例正在使用的内存数量。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>5) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>启动应用程序的另一个实例并观察它的内存需求。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>请描述使用第二个实例占用的内存与使用第一个实例时的内存对比情况：</span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+lang=EN-US>____________________________________________________________________</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>________________________________________________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>4</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：未分页合并内存。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>估算未分页合并内存大小的最简单方法是使用“任务管理器”。未分页合并内存的估计值显示在“任务管理器”的“性能”选项卡的“核心内存”部分。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>总数</span><span
+lang=EN-US> (K) </span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：</span><span lang=EN-US>_____________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>分页数：</span><span
+lang=EN-US>________________________________</span></p>
+
+<p class=MsoNormal><span lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>未分页</span><span lang=EN-US> (K) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span><span lang=EN-US>___________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>还可以使用“任务管理器”查看一个独立进程正在使用的未分页合并内存数量和分页合并内存数量。操作步骤如下：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>1) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>单击“</span><span lang=EN-US>Windows</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>任务管理器”的“进程”选项卡，然后从“查看”菜单中选择“选择列”命令，显示“进程”选项卡的可查看选项。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>2) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在“选择列”对话框中，选定“页面缓冲池”选项和“非页面缓冲池”选项旁边的复选框，然后单击“确定”按钮。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>返回</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“任务管理器”的“进程”选项卡时，将看到其中增加显示了各个进程占用的分页合并内存数量和未分页合并内存数量。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>仍以刚才打开观察的应用程序</span><span
+lang=EN-US> (</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>例如</span><span lang=EN-US>Word) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>为例，请在表</span><span lang=EN-US>5-2</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中记录：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=a>表<span lang=EN-US>5-2<span style="mso-spacerun: yes">&nbsp; </span>实验记录<o:p></o:p></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.0pt;mso-yfti-irow:0'>
+  <td width=127 style='width:95.6pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>映像名称<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=75 style='width:56.4pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
+  style='font-size:9.0pt;font-family:黑体'>PID<o:p></o:p></span></p>
+  </td>
+  <td width=103 style='width:77.1pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>内存使用<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=103 style='width:77.1pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>页面缓冲池<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=103 style='width:77.1pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>非页面缓冲池<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:1;mso-yfti-lastrow:yes'>
+  <td width=127 style='width:95.6pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=75 style='width:56.4pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=103 style='width:77.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=103 style='width:77.1pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=103 style='width:77.1pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>从性能的角度来看，未分页合并内存越多，可以加载到这个空间的数据就越多。拥有的物理内存越多，未分页合并内存就越多。但未分页合并内存被限制为</span><span
+lang=EN-US>256MB</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，因此添加超出这个限制的内存对未分页合并内存没有影响。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>5</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：提高分页性能。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的安装过程中，将使用连续的磁盘空间自动创建分页文件</span><span
+lang=EN-US>(pagefile.sys) </span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。用户可以事先监视变化的内存需求并正确配置分页文件，使得当系统必须借助于分页时的性能达到最高。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>虽然分页文件一般都放在系统分区的根目录下面，但这并不总是该文件的最佳位置。要想从分页获得最佳性能，应该首先检查系统的磁盘子系统的配置，以了解它是否有多个物理硬盘驱动器。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>1) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在“开始”菜单中单击“设置”</span><span lang=EN-US> – </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>“控制面板”命令，双击“管理工具”图标，再双击“计算机管理”图标。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>2) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在“计算机管理”窗口的左格选择“磁盘管理”管理单元来查看系统的磁盘配置。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>请在表</span><span
+lang=EN-US>5-3</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中记录：</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=a>表<span lang=EN-US>5-3<span style="mso-spacerun: yes">&nbsp; </span>实验记录<o:p></o:p></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.35pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.0pt;mso-yfti-irow:0'>
+  <td width=80 style='width:60.2pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>卷<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=87 style='width:65.55pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>布局<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>类型<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>文件系统<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>容量<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+  <td width=81 style='width:60.75pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-size:9.0pt;font-family:黑体'>状态<span lang=EN-US><o:p></o:p></span></span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:1'>
+  <td width=80 style='width:60.2pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=81 style='width:60.75pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:2'>
+  <td width=80 style='width:60.2pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=81 style='width:60.75pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:3'>
+  <td width=80 style='width:60.2pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=81 style='width:60.75pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:4;mso-yfti-lastrow:yes'>
+  <td width=80 style='width:60.2pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=87 style='width:65.6pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+  <td width=81 style='width:60.75pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如果系统只有一个硬盘，那么建议应该尽可能为系统配置额外的驱动器。这是因为：</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>最多可以支持在多个驱动器上分布的</span><span
+lang=EN-US>16</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个独立的分页文件。为系统配置多个分页文件可以实现对不同磁盘</span><span
+lang=EN-US>I/O</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>请求的并行处理，这将大大提高</span><span lang=EN-US>I/O</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>请求的分页文件性能。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>6</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：计算分页文件的大小。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>要想更改分页文件的位置或大小配置参数，可按以下步骤进行：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>1) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>右键单击桌面上的“我的电脑”图标并选定“属性”。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>2) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在“高级”选项卡上单击“性能选项”按钮。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>3) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>单击对话框中的“虚拟内存”区域中的“更改”按钮。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>请记录：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所选驱动器</span><span
+lang=EN-US> (C: ) </span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的页面文件大小：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>驱动器：</span><span lang=EN-US>___________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可用空间：</span><span lang=EN-US>________________________________
+MB</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>初始大小</span><span lang=EN-US> (MB) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span><span lang=EN-US>___________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>最大值</span><span lang=EN-US> (MB) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span><span lang=EN-US>_____________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所选驱动器</span><span
+lang=EN-US> (D: ) </span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的页面文件大小：</span><span
+lang=EN-US>(</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>如果有的话</span><span lang=EN-US>)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>驱动器：</span><span lang=EN-US>___________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可用空间：</span><span lang=EN-US>________________________________
+MB</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>初始大小</span><span lang=EN-US> (MB) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span><span lang=EN-US>___________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>最大值</span><span lang=EN-US> (MB) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>：</span><span lang=EN-US>_____________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所有驱动器页面文件大小的总数：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>允许的最小值：</span><span lang=EN-US>____________________________
+MB</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>推荐：</span><span lang=EN-US>____________________________________
+MB</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>当前已分配：</span><span lang=EN-US>______________________________
+MB</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>4) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>要想将另一个分页文件添加到现有配置，在“虚拟内存”对话框中选定一个还没有分页文件的驱动器，然后指定分页文件的初始值和最大值</span><span
+lang=EN-US> (</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>以兆字节表示</span><span lang=EN-US>) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，单击“设置”，然后单击“确定”。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>5) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>要想更改现有分页文件的最大值和最小值，可选定分页文件所在的驱动器。然后指定分页文件的初始值和最大值，单击“设置”按钮，然后单击“确定”按钮。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>6) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在“性能选项”对话框中单击“确定”按钮。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US>7) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>单击“确定”按钮以关闭“系统特性”对话框。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>7</span></b><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>：</span></b><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用任务管理器。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>可以使用“任务管理器”来简单地检查分页文件是否配置了正确容量。这样可以实时提供系统正在使用分页文件的方式以及其他重要系统信息的准确描述。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>通过右键单击任务栏运行“任务管理器”，选定“性能”选项卡查看实时的系统统计数据。与分页文件大小最有关的信息位于“认可用量”区域。这一区域显示了认可“峰值”是否达到或超过了认可“限制”，以及它是否超过了系统上的物理内存数量。认可“峰值”是指系统迄今为止向进程分配的最大物理内存和虚拟内存数量。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>请记录：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>物理内存</span><span
+lang=EN-US> (K)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>总数：</span><span lang=EN-US>________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可用数：</span><span lang=EN-US>______________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统缓存：</span><span lang=EN-US>____________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>认可用量</span><span
+lang=EN-US> (K)</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>总数：</span><span lang=EN-US>________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>限制：</span><span lang=EN-US>________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span lang=EN-US><span
+style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>峰值：</span><span lang=EN-US>________________________________</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>当系统遇到分页活动增加的情况时，提交的内存数量</span><span
+lang=EN-US> (</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>“认可总数”</span><span lang=EN-US>) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>就会增加。一旦它达到了“认可限制”值，系统就需要扩展分页文件。“认可限制”值指出在不必扩展分页文件的情况下可以向内存提交的虚拟内存数量。因为目标是避免扩展分页文件，所以必须保持“认可总数”和“认可限制”值相差较大。如果这两个值接近了，那么系统必须动态增加分页文件的大小。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“任务管理器”的“认可用量”区域显示的信息还说明了系统的主内存是否足以满足系统执行的任务。如果认可“总数”值经常超过系统中的内存数量，那么系统的物理内存可能不足。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./5-1.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./5-1.files/image003.gif" v:shapes="_x0000_i1028"><![endif]></span></a></span><span
+lang=EN-US> <a href="Bookin.htm"><span style='text-decoration:none;text-underline:
+none'><!--[if gte vml 1]><v:shape id="_x0000_i1029" type="#_x0000_t75" style='width:17.25pt;
+ height:17.25pt'>
+ <v:imagedata src="./5-1.files/image004.gif" o:title="00"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=23 height=23
+src="./5-1.files/image005.jpg" v:shapes="_x0000_i1029"><![endif]></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

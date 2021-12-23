@@ -1,0 +1,1624 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 10">
+<meta name=Originator content="Microsoft Word 10">
+<link rel=File-List href="6-3.files/filelist.xml">
+<link rel=Edit-Time-Data href="6-3.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>实验6 输入/输出管理</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Zhou Su</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>Billgates</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>15</o:TotalTime>
+  <o:LastPrinted>2003-05-27T04:46:00Z</o:LastPrinted>
+  <o:Created>2003-07-13T22:26:00Z</o:Created>
+  <o:LastSaved>2003-07-15T12:41:00Z</o:LastSaved>
+  <o:Pages>1</o:Pages>
+  <o:Words>884</o:Words>
+  <o:Characters>5040</o:Characters>
+  <o:Company>Zx co.</o:Company>
+  <o:Lines>42</o:Lines>
+  <o:Paragraphs>11</o:Paragraphs>
+  <o:CharactersWithSpaces>5913</o:CharactersWithSpaces>
+  <o:Version>10.3501</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:HideSpellingErrors/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>0.1 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>0.1 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimHei;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:楷体_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@楷体_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-next:正文;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:15.0pt;
+	mso-bidi-font-size:22.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-bidi-font-family:宋体;
+	mso-font-kerning:22.0pt;}
+h2
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:12.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:Arial;
+	mso-bidi-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h3
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:10.5pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-bidi-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h4
+	{mso-style-next:正文;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:14.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:155%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:10.5pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	text-transform:uppercase;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	font-variant:small-caps;
+	mso-font-kerning:1.0pt;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:21.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-style:italic;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:31.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:42.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:52.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:63.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:73.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	background:navy;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.a, li.a, div.a
+	{mso-style-name:图表标题;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-facing-pages:yes;}
+@page Section1
+	{size:515.95pt 728.6pt;
+	margin:92.15pt 2.0cm 92.15pt 76.55pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-page-numbers:145;
+	mso-title-page:yes;
+	mso-even-header:url("6-3.files/header.htm") eh1;
+	mso-header:url("6-3.files/header.htm") h1;
+	mso-first-header:url("6-3.files/header.htm") fh1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ @list l0
+	{mso-list-id:318847935;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1922684682 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l0:level2
+	{mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="3074">
+  <o:colormenu v:ext="edit" fillcolor="none" strokecolor="none"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+  <o:regrouptable v:ext="edit">
+   <o:entry new="1" old="0"/>
+   <o:entry new="2" old="0"/>
+   <o:entry new="3" old="0"/>
+   <o:entry new="4" old="0"/>
+   <o:entry new="5" old="0"/>
+   <o:entry new="6" old="0"/>
+   <o:entry new="7" old="0"/>
+   <o:entry new="8" old="0"/>
+   <o:entry new="9" old="0"/>
+   <o:entry new="10" old="0"/>
+   <o:entry new="11" old="10"/>
+   <o:entry new="12" old="11"/>
+   <o:entry new="13" old="12"/>
+   <o:entry new="14" old="12"/>
+   <o:entry new="15" old="12"/>
+   <o:entry new="16" old="0"/>
+   <o:entry new="17" old="0"/>
+   <o:entry new="18" old="17"/>
+   <o:entry new="19" old="18"/>
+   <o:entry new="20" old="19"/>
+   <o:entry new="21" old="20"/>
+   <o:entry new="22" old="21"/>
+   <o:entry new="23" old="22"/>
+   <o:entry new="24" old="23"/>
+   <o:entry new="25" old="24"/>
+   <o:entry new="26" old="0"/>
+  </o:regrouptable>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=right style='text-align:right'><a name="_top"></a><b><span
+style='font-size:26.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:#993366'>实验</span></b><b><i
+style='mso-bidi-font-style:normal'><span lang=EN-US style='font-size:55.0pt;
+mso-bidi-font-size:12.0pt;color:#993366'>6</span></i><span lang=EN-US
+style='color:#993366'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=right style='text-align:right;word-break:break-all'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1609" type="#_x0000_t75" style='position:absolute;
+ left:0;text-align:left;margin-left:0;margin-top:0;width:546.85pt;height:34.15pt;
+ z-index:-1;mso-wrap-edited:f;mso-position-horizontal:left;
+ mso-position-vertical:top;mso-position-vertical-relative:line' wrapcoords="-26 0 -26 21176 21600 21176 21600 0 -26 0"
+ o:allowoverlap="f">
+ <v:imagedata src="6-3.files/image001.jpg" o:title="image_bk"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=729 height=46
+src="6-3.files/image002.jpg" align=left hspace=12 v:shapes="_x0000_s1609"><![endif]><b><span
+style='font-size:24.0pt;mso-bidi-font-size:12.0pt;font-family:黑体;mso-ascii-font-family:
+"Times New Roman";color:navy'>输入</span></b><b><span lang=EN-US
+style='font-size:24.0pt;mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体;
+color:navy'>/</span></b><b><span style='font-size:24.0pt;mso-bidi-font-size:
+12.0pt;font-family:黑体;mso-ascii-font-family:"Times New Roman";color:navy'>输出管理</span></b><b><span
+lang=EN-US style='font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-fareast-font-family:
+黑体;color:navy'><span style='mso-spacerun:yes'>&nbsp; </span></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;<a name="_Toc16587483"></a></span></p>
+
+<h2><span style='mso-bookmark:_Toc16587483'><a name="_Toc41901935"><span
+lang=EN-US>6.3<span style='mso-spacerun:yes'>&nbsp; </span>Linux重定向和管道</span></a></span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US>(</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>实验估计时间：</span><span
+lang=EN-US>90</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分钟</span><span lang=EN-US>)</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><span style='mso-bookmark:_Toc16587483'><![if !supportLists]><span
+lang=EN-US style='font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;mso-bidi-font-weight:bold'><span
+style='mso-list:Ignore'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]></span><a href="#_背景知识"><span style='mso-bookmark:
+_Toc16587483'><b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>背景知识</span></b></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'><b><span
+lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><span style='mso-bookmark:_Toc16587483'><![if !supportLists]><span
+lang=EN-US style='font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;mso-bidi-font-weight:bold'><span
+style='mso-list:Ignore'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]></span><a href="#_实验目的"><span style='mso-bookmark:
+_Toc16587483'><b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>实验目的</span></b></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'><b><span
+lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><span style='mso-bookmark:_Toc16587483'><![if !supportLists]><span
+lang=EN-US style='font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;mso-bidi-font-weight:bold'><span
+style='mso-list:Ignore'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]></span><a href="#_工具/准备工作"><span
+style='mso-bookmark:_Toc16587483'><b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>工具</span><span
+lang=EN-US>/</span></b></span><span style='mso-bookmark:_Toc16587483'><b><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>准备工作</span></b></span><span style='mso-bookmark:_Toc16587483'></span></a><span
+style='mso-bookmark:_Toc16587483'><b><span lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><span style='mso-bookmark:_Toc16587483'><![if !supportLists]><span
+lang=EN-US style='font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;mso-bidi-font-weight:bold'><span
+style='mso-list:Ignore'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]></span><a href="#_实验内容与步骤"><span
+style='mso-bookmark:_Toc16587483'><b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>实验内容与步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'><b><span
+lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><span style='mso-bookmark:_Toc16587483'><![if !supportLists]><span
+lang=EN-US style='font-family:Wingdings;mso-fareast-font-family:Wingdings;
+mso-bidi-font-family:Wingdings;mso-bidi-font-weight:bold'><span
+style='mso-list:Ignore'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]></span><a href="#_可选练习"><span style='mso-bookmark:
+_Toc16587483'><b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>可选练习</span></b></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'><b><span
+lang=EN-US><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc41901936"></a><a
+name="_背景知识"></a><span style='mso-bookmark:_Toc41901936'>背景知识</span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在本实验中，我们将使用高级</span><span lang=EN-US>Linux</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令来完成重定向和管道。每一个</span><span
+lang=EN-US>Linux</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令都有一个源作为标准输入，一个目的作为标准输出。命令的输入通常来自键盘</span><span lang=EN-US>
+(</span></span><span style='mso-bookmark:_Toc16587483'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>尽管它也可以来自文件</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。命令通常输出到监视器或者屏幕上。</span><span lang=EN-US>Linux</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>计算环境使用重定向可以控制命令的</span><span
+lang=EN-US>I/O</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。当试图把命令的输出保存到一个文件，以供以后查看的时候是很有用的。通过管道，可以取得一个命令的输出，把它作为另一个命令的进一步处理的输入。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>有几个元字符可用于输入</span><span lang=EN-US>/</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>输出重定向符号：输出重定向使用右尖括号</span><span
+lang=EN-US> (&gt;</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，又称大于号</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>；输入重定向使用左尖括号</span><span
+lang=EN-US> (&lt;</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，又称小于号</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>；出错输出重定向使用右尖括号之前有一个数字</span><span
+lang=EN-US>2 (</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如</span><span lang=EN-US>2&gt;) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。本实验重点在输出重定向。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>重定向命令的格式是：</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Command
+Redirection-Symbol File (text file or device file)</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>标准输出比标准输入或标准出错更经常被重定向。许多命令，如</span><span lang=EN-US>ls</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>cat</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>head</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>tail</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>产生标准输出到屏幕上，常常会希望把这个输出重定向到一个文件中，以便将来查看、处理或者打印。通过替换文件名，可以截获命令的输出，而不是让它到达默认的监视器上。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>最强大的元字符之一是管道符号</span><span lang=EN-US> (|) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。管道取得一个命令的标准输出，把它作为标准输入传递给下一个命令</span><span
+lang=EN-US> (</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>通常为</span><span lang=EN-US>more</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令、</span><span
+lang=EN-US>lp (</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>行式打印机</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令或者一个文件处理命令，如</span><span
+lang=EN-US>grep</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>或</span><span lang=EN-US>sort) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。必须在管道的每边都有一个命令，命令和管道之间的空格是可选的。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>管道命令的格式是</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";mso-ansi-language:FR'>：</span></span><span style='mso-bookmark:
+_Toc16587483'><span lang=FR style='mso-ansi-language:FR'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:31.5pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=FR style='mso-ansi-language:FR'>command | command<o:p></o:p></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'></span><a
+href="#_top"><span style='mso-bookmark:_Toc16587483'><span lang=EN-US
+style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1025" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="6-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="6-3.files/image003.gif" v:shapes="_x0000_i1025"><![endif]></span></span></a><span
+style='mso-bookmark:_Toc16587483'><span lang=FR style='mso-ansi-language:FR'><o:p></o:p></span></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc41901937"></a><a
+name="_实验目的"></a><span style='mso-bookmark:_Toc41901937'>实验目的</span></span><span
+style='mso-bookmark:_Toc41901937'></span><span style='mso-bookmark:_Toc16587483'><span
+lang=FR style='mso-ansi-language:FR'><o:p></o:p></span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>通过重定向和管道操作</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";mso-ansi-language:FR'>：</span></span><span style='mso-bookmark:
+_Toc16587483'><span lang=FR style='mso-ansi-language:FR'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=FR style='mso-ansi-language:FR'>1) </span></span><span style='mso-bookmark:
+_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>熟悉输入</span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=FR style='mso-ansi-language:FR'>/</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>输出</span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=FR style='mso-ansi-language:FR'>
+(I/O) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>重定向</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";mso-ansi-language:FR'>；</span></span><span style='mso-bookmark:
+_Toc16587483'><span lang=FR style='mso-ansi-language:FR'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=FR style='mso-ansi-language:FR'>2) </span></span><span style='mso-bookmark:
+_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>把标准输出重定向创建一个文件</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-ansi-language:
+FR'>；</span></span><span style='mso-bookmark:_Toc16587483'><span lang=FR
+style='mso-ansi-language:FR'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>防止使用重定向的时候覆盖文件；</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>4) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>把输出追加到一个现有的文件中；</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>5) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>把一个命令的输出导入到另一个命令中。</span></span><a href="#_top"><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US style='text-decoration:none;
+text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="6-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="6-3.files/image003.gif" v:shapes="_x0000_i1026"><![endif]></span></span></a><span
+style='mso-bookmark:_Toc16587483'></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc41901938"></a><a
+name="_工具/准备工作"></a><span style='mso-bookmark:_Toc41901938'>工具<span lang=EN-US>/准备工作</span></span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在开始本实验之前，请回顾教科书的相关内容。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>您需要做以下准备：</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>由指导老师分配的登录用户名</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如</span><span
+lang=EN-US>user2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和口令。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>一台运行</span><span lang=EN-US>Red Hat Linux</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统，带有</span><span
+lang=EN-US>GNOME</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的计算机。</span></span><a href="#_top"><span style='mso-bookmark:
+_Toc16587483'><span lang=EN-US style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="6-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="6-3.files/image003.gif" v:shapes="_x0000_i1027"><![endif]></span></span></a><span
+style='mso-bookmark:_Toc16587483'></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc41901939"></a><a
+name="_实验内容与步骤"></a><span style='mso-bookmark:_Toc41901939'>实验内容与步骤</span></span></h3>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'></span><a
+href="#_1._使用重定向标准输出符号"><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1. </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用重定向标准输出符号</span></span><span style='mso-bookmark:_Toc16587483'></span></a><span
+style='mso-bookmark:_Toc16587483'></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'></span><a
+href="#_2._使用管道符号"><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>2. </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用管道符号</span></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><o:p>&nbsp;</o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在本实验中将会用到下列命令：</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>pwd</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>显示当前的工作路径。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>cd</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>改变目录路径。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ls</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>显示指定目录的内容。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>more</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>分页显示文件的内容。这是用于显示文本文件的首选方法。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>head</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>截取显示文件的开头部分</span><span
+lang=EN-US> (</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>默认为开头</span><span lang=EN-US>10</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>行</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>tail</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>截取显示文件的结尾部分</span><span
+lang=EN-US> (</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>默认为最后</span><span lang=EN-US>10</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>行</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>cal</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>有关日历的命令。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>set</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>shell</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>特性的设置。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>echo</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>显示变量的值。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ps</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>显示当前进程。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>data</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>显示或设置系统日期和时间。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>grep</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span><span
+lang=EN-US><span style='mso-tab-count:1'>&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>查找文件中有无指定的关键字。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<div align=center>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.35pt;border-collapse:collapse;border:none;mso-border-alt:
+ solid windowtext .5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='mso-yfti-irow:0;mso-yfti-lastrow:yes;height:30.2pt'>
+  <td width=510 style='width:382.6pt;border:solid windowtext 1.0pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:30.2pt'>
+  <p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:
+  _Toc16587483'><b><span style='font-size:9.0pt;font-family:黑体;color:red'>提示</span></b></span><span
+  style='mso-bookmark:_Toc16587483'><b><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+  color:red'>：</span></b></span><span style='mso-bookmark:_Toc16587483'><span
+  style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman"'>如果对命令的格式不清楚，可以用</span></span><span
+  style='mso-bookmark:_Toc16587483'><span lang=EN-US style='font-size:9.0pt'>man</span></span><span
+  style='mso-bookmark:_Toc16587483'><span style='font-size:9.0pt;font-family:
+  宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令请求帮助，即：</span></span><span
+  style='mso-bookmark:_Toc16587483'><span lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></p>
+  <p class=MsoNormal style='text-indent:36.65pt;mso-char-indent-count:4.07;
+  mso-char-indent-size:9pt'><span style='mso-bookmark:_Toc16587483'><span
+  lang=EN-US style='font-size:9.0pt'>man<span style='mso-spacerun:yes'>&nbsp;
+  </span>more<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc16587483'></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>1</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：开机，登录进入</span><span
+lang=EN-US>GNOME</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在</span><span lang=EN-US>GNOME</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>登录框中填写指导老师分配的用户名和口令并登录。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>2</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：访问命令行。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>单击红帽子，在“</span><span lang=EN-US>GNOME</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>帮助”菜单中单击“系统工具”</span><span
+lang=EN-US>-</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>“终端”命令，打开终端窗口。</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc16587483'><a name="_1._使用重定向标准输出符号"></a><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>1. 使用重定向标准输出符号</span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>3</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：重定向标准输出，创建一个文件。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>右尖括号或称大于符号</span><span lang=EN-US> (&gt;) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>把命令的输出发送到一个文件中：使用单个右尖括号，当指定文件名不存在的时候，将创建一个新文件；如果文件名存在，它将被覆盖。</span><span
+lang=EN-US>(</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>注意：命令、重定向符号和文件名之间的空格是可选的</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>重定向标准输出命令的格式是：</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>command &gt;
+file</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>为核实当前所在目录位置，使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果当前位置不在主目录中，使用什么命令可以改变到主目录中？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果希望把文件和目录列表截获，存储为主目录中的一个文件，这样可以追踪主目录中有什么文件。使用什么命令，把长文件列表的输出重定向，创建一个叫做</span><span
+lang=EN-US>homedir.list</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的文件。</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>新文件</span><span lang=EN-US>homedir.list</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>被放在哪里？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用</span><span lang=EN-US>ls</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令核实新文件存在。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>4) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用什么命令，以一次一屏的方式，来查看刚才创建的文件内容？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>5) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用</span><span lang=EN-US>head</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令截获</span><span
+lang=EN-US>homedir.list</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>文件的前</span><span lang=EN-US>10</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>行，通过重定向，创建一个叫做</span><span
+lang=EN-US>dhomedir.list-top-10</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的新文件。应该使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用</span><span lang=EN-US>more</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令查看文件的内容。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>6) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用</span><span lang=EN-US>tail</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，截获</span><span
+lang=EN-US>homedir.list</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>文件的最后</span><span lang=EN-US>10</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>行，通过重定向，创建一个叫做</span><span
+lang=EN-US>dhomedir.list-top-10</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的新文件。使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用</span><span lang=EN-US>more</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令查看文件的内容。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>7) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>截获</span><span lang=EN-US>cal -y</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令的输出，把它存到名为</span><span
+lang=EN-US>calendar</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的文件中。查看文件的内容。截获了什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>8) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>截获</span><span lang=EN-US>cal 2010</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令的输出，把它存到名为</span><span
+lang=EN-US>calendar</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的文件中。查看文件的内容。其中有什么内容？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>日历有什么变化？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>4</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：防止使用重定向的时候覆盖文件。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在</span><span lang=EN-US>bash shell</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中，一个叫做</span><span
+lang=EN-US>noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的选项可以用来设定防止在重定向的过程中覆盖文件。可以在命令行中使用</span><span lang=EN-US>$set
+-o noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令来完成。</span><span lang=EN-US>o</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>代表选项。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>为了重新激活</span><span lang=EN-US>clobber</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>特性，使用</span><span
+lang=EN-US>$set -o noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>；撤消则用</span><span lang=EN-US>set +o noclobber</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果你使用的是</span><span lang=EN-US>csh shell</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，为了激活</span><span
+lang=EN-US>/</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>撤消</span><span lang=EN-US>C shell</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的</span><span
+lang=EN-US>clobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>特性，使用</span><span lang=EN-US>set noclobber</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>unset noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令，打开</span><span lang=EN-US>shell</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的</span><span
+lang=EN-US>noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>选项。输入什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令</span><span lang=EN-US>ls -l &gt; homedir.list</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，结果是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令</span><span lang=EN-US>ls -l &gt; homedir.list2</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，结果是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>5</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：向现有的文件追加输出。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果想向一个现有的文件追加</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>添加到末尾</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>文本而不是覆盖它，可以使用双右尖括号</span><span lang=EN-US> (&gt;&gt;) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。这个选项当文件不存在的时候，会创建一个新文件，或者追加到已有文件。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>追加命令的格式是：</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>command &gt;&gt;
+file</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令，显示“</span><span lang=EN-US>Happy Bday</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>”一行字，使用重定向符号截获输出，把它存到叫做</span><span
+lang=EN-US>bday4me</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的文件中。使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令，显示“</span><span lang=EN-US>YOURNAME!</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>”一行字，使用双重定向符号，把输出追加到</span><span
+lang=EN-US>bday4me</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>文件中。查看</span><span lang=EN-US>bday4me</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件的内容。其中有什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令，显示您出生年月的日历</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如果在</span><span
+lang=EN-US>1985</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>年的</span><span lang=EN-US>6</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>月出生，输入</span><span
+lang=EN-US>cal 6 1985) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，使用双重定向符号，把输出追加到</span><span lang=EN-US>bday4me</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件中。使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>4) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>查看</span><span lang=EN-US>bday4me</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件的内容。注意这</span><span
+lang=EN-US>3</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个命令的输出在</span><span lang=EN-US>bday4me</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件中已经被组合起来了。您是在一周中的哪一天出生的？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc16587483'><a name="_2._使用管道符号"></a><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp; </span>2. 使用管道符号</span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>6</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：把命令的输出导入到另一个命令中。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用管道元字符，发送</span><span lang=EN-US>ls -l</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令的输出，作为</span><span
+lang=EN-US>more</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令的输入</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>注意：如果在当前目录中没有太多的文件，使用</span><span
+lang=EN-US> /etc</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>目录获取长列表</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。把输出作为</span><span
+lang=EN-US>more</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令的输入的时候，得到什么结果？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US>2) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>查看使用</span><span
+lang=EN-US>ls –l | more</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令列出来的文件，注意创建或修改的日期。为了查看在同一个月被创建或修改的文件或目录的列表，可以使用</span><span
+lang=EN-US>grep</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令对那个月进行搜索。当月份显示在列表中的时候，指定它</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>例如：</span><span
+lang=EN-US>Oct) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。输入命令</span><span lang=EN-US>ls -1 | grep Oct (</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>或者想查找的月份</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。结果是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>目录总是</span><span lang=EN-US>4096</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>字节大小。输入命令</span><span
+lang=EN-US>ls -1 | grep 4096</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。产生的列表是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US>________________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>4) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可以使用多个管道连接多个命令。输入取得长文件列表输出的命令，把它输入给</span><span lang=EN-US>tail</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，然后到</span><span
+lang=EN-US>sort</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令。输入的命令是：</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>5) ps (</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进程状态</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令用于查看</span><span
+lang=EN-US>Linux</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统中运行什么进程。把</span><span lang=EN-US>ps -e</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令的输出输入给</span><span
+lang=EN-US>more</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令。</span><span lang=EN-US>-e</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>选项将给出每一个在系统中运行的进程。把输出输入到</span><span
+lang=EN-US>more</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令中的结果是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>7</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：删除在本实验中创建的文件和目录。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>8</span></b></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：关闭终端窗口，注销。</span></span><a
+href="#_top"><span style='mso-bookmark:_Toc16587483'><span lang=EN-US
+style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1030" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="6-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="6-3.files/image003.gif" v:shapes="_x0000_i1030"><![endif]></span></span></a><span
+style='mso-bookmark:_Toc16587483'></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc41901940"></a><a
+name="_可选练习"></a><span style='mso-bookmark:_Toc41901940'>可选练习</span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1. </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用</span><span lang=EN-US>set -o</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令不指定任何选项，可以查看</span><span
+lang=EN-US>noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>特性是否已经打开。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入</span><span lang=EN-US>set -o</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span><span
+lang=EN-US>noclobber</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>特性打开还是关闭的？如果它是关闭的，打开它。使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>永久的关闭</span><span lang=EN-US>noclobber</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>特性。使用什么命令？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US><span
+style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2. </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可以把管道和重定向组合起来使用，达到特殊的效果。输入命令创建一个名为</span><span lang=EN-US>top5.list</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的文件，内容为主目录中的头</span><span
+lang=EN-US>5</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>行记录，使用什么命令？</span></span></p>
+
+<span style='mso-bookmark:_Toc16587483'></span>
+
+<p class=MsoNormal align=center style='text-align:center'><a name="_Toc36437040"></a><span
+lang=EN-US><span style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;
+</span>____________________________________________________________________</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;<span style='color:blue'><a
+href="#_top"><span style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1028" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="6-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="6-3.files/image003.gif" v:shapes="_x0000_i1028"><![endif]></span></a></span>
+<a href="Bookin.htm"><span style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:17.25pt;height:17.25pt'>
+ <v:imagedata src="6-3.files/image004.gif" o:title="00"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=23 height=23
+src="6-3.files/image005.jpg" v:shapes="_x0000_i1029"><![endif]></span></a></span></p>
+
+</div>
+
+</body>
+
+</html>

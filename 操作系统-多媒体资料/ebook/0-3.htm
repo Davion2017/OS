@@ -1,0 +1,1184 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./0-3.files/filelist.xml">
+<link rel=Edit-Time-Data href="./0-3.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>《操作系统实验》读者指南</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Zhou Su</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>mummer</o:LastAuthor>
+  <o:Revision>10</o:Revision>
+  <o:TotalTime>566</o:TotalTime>
+  <o:LastPrinted>2003-05-25T11:51:00Z</o:LastPrinted>
+  <o:Created>2003-07-13T22:30:00Z</o:Created>
+  <o:LastSaved>2003-07-20T11:47:00Z</o:LastSaved>
+  <o:Pages>10</o:Pages>
+  <o:Words>916</o:Words>
+  <o:Characters>5222</o:Characters>
+  <o:Company>Zx co.</o:Company>
+  <o:Lines>43</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>6412</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:HideSpellingErrors/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>0.1 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>0.1 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimHei;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:楷体_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@楷体_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-next:正文;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:15.0pt;
+	mso-bidi-font-size:22.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:22.0pt;}
+h2
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:12.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:Arial;
+	mso-font-kerning:1.0pt;}
+h3
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:10.5pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h4
+	{mso-style-next:正文;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:14.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:155%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:10.5pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	text-transform:uppercase;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	font-variant:small-caps;
+	mso-font-kerning:1.0pt;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:21.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-style:italic;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:31.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:42.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:52.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:63.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:73.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	background:navy;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.a, li.a, div.a
+	{mso-style-name:图表标题;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-facing-pages:yes;}
+@page Section1
+	{size:515.95pt 728.6pt;
+	margin:92.15pt 2.0cm 92.15pt 76.55pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-page-numbers:1;
+	mso-title-page:yes;
+	mso-even-header:url("./0-3.files/header.htm") eh1;
+	mso-header:url("./0-3.files/header.htm") h1;
+	mso-first-header:url("./0-3.files/header.htm") fh1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:50006248;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-940042660 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:295381694;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-963337550 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:1526941550;
+	mso-list-type:hybrid;
+	mso-list-template-ids:290648040 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1657">
+  <o:colormenu v:ext="edit" fillcolor="white" strokecolor="none"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+  <o:regrouptable v:ext="edit">
+   <o:entry new="1" old="0"/>
+   <o:entry new="2" old="0"/>
+   <o:entry new="3" old="0"/>
+   <o:entry new="4" old="0"/>
+   <o:entry new="5" old="0"/>
+   <o:entry new="6" old="0"/>
+   <o:entry new="7" old="0"/>
+   <o:entry new="8" old="0"/>
+   <o:entry new="9" old="0"/>
+   <o:entry new="10" old="0"/>
+   <o:entry new="11" old="10"/>
+   <o:entry new="12" old="11"/>
+   <o:entry new="13" old="12"/>
+   <o:entry new="14" old="12"/>
+   <o:entry new="15" old="12"/>
+   <o:entry new="16" old="0"/>
+   <o:entry new="17" old="0"/>
+   <o:entry new="18" old="17"/>
+   <o:entry new="19" old="18"/>
+   <o:entry new="20" old="19"/>
+   <o:entry new="21" old="20"/>
+   <o:entry new="22" old="21"/>
+   <o:entry new="23" old="22"/>
+   <o:entry new="24" old="23"/>
+   <o:entry new="25" old="24"/>
+   <o:entry new="26" old="0"/>
+  </o:regrouptable>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=right style='text-align:right'><a name="_top"></a><b><span
+style='font-size:26.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:#993366'>操作系统原理</span></b><b><i
+style='mso-bidi-font-style:normal'><span style='font-size:55.0pt;mso-bidi-font-size:
+12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman";color:#993366'>实验</span></i><span lang=EN-US
+style='color:#993366'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=right style='text-align:right;word-break:break-all'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1653" type="#_x0000_t75" style='position:absolute;
+ left:0;text-align:left;margin-left:0;margin-top:0;width:546.85pt;height:34.15pt;
+ z-index:-1;mso-wrap-edited:f;mso-position-horizontal:left;
+ mso-position-vertical:top;mso-position-vertical-relative:line' wrapcoords="-26 0 -26 21176 21600 21176 21600 0 -26 0"
+ o:allowoverlap="f">
+ <v:imagedata src="./0-3.files/image001.jpg" o:title="image_bk"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=729 height=46
+src="./0-3.files/image002.jpg" align=left hspace=12 v:shapes="_x0000_s1653"><![endif]><b><span
+style='font-size:24.0pt;mso-bidi-font-size:12.0pt;font-family:黑体;mso-ascii-font-family:
+"Times New Roman";color:navy'>读者指南</span></b><b><span lang=EN-US
+style='font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体;
+color:navy'><span style="mso-spacerun: yes">&nbsp; </span></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#读者对象"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>读者对象</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#实验内容"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验内容</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#实验要求"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验要求</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#实验设备"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验设备</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#Web站点资源">Web<span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>站点资源</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l2 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#配套光盘"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>配套光盘</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>本书是为高等院校计算机及相关专业“操作系统原理”课程而编写的实验辅助教材。目的是通过一系列使用</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>Linux (UNIX) </span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内核的实验练习，把操作系统的概念和理论知识融入到实践当中，从而加深对现代操作系统的认识和理解。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>全书各实验的操作平台采用主流操作系统</span><span
+lang=EN-US>Windows 2000 Professional</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>Red Hat Linux 9.0</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。大多数</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>实验也同样适用于</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>Windows XP</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的其他版本，并且大多数的</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>实验也与</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>操作是一致的。</span></p>
+
+<h2><a name="_Toc41657172"></a><a name=读者对象></a><span style='mso-bookmark:_Toc41657172'><span
+style='mso-bidi-font-family:宋体;color:#333399'>读者对象</span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h2>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>高等院校计算机以及相关专业“操作系统原理”课程的学生和研究生可把此书作为课程学习的实验辅助教材和自学读物。对于已经具备计算机应用和程序设计基础知识，并希望通过进一步学习得到提高的读者来说，本书也是一本继续教育的良好读物。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>相信本书的实验内容有助于“操作系统原理”课程的教与学，有助于读者对掌握和理解本课程内容建立起足够的信心和兴趣。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1025" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./0-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./0-3.files/image003.gif" v:shapes="_x0000_i1025"><![endif]></span></a></span></p>
+
+<h2><a name="_Toc41657173"></a><a name=实验内容><span style='mso-bookmark:_Toc41657173'><span
+style='mso-bidi-font-family:宋体;color:#333399'>实验内容</span></span></a><span
+style='mso-bookmark:实验内容'><span lang=EN-US style='mso-bidi-font-family:宋体;
+color:#333399'><o:p></o:p></span></span></h2>
+
+<span style='mso-bookmark:实验内容'></span>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>本书中的实验练习几乎覆盖了操作系统原理的所有方面，内容涉及操作系统安装和环境、进程描述与控制、并发性、调度、存储管理、输入</span><span
+lang=EN-US>/</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>输出管理、文件系统、操作系统安全等，每组包含</span><span
+lang=EN-US>2</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>到</span><span lang=EN-US>4</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个实验，全书共</span><span lang=EN-US>25</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个实验练习。每个实验中都包含背景知识介绍、所需的工具及准备工作和实验指导等，以帮助读者加深对课程教材中所介绍概念的理解。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验一：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>安装操作系统。通过对</span><span
+lang=EN-US>Windows 2000 Professional</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>Red Hat Linux 9.0</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的安装操作，了解操作系统应用环境建立的初步过程，掌握操作系统的基本系统设置，掌握多操作系统的安装和设置。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验二：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统环境。通过调查研究活动和对</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>系统运行的观察分析，回顾计算环境的基本术语，加深理解有关操作系统的基础概念，掌握主流操作系统的命令和图形界面，学会在操作系统上的主要系统管理操作。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验三：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程控制与描述。通过在</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>任务管理器中对程序进程进行响应的管理操作和管理</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>进程的操作，熟悉操作系统进程管理的概念，观察操作系统运行的动态性能，获得包含多进程的应用程序编程经验。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验四：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>并发与调度。通过对事件和互斥体对象以及对文件和文件映射对象的了解，来加深对操作系统进程同步、线程同步的理解；通过</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>并发程序的调试，学习操作系统并发程序的工作方式。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验五：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>存储管理。通过实验程序的分析与编制，了解操作系统内存的使用和管理；了解操作系统的内存结构和虚拟内存的管理等。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验六：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>输入</span><span
+lang=EN-US>/</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>输出管理。通过对操作系统鼠标处理、打印等的编程操作，了解操作系统输入</span><span
+lang=EN-US>/</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>输出管理和应用程序设计方法；通过</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>输出重定向和管道操作以及对</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>声音设备的编程，提高设备管理的实际能力。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验七：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件系统。分析操作系统文件系统的特征，学习优化磁盘子系统，通过使用不同命令来调查和发现文件信息，确定文件类型和创建文件的应用等。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><b style='mso-bidi-font-weight:
+normal'><span style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman";
+color:red'>实验八：</span></b><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统的安全。通过对操作系统提供的安全功能的运用，进一步了解操作系统的网络安全特性和安全措施，学习和掌握操作系统安全特性的设置方法，以及初步了解</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>注册表的应用方法。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>各个实验练习之间的难度不断增加，从这个意义上讲，应该在解决前面部分的练习之后再进行后面实验的练习。如果在做练习时遇到了困难，你可能需要搜索更早的练习来帮助解决问题。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>尽管各个实验练习中包含了对关键概念和知识的简要介绍，但是本书不是教材。如果在做这些练习的同时，学习相关的“操作系统原理”课程，则可以从实验练习中获取更多的知识。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./0-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./0-3.files/image003.gif" v:shapes="_x0000_i1026"><![endif]></span></a></span></p>
+
+<h2><a name="_Toc41657174"></a><a name=实验要求></a><span style='mso-bookmark:_Toc41657174'><span
+style='mso-bidi-font-family:宋体;color:#333399'>实验要求</span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h2>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo4;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#致教师"><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>致教师</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo4;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#致学生"><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>致学生</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo4;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#关于C和VC"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>关于</span>C<span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span>Visual C++</a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo4;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#关于Windows"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>关于</span>Windows<span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统的兼容性</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo4;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#关于Linux"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>关于</span>Linux<span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统的兼容性</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo4;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#关于UNIX"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>关于</span>UNIX<span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统的兼容性</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;<o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>根据不同的教学安排和要求，“操作系统原理”的实验学时数也有所不同。</span></p>
+
+<h3><a name="_Toc41657175"></a><a name=致教师></a><span style='mso-bookmark:_Toc41657175'><span
+style='mso-bidi-font-family:宋体;color:#333399'>致教师</span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统的设计和实现是所有其他程序设计和实现的基础。程序员如果能理解操作系统的工作原理，就能够编写出更好的中间件和应用程序。此外，无论是为新设备编写驱动程序、创建新的微内核服务器，还是提供能够高效处理发展需求的新系统等等，都需要理解基本的操作系统原理和技术。通常情况下，“操作系统”课程的教师必须决定其课程是集中于问题和理论，还是为学生提供一个能够对操作系统代码进行实验的环境。“操作系统”课程本身具有的理论抽象性和鲜明的应用性，决定了我们必须充分重视这门课程的实践环节。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>作为一本操作系统内部结构练习的实验手册，本书通过提供一组与</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>或者</span><span
+lang=EN-US>Linux (UNIX) </span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>内部结构有关的特定的实验练习作为对操作系统理论教材的补充，解释了理论概念是如何在操作系统中得到实现的。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>为方便教师对课程实验环节的组织，我们在实验内容的选择，实验步骤的设计和实验文档的组织等诸方面都做了精心的考虑和安排。任课教师不需要成为一位精通操作系统内核的专家或者自己设计练习。相反，教师和学生都可以通过本书提供的实验练习来研究概念的实现。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>根据经验，在一个学期中学生能够完成的课程实验大约在</span><span
+lang=EN-US>6~8</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>个。本书提供了足够数目的实验练习，教师可以从中选取最适合的一部分。我们也希望有机会不断更新本书的版本，使教师也有不断选择新的、更好的实验的机会。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>对于那些基础较好的学生，可以在现有实验的基础上，在程序设计方面做出一些要求和指导，以进一步发挥学生的潜能和激发学习的主动性和积极性。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>每个实验均留有“实验总结”和“教师评价”部分，方便师生交流对学科知识、实验内容的理解与体会，书后提供了“实验成绩记录”，方便老师对学生实验成绩的记录与管理。</span></p>
+
+<h3><a name="_Toc41657176"></a><a name=致学生></a><span style='mso-bookmark:_Toc41657176'><span
+style='mso-bidi-font-family:宋体;color:#333399'>致学生</span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统软件肯定是我们所见到的最优秀、最复杂和最庞大的软件之一，所以，真正领会操作系统课程所介绍的概念、原理、方法和技巧等，是很困难的。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>另一方面，经验表明，学习尤其是真正体会和掌握一种操作系统的最好方式是对它进行充分的实验，去阅读、修改和增强它的代码。但事实上，由于操作系统软件必须细心构建，它直接控制着所有运行于其上的进程和线程所使用的硬件，因而对操作系统代码进行实验操作可能是十分困难甚至是有一定风险的。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>本书为读者提供了一个研究操作系统内核的学习方法，你可以由此来体验操作系统内核及其设计技巧。你可以在不修改任何代码的情况下，了解操作系统内部状态的各个方面；可以通过编写新的代码来阅读内核的数据结构和了解操作系统运作方式。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在开始每一个实验之前，请务必预习各个实验的“知识背景”部分。“知识背景”是教科书的补充和延伸，也和实验内容有着密切的联系。完成实验后，请认真组织“实验总结”，把感受、认识和意见建议等表达出来，这能起到“画龙点睛”的作用，也可以和老师进行积极的交流。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由于操作系统本身的特殊性，在进行本书的大多数实验练习时，你可能会需要从实验室管理员那里得到超级用户的权限</span><span
+lang=EN-US> (</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>账号和口令</span><span lang=EN-US>) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，请注意不要滥用你作为超级用户的权限。</span></p>
+
+<h3><a name="_Toc41657177"></a><a name=关于C和VC></a><span style='mso-bookmark:
+_Toc41657177'><span style='mso-bidi-font-family:宋体;color:#333399'>关于<span
+lang=EN-US>C和Visual C++</span></span></span><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.75pt'><!--[if gte vml 1]><v:shape
+ id="_x0000_s1650" type="#_x0000_t75" alt="Microsoft(R) Visual C++(R) Home"
+ style='position:absolute;left:0;text-align:left;margin-left:0;margin-top:7.3pt;
+ width:141.75pt;height:34pt;z-index:5;mso-position-horizontal:left'>
+ <v:imagedata src="./0-3.files/image004.png" o:href="http://www.microsoft.com/china/msdn/visualc/images/vc_banner.gif"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=189 height=45
+src="./0-3.files/image005.gif" align=left hspace=12
+alt="Microsoft(R) Visual C++(R) Home" v:shapes="_x0000_s1650"><![endif]><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>虽然为了完成这些实验通常不必编写太多程序，但是，读者将需要复习课程的相关章节、阅读实验的“背景知识”和分析实验所提供的程序源代码。另外，操作系统内核或实验源程序通常是由</span><span
+lang=EN-US>C</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>或</span><span lang=EN-US>Visual C++ </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>编写而成的，实验讨论中包括许多代码段，在代码段中也包括了一些注释以帮助读者理解。</span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在研究本书各实验之前，读者需要具有较好的</span><span
+lang=EN-US>C</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>或</span><span lang=EN-US>Visual C++ </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>基础。当然，通过这组实验，也一定能够很好地提高读者的</span><span lang=EN-US>C</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>Visual C++</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的理解能力和开发水平。</span><span lang=EN-US>Visual C++ </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>MFC (Microsoft</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>基础类库</span><span lang=EN-US>) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使编制与操作系统底层打交道的、功能强大的应用程序的难度大大下降，开发人员不用再为设计某个程序界面而编写大量代码，从而把注意力集中在应用程序功能的优化上。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:6.2pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:47.05pt;mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+  <td width=509 style='width:381.7pt;border:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:47.05pt'>
+  <p class=MsoNormal style='text-indent:18.05pt;mso-char-indent-count:2.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><b><span
+  style='font-size:9.0pt;font-family:黑体;color:red'>提示</span></b><b><span
+  style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman";color:red'>：</span></b><span
+  style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman"'>本书的大部分</span><span lang=EN-US
+  style='font-size:9.0pt'>Windows</span><span style='font-size:9.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>编程实验需要在计算机系统中安装</span><span lang=EN-US style='font-size:
+  9.0pt'>Visual C++ 6.0</span><span style='font-size:9.0pt;font-family:宋体;
+  mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的专业版或企业版。<span
+  style='color:black'>安装</span></span><span lang=EN-US style='font-size:9.0pt;
+  color:black'>Visual C++ </span><span style='font-size:9.0pt;font-family:宋体;
+  mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman";
+  color:black'>时，应根据安装向导的系统提示进行，并注意选择“系统变量”复选框进行注册，否则有可能无法在命令提示符状态下进行操作。</span><span
+  lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h3><a name="_Toc41657178"></a><a name=关于Windows></a><span style='mso-bookmark:
+_Toc41657178'><span style='mso-bidi-font-family:宋体;color:#333399'>关于<span
+lang=EN-US>Windows系统的兼容性</span></span></span><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由于众所周知的原因，本书的大多数实验都以</span><span
+lang=EN-US>Windows 2000 Professional</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>为操作平台，希望学生能得益于此而适应未来应用的需要。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><v:shape id="_x0000_s1644"
+ type="#_x0000_t75" alt="Windows 2000 主页" style='position:absolute;left:0;
+ text-align:left;margin-left:0;margin-top:-9.6pt;width:141.75pt;height:33.75pt;
+ z-index:1;mso-position-horizontal:left'>
+ <v:imagedata src="./0-3.files/image006.png" o:href="http://www.microsoft.com/china/windows2000/images/bnrWin2000.gif"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=189 height=45
+src="./0-3.files/image007.gif" align=left hspace=12 alt="Windows 2000 主页"
+v:shapes="_x0000_s1644"><![endif]><span lang=EN-US>Windows 2000</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>各版本的一致性和</span><span lang=EN-US>Windows XP</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>各版本甚至大多数其他版本</span><span lang=EN-US>Windows</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>操作系统之间的兼容性，使本书基于</span><span lang=EN-US>Windows</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的各个实验在</span><span lang=EN-US>Windows</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>环境下具有普遍的适用性。但即使这样，为避免可能存在的问题，我们仍然建议您在实验室和自己的计算机上安装</span><span
+lang=EN-US>Windows 2000 Professional</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来完成实验。当然，我们相信，在把本书的实验用于其他</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>环境进行时，也一定为得到很大的收获。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>另一方面，我们也将根据</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统软件的发展和教学与应用的需要，积极修订和丰富本书的内容。</span></p>
+
+<h3><a name="_Toc41657179"></a><a name=关于Linux></a><span style='mso-bookmark:
+_Toc41657179'><span style='mso-bidi-font-family:宋体;color:#333399'>关于<span
+lang=EN-US>Linux系统的兼容性</span></span></span><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><v:shape id="_x0000_s1645"
+ type="#_x0000_t75" style='position:absolute;left:0;text-align:left;
+ margin-left:0;margin-top:8.55pt;width:108pt;height:33.75pt;z-index:2;
+ mso-position-horizontal:left'>
+ <v:imagedata src="./0-3.files/image008.png" o:title=""/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=144 height=45
+src="./0-3.files/image009.jpg" align=left hspace=12 v:shapes="_x0000_s1645"><![endif]><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>是一套免费使用和自由传播的类</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>操作系统，它主要基于</span><span lang=EN-US>Intel x86</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系列</span><span lang=EN-US>CPU</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>计算机，并可运行于多种硬件平台。</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>发布的版本很多，其中不乏优秀之作，且发展和更新也极快。我们选择了其中较为著名的</span><span
+lang=EN-US>Red Hat Linux 9.0</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>作为本书各个</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>实验的操作平台。</span><span lang=EN-US><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>另一方面，即使用户安装了其他发行版本的</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统，本书的各个</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统的实验也仍然能够正确进行。</span></p>
+
+<h3><a name="_Toc41657180"></a><a name=关于UNIX></a><span style='mso-bookmark:
+_Toc41657180'><span style='mso-bidi-font-family:宋体;color:#333399'>关于<span
+lang=EN-US>UNIX系统的兼容性</span></span></span><span lang=EN-US style='mso-bidi-font-family:
+宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><!--[if gte vml 1]><v:shape id="_x0000_s1647"
+ type="#_x0000_t75" style='position:absolute;left:0;text-align:left;
+ margin-left:0;margin-top:3.95pt;width:85.5pt;height:25.5pt;z-index:3;
+ mso-position-horizontal:left'>
+ <v:imagedata src="./0-3.files/image010.png" o:title=""/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=114 height=34
+src="./0-3.files/image011.jpg" align=left hspace=12 v:shapes="_x0000_s1647"><![endif]><span
+lang=EN-US>UNIX</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>无疑是今天最重要的操作系统之一，通过学习和实验真正掌握</span><span
+lang=EN-US>UNIX</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>操作系统应该是我们的目标。但是，大多数学校和教学机构很难提供足够的</span><span
+lang=EN-US>UNIX</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>实验环境。另一方面，作为用于</span><span lang=EN-US>PC</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>结构的一个</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>变种，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>以其高效性和灵活性著称，它能够在</span><span lang=EN-US>PC</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>计算机上实现全部的</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>特性，它同大多数</span><span lang=EN-US>POSIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>SYSTEM V</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>BSD</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>等</span><span
+lang=EN-US>UNIX</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>系统在源码级兼容，</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>甚至可以直接运行</span><span lang=EN-US>SCO</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>、</span><span lang=EN-US>SVR3</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>SVR4</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的可执行程序，并且</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>最初的发展理由之一，也是为了提供一个基于</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统的较小的教学环境。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>因此，虽然本书的许多实验是建立在</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>环境之下的，但在实验内容的组织上，我们也力图使读者能够透过</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>来把握</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。事实上，其中的大多数</span><span lang=EN-US>Linux</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验也同样可以在</span><span lang=EN-US>UNIX</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>环境中进行。</span><span lang=EN-US style='color:blue'><a
+href="#_top"><span style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./0-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./0-3.files/image003.gif" v:shapes="_x0000_i1027"><![endif]></span></a></span></p>
+
+<h2><a name="_Toc41657181"></a><a name="_Toc39768100"></a><a name=实验设备></a><span
+style='mso-bookmark:_Toc41657181'><span style='mso-bookmark:_Toc39768100'><span
+style='mso-bidi-font-family:宋体;color:#333399'>实验设备</span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h2>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l1 level1 lfo6;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#实验室设备与环境"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验室设备与环境</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l1 level1 lfo6;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#个人设备与环境"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>个人实验设备与环境</span></a></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l1 level1 lfo6;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span lang=EN-US><a href="#没有设备"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>没有设备时如何使用本书</span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个人计算机在学生，尤其是专业学生中的普及，使得我们有机会把实验任务分别利用课内和课外时间来完成，以获得更多的锻炼。这样，对实验室和个人计算机的配置就有不同的要求。</span></p>
+
+<h3><a name="_Toc41657182"></a><a name="_Toc39768101"></a><a name=实验室设备与环境></a><span
+style='mso-bookmark:_Toc41657182'><span style='mso-bookmark:_Toc39768101'><span
+style='mso-bidi-font-family:宋体;color:#333399'>实验室设备与环境</span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用来进行操作系统实验的实验室环境，应该建设有完善的局域网网络，并且能分别胜任</span><span
+lang=EN-US>Windows 2000</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>Red Hat Linux</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>平台的实验，有条件的话，也能够提供</span><span
+lang=EN-US>UNIX</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>平台的实验。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由于操作系统本身的特殊性，在进行本书的大多数实验练习时，实验室可能会需要建立一组具有超级用户权限的账号和密码，以分别提供给学生进行他们的实验练习，实验室老师也应该注意提醒学生不要滥用自己作为超级用户的权限，以保证实验室实验环境的安全和完好。</span></p>
+
+<h3><a name="_Toc41657183"></a><a name="_Toc39768102"></a><a name=个人设备与环境></a><span
+style='mso-bookmark:_Toc41657183'><span style='mso-bookmark:_Toc39768102'><span
+style='mso-bidi-font-family:宋体;color:#333399'>个人实验设备与环境</span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用来进行操作系统实验的个人计算机环境，一般建议在机器上安装多操作系统环境，例如：在一台机器中同时安装有</span><span
+lang=EN-US>Windows 2000 Professional</span><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>Red Hat Linux 9.0</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统。在完成不同的实验任务时，分别启动不同的操作系统平台。</span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>即使是同类的操作系统，例如不同版本的</span><span
+lang=EN-US>Windows</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>或者种类繁多的</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>，对于同一个实验任务的结果会有所不同，所以在实验中应该明确记录具体的实验环境。</span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在对自己的个人计算机进行操作系统的安装和完成实验时，要注意不滥用自己的超级用户权限，要重视理解在操作中系统所显示的提示甚至警告信息，要注意保护自己数据的安全，做好必要的数据备份工作，以免产生不必要的损失。</span></p>
+
+<h3><a name="_Toc41657184"></a><a name="_Toc39768103"></a><a name=没有设备></a><span
+style='mso-bookmark:_Toc41657184'><span style='mso-bookmark:_Toc39768103'><span
+style='mso-bidi-font-family:宋体;color:#333399'>没有设备时如何使用本书</span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如果本书的读者由于某些客观原因无法获得必要的实验设备时，也不用失望，我们相信您仍将从本书中受益。全书以循序渐进的方式介绍了每个实验的背景知识和实验任务，其中也包含了相当一部分知识内容。读者通过认真阅读“背景知识”，仔细分析实验中给出的程序源代码，也能在一定程度上有所收获。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./0-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./0-3.files/image003.gif" v:shapes="_x0000_i1028"><![endif]></span></a></span></p>
+
+<h2><a name="_Toc41657185"></a><a name="_Toc39768104"></a><a name=Web站点资源></a><span
+style='mso-bookmark:_Toc41657185'><span style='mso-bookmark:_Toc39768104'><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'>Web站点资源</span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h2>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><!--[if gte vml 1]><v:shape
+ id="_x0000_s1648" type="#_x0000_t75" alt="Google"
+ href="http://www.google.com/" style='position:absolute;left:0;text-align:left;
+ margin-left:0;margin-top:5.15pt;width:88.5pt;height:33.75pt;z-index:4;
+ mso-position-horizontal:left' o:button="t">
+ <v:fill o:detectmouseclick="t"/>
+ <v:imagedata src="./0-3.files/image012.png" o:href="http://www.google.com/intl/zh-CN_ALL/images/logo.gif"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><a href="http://www.google.com/"><img
+border=0 width=118 height=45 src="./0-3.files/image013.jpg" align=left
+hspace=12 alt=Google v:shapes="_x0000_s1648"></a><![endif]><span lang=EN-US><a
+href="http://www.google.com/"></a><a href="http://www.google.com/"></a><a
+href="http://www.google.com/"></a><a href="http://www.google.com/"></a><a
+href="http://www.google.com/"></a><a href="http://www.google.com/"></a><a
+href="http://www.google.com/"></a><a href="http://www.google.com/"></a></span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>几乎所有操作系统的生产厂商都对其产品的用户提供了足够的</span><span lang=EN-US>Internet</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>网络支持，用户可利用这些支持网络来修改错误、升级系统和获得更新、更为详尽和丰富的技术资料。</span><span
+lang=EN-US><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>由于网络资料的日新月异，我们不便在本书中一一罗列，有要求的读者可以上网利用</span><span
+lang=EN-US>Google</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>等搜索工具即时进行检索。</span><span lang=EN-US
+style='color:blue'><a href="#_top"><span style='text-decoration:none;
+text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1029" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./0-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./0-3.files/image003.gif" v:shapes="_x0000_i1029"><![endif]></span></a></span></p>
+
+<h2><a name="_Toc41657186"></a><a name="_Toc39768105"></a><a name=配套光盘></a><span
+style='mso-bookmark:_Toc41657186'><span style='mso-bookmark:_Toc39768105'><span
+style='mso-bidi-font-family:宋体;color:#333399'>配套光盘</span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体;color:#333399'><o:p></o:p></span></h2>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='font-family:宋体;
+mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>本书配套一张光盘，其中包含了在本书各个实验中所用到的所有程序的源代码，这些源程序均通过调试运行，希望有助于提高实验的效率。</span><span
+lang=EN-US><o:p></o:p></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>光盘中还包含了与本书内容相配套的教学课件，帮助教师做一点基础的备课准备，有助于学生在课堂上可以更好的集中听课的注意力，也方便了课前课后的预习和复习。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1030" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./0-3.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./0-3.files/image003.gif" v:shapes="_x0000_i1030"><![endif]></span></a></span><span
+lang=EN-US> <a href="Bookin.htm"><span style='text-decoration:none;text-underline:
+none'><!--[if gte vml 1]><v:shape id="_x0000_i1031" type="#_x0000_t75" style='width:17.25pt;
+ height:17.25pt'>
+ <v:imagedata src="./0-3.files/image014.gif" o:title="00"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=23 height=23
+src="./0-3.files/image015.jpg" v:shapes="_x0000_i1031"><![endif]></span></a></span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1543334202 source:e:\studywork\os\test7\4_1_fisrtfit\main.cpp
+	<malloc.h>
+	<stdio.h>
+	<string.h>
+

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1539164683 source:e:\studywork\os\test4\2_7_onebuffer_producerconsumer\main.cpp
+	<stdio.h>
+	<pthread.h>
+	<semaphore.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+

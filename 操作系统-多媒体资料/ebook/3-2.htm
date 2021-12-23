@@ -1,0 +1,2417 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./3-2.files/filelist.xml">
+<link rel=Edit-Time-Data href="./3-2.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>实验3 进程描述与控制</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Zhou Su</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>mummer</o:LastAuthor>
+  <o:Revision>11</o:Revision>
+  <o:TotalTime>11</o:TotalTime>
+  <o:LastPrinted>2003-05-27T04:21:00Z</o:LastPrinted>
+  <o:Created>2003-07-13T22:22:00Z</o:Created>
+  <o:LastSaved>2003-07-20T12:05:00Z</o:LastSaved>
+  <o:Pages>8</o:Pages>
+  <o:Words>1405</o:Words>
+  <o:Characters>8014</o:Characters>
+  <o:Company>Zx co.</o:Company>
+  <o:Lines>66</o:Lines>
+  <o:Paragraphs>16</o:Paragraphs>
+  <o:CharactersWithSpaces>9841</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:HideSpellingErrors/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>0.1 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>0.1 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+span.SPELLE
+	{mso-spl-e:yes;}
+span.GRAME
+	{mso-gram-e:yes;}
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimHei;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:楷体_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@楷体_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-next:正文;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:15.0pt;
+	mso-bidi-font-size:22.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:22.0pt;
+	font-weight:bold;}
+h2
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:12.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:Arial;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+h3
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:10.5pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+h4
+	{mso-style-next:正文;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:14.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:155%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:10.5pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	text-transform:uppercase;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	font-variant:small-caps;
+	mso-font-kerning:1.0pt;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:21.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-style:italic;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:31.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:42.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:52.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:63.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:73.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	background:navy;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	mso-font-kerning:1.0pt;}
+p
+	{margin-right:0cm;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:"Times New Roman";}
+p.a, li.a, div.a
+	{mso-style-name:图表标题;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-facing-pages:yes;}
+@page Section1
+	{size:515.95pt 728.6pt;
+	margin:92.15pt 2.0cm 92.15pt 76.55pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-page-numbers:46;
+	mso-title-page:yes;
+	mso-even-header:url("./3-2.files/header.htm") eh1;
+	mso-header:url("./3-2.files/header.htm") h1;
+	mso-first-header:url("./3-2.files/header.htm") fh1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:926842148;
+	mso-list-type:hybrid;
+	mso-list-template-ids:970195688 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1613">
+  <o:colormenu v:ext="edit" fillcolor="none" strokecolor="none"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+  <o:regrouptable v:ext="edit">
+   <o:entry new="1" old="0"/>
+   <o:entry new="2" old="0"/>
+   <o:entry new="3" old="0"/>
+   <o:entry new="4" old="0"/>
+   <o:entry new="5" old="0"/>
+   <o:entry new="6" old="0"/>
+   <o:entry new="7" old="0"/>
+   <o:entry new="8" old="0"/>
+   <o:entry new="9" old="0"/>
+   <o:entry new="10" old="0"/>
+   <o:entry new="11" old="10"/>
+   <o:entry new="12" old="11"/>
+   <o:entry new="13" old="12"/>
+   <o:entry new="14" old="12"/>
+   <o:entry new="15" old="12"/>
+   <o:entry new="16" old="0"/>
+   <o:entry new="17" old="0"/>
+   <o:entry new="18" old="17"/>
+   <o:entry new="19" old="18"/>
+   <o:entry new="20" old="19"/>
+   <o:entry new="21" old="20"/>
+   <o:entry new="22" old="21"/>
+   <o:entry new="23" old="22"/>
+   <o:entry new="24" old="23"/>
+   <o:entry new="25" old="24"/>
+   <o:entry new="26" old="0"/>
+  </o:regrouptable>
+ </o:shapelayout></xml><![endif]--><o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="City"/><o:SmartTagType namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="place"/>
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=right style='text-align:right'><a name="_top"></a><b><span
+style='font-size:26.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:#993366'>实验</span></b><b><i
+style='mso-bidi-font-style:normal'><span lang=EN-US style='font-size:55.0pt;
+mso-bidi-font-size:12.0pt;color:#993366'>3</span></i><span lang=EN-US
+style='color:#993366'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=right style='text-align:right;word-break:break-all'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1609" type="#_x0000_t75" style='position:absolute;
+ left:0;text-align:left;margin-left:0;margin-top:0;width:546.85pt;height:34.15pt;
+ z-index:-1;mso-wrap-edited:f;mso-position-horizontal:left;
+ mso-position-vertical:top;mso-position-vertical-relative:line' wrapcoords="-26 0 -26 21176 21600 21176 21600 0 -26 0"
+ o:allowoverlap="f">
+ <v:imagedata src="./3-2.files/image001.jpg" o:title="image_bk"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=729 height=46
+src="./3-2.files/image002.jpg" align=left hspace=12 v:shapes="_x0000_s1609"><![endif]><b><span
+style='font-size:24.0pt;mso-bidi-font-size:12.0pt;font-family:黑体;mso-ascii-font-family:
+"Times New Roman";color:navy'>进程控制与描述</span></b><b><span lang=EN-US
+style='font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体;
+color:navy'><span style="mso-spacerun: yes">&nbsp; </span></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h2><a name="_Toc36437026"></a><a name="_Toc36947203"></a><a name="_Toc39769777"></a><a
+name="_Toc45702454"></a><a name="_Toc16587483"><span style='mso-bookmark:_Toc45702454'><span
+style='mso-bookmark:_Toc39769777'><span style='mso-bookmark:_Toc36947203'><span
+style='mso-bookmark:_Toc36437026'><span lang=EN-US style='mso-bidi-font-family:
+宋体'>3.2<span style="mso-spacerun: yes">&nbsp; </span>Windows 2000</span></span></span></span></span></a><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc45702454'><span
+style='mso-bookmark:_Toc39769777'><span style='mso-bookmark:_Toc36947203'><span
+style='mso-bidi-font-family:宋体'>编程</span></span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US style='mso-bidi-font-family:
+宋体'><o:p></o:p></span></span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US>(</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>实验估计时间：</span><span
+lang=EN-US>120</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分钟</span><span lang=EN-US>)</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoFooter style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt center 207.65pt right 415.3pt'><span style='mso-bookmark:
+_Toc16587483'><![if !supportLists]><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:9.0pt;font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]></span><a href="#_背景知识"><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-size:10.5pt;mso-bidi-font-size:
+9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>背景知识</span></b></span><span style='mso-bookmark:_Toc16587483'></span></a><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:9.0pt'><o:p></o:p></span></b></span></p>
+
+<p class=MsoFooter style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt center 207.65pt right 415.3pt'><span style='mso-bookmark:
+_Toc16587483'><![if !supportLists]><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:9.0pt;font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]></span><a href="#_实验目的"><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span style='font-size:10.5pt;mso-bidi-font-size:
+9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验目的</span></b></span><span style='mso-bookmark:_Toc16587483'></span></a><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:9.0pt'><o:p></o:p></span></b></span></p>
+
+<p class=MsoFooter style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt center 207.65pt right 415.3pt'><span style='mso-bookmark:
+_Toc16587483'><![if !supportLists]><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:9.0pt;font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]></span><a href="#_工具/准备工作"><span style='mso-bookmark:
+_Toc16587483'><b style='mso-bidi-font-weight:normal'><span style='font-size:
+10.5pt;mso-bidi-font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>工具</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:9.0pt'>/</span></b></span><span
+style='mso-bookmark:_Toc16587483'><b style='mso-bidi-font-weight:normal'><span
+style='font-size:10.5pt;mso-bidi-font-size:9.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>准备工作</span></b></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:9.0pt'><o:p></o:p></span></b></span></p>
+
+<p class=MsoFooter style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt center 207.65pt right 415.3pt'><span style='mso-bookmark:
+_Toc16587483'><![if !supportLists]><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:9.0pt;font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]></span><a href="#_实验内容与步骤"><span style='mso-bookmark:
+_Toc16587483'><b style='mso-bidi-font-weight:normal'><span style='font-size:
+10.5pt;mso-bidi-font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>实验内容与步骤</span></b></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='font-size:10.5pt;
+mso-bidi-font-size:9.0pt'><o:p></o:p></span></b></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc36437027"></a><a
+name="_Toc36947204"></a><a name="_Toc39769778"></a><a name="_Toc45702455"></a><a
+name="_背景知识"></a><span style='mso-bookmark:_Toc36437027'><span
+style='mso-bookmark:_Toc36947204'><span style='mso-bookmark:_Toc39769778'><span
+style='mso-bookmark:_Toc45702455'><span style='mso-bidi-font-family:宋体'>背景知识</span></span></span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US style='mso-bidi-font-family:
+宋体'><o:p></o:p></span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><a
+name="_Toc36437028"><span lang=EN-US>Windows 2000</span></a></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可以识别的应用程序包括控制台应用程序、</span><span lang=EN-US>GUI</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>应用程序和服务应用程序。控制台应用程序可以创建</span><span lang=EN-US>GUI</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，</span><span lang=EN-US>GUI</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>应用程序可以作为服务来运行，服务也可以向标准的输出流写入数据。不同类型应用程序间的惟一重要区别是其启动方法。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span lang=EN-US>Windows 2000</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>是以</span><span lang=EN-US>NT</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的技术构建的，它提供了创建控制台应用程序的能力，使用户可以利用标准的</span><span lang=EN-US>C++</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>工具，如</span><span lang=EN-US>iostream</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>库中的</span><span lang=EN-US>cout</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>cin</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>对象，来创建小型应用程序。当系统运行时，</span><span lang=EN-US>Windows 2000</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的服务通常要向系统用户提供所需功能。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>服务应用程序类型需要</span><span
+lang=EN-US>ServiceMail() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数，由服务控制管理器</span><span
+lang=EN-US> (SCM) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>加以调用。</span><span
+lang=EN-US>SCM</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是操作系统的集成部分，负责响应系统启动以开始服务、指导用户控制或从另一个服务中来的请求。其本身负责使应用程序的行为像一个服务。通常，服务登录到特殊的</span><span
+lang=EN-US>LocalSystem</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>账号下，此账号具有与开发人员创建的服务不同的权限。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>当令</span><span
+lang=EN-US>C++ </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>编译器创建可执行程序时，编译器将源代码编译成</span><span
+lang=EN-US>OBJ</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件，然后将其与标准库相链接。产生的</span><span
+lang=EN-US>EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件是装载器指令、机器指令和应用程序的数据的集合。装载器指令告诉系统从哪里装载机器代码。另一个装载器指令告诉系统从哪里开始执行进程的主线程。在进行某些设置后，进入开发者提供的</span><span
+lang=EN-US>main() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>ServiceMain() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>或</span><span
+lang=EN-US>WinMain() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数的低级入口点。机器代码中包括有控制逻辑，它所做的事包括跳转到</span><span
+lang=EN-US>Windows API</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数，进行计算或向磁盘写入数据等。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span lang=EN-US>Windows</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>允许开发人员将大型应用程序分为较小的、互相有关系的服务模块，即动态链接库</span><span lang=EN-US>
+(DLL) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437028'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>代码块，在其中包含应用程序所使用的机器代码和应用程序的数据。</span></span></span><a
+href="#_top"><span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:
+_Toc36437028'><span lang=EN-US style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1025" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-2.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-2.files/image003.gif" v:shapes="_x0000_i1025"><![endif]></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'></span></span></a><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'></span></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437028'><a
+name="_Toc36947205"></a><a name="_Toc39769779"></a><a name="_Toc45702456"></a><a
+name="_实验目的"></a><span style='mso-bookmark:_Toc36947205'><span
+style='mso-bookmark:_Toc39769779'><span style='mso-bookmark:_Toc45702456'><span
+style='mso-bidi-font-family:宋体'>实验目的</span></span></span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US style='mso-bidi-font-family:
+宋体'><o:p></o:p></span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><a
+name="_Toc36437029"><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>通过对</span><span lang=EN-US>Windows
+2000</span></a></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437029'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>编程，进一步熟悉操作系统的基本概念，较好地理解</span><span
+lang=EN-US>Windows 2000</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437029'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的结构。</span></span></span><a
+href="#_top"><span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:
+_Toc36437029'><span lang=EN-US style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1026" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-2.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-2.files/image003.gif" v:shapes="_x0000_i1026"><![endif]></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437029'></span></span></a><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437029'></span></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437029'><a
+name="_Toc36947206"></a><a name="_Toc39769780"></a><a name="_Toc45702457"></a><a
+name="_工具/准备工作"></a><span style='mso-bookmark:_Toc36947206'><span
+style='mso-bookmark:_Toc39769780'><span style='mso-bookmark:_Toc45702457'><span
+style='mso-bidi-font-family:宋体'>工具<span lang=EN-US>/准备工作</span></span></span></span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US style='mso-bidi-font-family:
+宋体'><o:p></o:p></span></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在开始本实验之前，请回顾教科书的相关内容。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>需要做以下准备：</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>一台运行</span><span lang=EN-US>Windows 2000 Professional</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统的计算机。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>计算机中需安装</span><span lang=EN-US>Visual C++ 6.0</span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>专业版或企业版。</span></span><a
+href="#_top"><span style='mso-bookmark:_Toc16587483'><span lang=EN-US
+style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-2.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-2.files/image003.gif" v:shapes="_x0000_i1027"><![endif]></span></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'></span></p>
+
+<h3><span style='mso-bookmark:_Toc16587483'><a name="_Toc36437030"></a><a
+name="_Toc36947207"></a><a name="_Toc39769781"></a><a name="_Toc45702458"></a><a
+name="_实验内容与步骤"></a><span style='mso-bookmark:_Toc36437030'><span
+style='mso-bookmark:_Toc36947207'><span style='mso-bookmark:_Toc39769781'><span
+style='mso-bookmark:_Toc45702458'><span style='mso-bidi-font-family:宋体'>实验内容与步骤</span></span></span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span lang=EN-US style='mso-bidi-font-family:
+宋体'><o:p></o:p></span></span></h3>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'></span><a
+href="#_1._简单的控制台应用程序"><span style='mso-bookmark:_Toc16587483'><span
+lang=EN-US>1. </span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>简单的控制台应用程序</span></span><span style='mso-bookmark:_Toc16587483'></span></a><span
+style='mso-bookmark:_Toc16587483'></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'></span><a
+href="#_2._GUI应用程序"><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>2.
+GUI</span></span><span style='mso-bookmark:_Toc16587483'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>应用程序</span></span><span style='mso-bookmark:_Toc16587483'></span></a><span
+style='mso-bookmark:_Toc16587483'></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'></span><a
+href="#_3._进程对象"><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>3. </span></span><span
+style='mso-bookmark:_Toc16587483'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程对象</span></span><span
+style='mso-bookmark:_Toc16587483'></span></a><span style='mso-bookmark:_Toc16587483'></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span lang=EN-US>&nbsp;</span></span></p>
+
+<h4><span style='mso-bookmark:_Toc16587483'><a name="_Toc36437031"></a><a
+name="_1._简单的控制台应用程序"></a><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='mso-bidi-font-family:宋体'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>1. 简单的控制台应用程序<o:p></o:p></span></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>我们先来创建一个名为“</span><span
+lang=EN-US>Hello</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，</span><span
+lang=EN-US>World</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>”的应用程序。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>1</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：登录进入</span><span
+lang=EN-US>Windows 2000 Professional</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>2</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：在“开始”菜单中单击“程序”</span><span
+lang=EN-US>-</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“附件”</span><span
+lang=EN-US>-</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“记事本”命令，将清单</span><span
+lang=EN-US>3-l</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的程序键入记事本中，并把代码保存为</span><span
+lang=EN-US>Hello.cpp</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt;
+font-family:黑体'><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>清单3-1<span
+style="mso-spacerun: yes">&nbsp; </span>一个简单的Windows 2000控制台应用程序<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// hello</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>项目</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span># include
+&lt;iostream&gt;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>void main()<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>std::cout
+&lt;&lt; “Hello, Windows 2000” &lt;&lt; std :: endl ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>3</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：在“开始”菜单中单击“程序”</span><span
+lang=EN-US>-</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“附件”</span><span
+lang=EN-US>-</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“命令提示符”命令，进入</span><span
+lang=EN-US>Windows</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“命令提示符”窗口，并利用简单的标准命令行：</span><span
+lang=EN-US><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:31.5pt;mso-char-indent-count:3.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>C:\&gt; CL Hello.cpp</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来创建可执行的</span><span
+lang=EN-US>Hello.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作能否正常进行？如果不行，则可能的原因是什么？</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>4</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：运行</span><span
+lang=EN-US>Hello.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序，产生用户键入的一行文字。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>运行结果</span><span
+lang=EN-US> (</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如果运行不成功，则可能的原因是什么？</span><span
+lang=EN-US>) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>____________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<h4><span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><a
+name="_2._GUI应用程序"></a><span lang=EN-US style='mso-bidi-font-family:宋体'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>2. GUI应用程序<o:p></o:p></span></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在下面的实验中，</span><span
+lang=EN-US>C++ </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>编译器创建一个</span><span
+lang=EN-US>GUI</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>应用程序，代码中包括了</span><span
+lang=EN-US>WinMain() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>方法，这是</span><span
+lang=EN-US>GUI</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>类型的应用程序的标准入口点。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>5</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：在“开始”菜单中单击“程序”</span><span
+lang=EN-US>-</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“附件”</span><span
+lang=EN-US>-</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>“记事本”命令，将清单</span><span
+lang=EN-US>3-2</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中的程序键入记事本中，并把代码保存为</span><span
+lang=EN-US>3-2.cpp</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>&nbsp;<o:p></o:p></span></span></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:31.85pt;mso-yfti-irow:0;mso-yfti-lastrow:yes'>
+  <td width=511 style='width:383.3pt;border:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:31.85pt'>
+  <p class=MsoNormal style='text-indent:18.05pt;mso-char-indent-count:2.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc16587483'><span style='mso-bookmark:_Toc36437031'><b><span
+  style='font-size:9.0pt;font-family:黑体;color:red'>提示</span></b></span></span><span
+  style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b><span
+  style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman";color:red'>：</span></b></span></span><span
+  style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+  style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+  mso-hansi-font-family:"Times New Roman"'>在本书配套的一张小光盘中，包含了在各个实验中用到的所有程序的源代码，这些源程序均通过调试运行，实验时可直接将文件输入。希望这有助于提高实验的效率。</span></span></span><span
+  style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+  lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'></span></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>&nbsp;</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt;
+font-family:黑体'><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>清单3-2<span
+style="mso-spacerun: yes">&nbsp; </span>Windows 2000的GUI应用程序<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// msgbox</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>项目</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span># include
+&lt;windows.h&gt;<span style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>标准的</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>include<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>告诉连接器与包括</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>MessageBox API</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>函数的</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>user32</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>库进行连接</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=FR style='font-size:9.0pt;mso-ansi-language:FR'># pragma comment(lib,
+“user32.lib” )<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=FR style='font-size:9.0pt;
+mso-ansi-language:FR'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=FR style='font-size:9.0pt;
+mso-ansi-language:FR'><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>这是一个可以弹出信息框然后退出的筒单的应用程序</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>int APIENTRY
+WinMain(HINSTANCE<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+hInstance */ ,<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>HINSTANCE<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+hPrevInstance */ ,<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>LPSTR<span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+lpCmdLine */ </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>int<span
+style='mso-tab-count:4'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>/*
+nCmdShow */ )<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>::
+MessageBox(<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>NULL, <span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>没有父窗口</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>“Hello,
+Windows 2000” , <span style='mso-tab-count:3'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>消息框中的文本</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>“Greetings”,
+<span style='mso-tab-count:5'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>消息框标题</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>MB_OK) ;<span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>其中只有一个</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>OK</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>按钮</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>返回</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>0</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>以便通知系统不进入消息循环</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return(0)
+;<o:p></o:p></span></span></span></p>
+
+<p style='text-indent:27.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>}</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>&nbsp;</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>也可以利用任何其他文本编辑器键入程序代码，如果这样，例如使用</span><span
+lang=EN-US>WORD</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来键入和编辑程序，则应该注意什么问题？</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>____________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>____________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>6</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：在“命令提示符”窗口运行</span><span
+lang=EN-US>CL.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，产生</span><span
+lang=EN-US>3-2.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件：</span><span
+lang=EN-US><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:31.5pt;mso-char-indent-count:3.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>C:\&gt; CL 3-2.cpp</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在清单</span><span
+lang=EN-US>3-2</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的</span><span
+lang=EN-US>GUI</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>应用程序中，首先需要</span><span
+lang=EN-US>Windows.h</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>头文件，以便获得传送给</span><span
+lang=EN-US>WinMain() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>MessageBox() API</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数的数据类型定义。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>接着的</span><span
+lang=EN-US>pragma</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>指令指示编译器</span><span
+lang=EN-US>/</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>连接器找到</span><span
+lang=EN-US>User32.LIB</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>库文件并将其与产生的</span><span
+lang=EN-US>EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件连接起来。这样就可以运行简单的命令行命令</span><span
+lang=EN-US>CL MsgBox.CPP</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来创建这一应用程序，如果没有</span><span
+lang=EN-US>pragma</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>指令，则</span><span
+lang=EN-US>MessageBox() API</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数就成为未定义的了。这一指令是</span><span
+lang=EN-US>Visual Studio C++ </span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>编译器特有的。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>接下来是</span><span
+lang=EN-US>WinMain() </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>方法。其中有四个由实际的低级入口点传递来的参数。</span><span
+lang=EN-US>hInstance</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>参数用来装入与代码相连的图标或位图一类的资源，无论何时，都可用</span><span
+lang=EN-US>GetModuleHandle() API</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数将这些资源提取出来。系统利用实例句柄来指明代码和初始的数据装在内存的何处。句柄的数值实际上是</span><span
+lang=EN-US>EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件映像的基地址，通常为</span><span
+lang=EN-US>0x00400000</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。下一个参数</span><span
+lang=EN-US>hPrevInstance</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是为向后兼容而设的，现在系统将其设为</span><span
+lang=EN-US>NULL</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。应用程序的命令行</span><span
+lang=EN-US> (</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>不包括程序的名称</span><span
+lang=EN-US>) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是</span><span
+lang=EN-US>lpCmdLine</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>参数。另外，系统利用</span><span
+lang=EN-US>nCmdShow</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>参数告诉应用程序如何显示它的主窗口</span><span
+lang=EN-US> (</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>选项包括最小化、最大化和正常</span><span
+lang=EN-US>) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>最后，程序调用</span><span
+lang=EN-US>MessageBox() API</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数并退出。如果在进入消息循环之前就结束运行的话，最后必须返回</span><span
+lang=EN-US>0</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>运行结果</span><span
+lang=EN-US> (</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>试将其中的信息与清单</span><span
+lang=EN-US>3-1</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序的运行结果进行比较</span><span
+lang=EN-US>) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.0pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>____________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<h4><span style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><a
+name="_3._进程对象"></a><span lang=EN-US style='mso-bidi-font-family:宋体'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span>3. 进程对象<o:p></o:p></span></span></span></h4>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统将当前运行的应用程序看作是进程对象。利用系统提供的惟一的称为句柄</span><span
+lang=EN-US> (HANDLE) </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的号码，就可与进程对象交互。这一号码只对当前进程有效。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>本实验表示了一个简单的进程句柄的应用。在系统中运行的任何进程都可调用</span><span
+lang=EN-US>GetCurrentProcess() API</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数，此函数可返回标识进程本身的句柄。然后就可在</span><span
+lang=EN-US>Windows</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>需要该进程的有关情况时，利用这一句柄来提供。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>7</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：将清单</span><span
+lang=EN-US>3-3.cpp</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序键入记事本中，并把代码保存为</span><span
+lang=EN-US>3-3.cpp</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span><span
+lang=EN-US><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-family:黑体'>清单<span lang=EN-US>3-3<span style="mso-spacerun:
+yes">&nbsp; </span>获得和使用进程的句柄<o:p></o:p></span></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// prochandle</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>项目</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span># include
+&lt;windows.h&gt;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span># include
+&lt;iostream&gt;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>确定自己的优先权的简单应用程序</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>void main()<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>从当前进程中提取句柄</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>HANDLE hProcessThis = :: GetCurrentProcess() ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>请求内核提供该进程所属的优先权类</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>DWORD
+dwPriority = :: GetPriorityClass(hProcessThis) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>发出消息，为用户描述该类</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>std
+:: cout &lt;&lt; “Current process priority: ” ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>switch(dwPriority)<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case
+HIGH_PRIORITY_CLASS:<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>std :: cout &lt;&lt; “High” ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case
+NORMAL_PRIORITY_CLASS:<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>std&nbsp;:: cout &lt;&lt;&nbsp;“<st1:City><st1:place>Normal</st1:place></st1:City>”
+;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case
+IDLE_PRIORITY_CLASS:<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>std :: cout &lt;&lt; “Idle” ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>case
+REALTIME_PRIORITY_CLASS:<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>std :: cout &lt;&lt; “Realtime” ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>default:<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>std
+:: cout &lt;&lt; “&lt;unknown&gt;” ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>break;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>std
+:: cout &lt;&lt; std :: endl;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>清单</span><span
+lang=EN-US>3-3</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中列出的是一种获得进程句柄的方法。对于进程句柄可进行的惟一有用的操作是在</span><span
+lang=EN-US>API</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>调用时，将其作为参数传送给系统，正如清单</span><span
+lang=EN-US>3-3</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中对</span><span
+lang=EN-US>GetPriorityClass() API</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数的调用那样。在这种情况下，系统向进程对象内“窥视”，以决定其优先级，然后将此优先级返回给应用程序。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>OpenProcess() </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>CreateProcess() API</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>函数也可以用于提取进程句柄。前者提取的是已经存在的进程的句柄，而后者创建一个新进程，并将其句柄提供出来。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>8</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：在“命令提示符”窗口运行</span><span
+lang=EN-US>CL.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，产生</span><span
+lang=EN-US>3-3.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件：</span><span
+lang=EN-US><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:31.5pt;mso-char-indent-count:3.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>C:\&gt; CL 3-3.cpp</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>运行结果：</span><span
+lang=EN-US>__________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>9</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：将清单</span><span
+lang=EN-US>3-4.cpp</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序键入记事本中，并把代码保存为</span><span
+lang=EN-US>3-4.cpp</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>清单</span><span
+lang=EN-US>3-4</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>显示如何找出系统中正在运行的所有进程，如何利用</span><span
+lang=EN-US>OpenProcess() API</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数来获得每一个访问进程的进一步信息。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+黑体'>清单<span lang=EN-US>3-4<span style="mso-spacerun: yes">&nbsp; </span>利用句柄查出进程的详细信息<o:p></o:p></span></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>// proclist</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-size:
+9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>项目</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>#
+include &lt;windows.h&gt;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>#
+include &lt;tlhelp32.h&gt;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>#
+include &lt;iostream&gt;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>当在用户模式机内核模式下都提供所耗时间时，在内核模式下进行所耗时间的</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>64</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>位计算的帮助方法</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>DWORD
+GetKernelModePercentage(const FILETIME &amp; ftKernel, <o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:4.5pt;mso-char-indent-count:.5;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>const FILETIME &amp; ftUser)<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:4.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>// </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>将</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>FILETIME</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>结构转化为</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>64</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>位整数</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ULONGLONG
+qwKernel =<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:49.5pt;mso-char-indent-count:5.5;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>( ( (ULONGLONG) ftKernel.dwHighDateTime) &lt;&lt; 32) +<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ftKernel.dwLowDateTime;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ULONGLONG qwUser =<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:49.5pt;mso-char-indent-count:5.5;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>( ( (ULONGLONG) ftUser.dwHighDateTime) &lt;&lt; 32) +<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ftUser.dwLowDateTime;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>将消耗时间相加，然后计算消耗在内核模式下的时间百分比</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ULONGLONG qwTotal = qwKernel + qwUser;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>DWORD dwPct =<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>(DWORD) ( ( (ULONGLONG) 100*qwKernel) / qwTotal) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>return(dwPct)
+;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>以下是将当前运行进程名和消耗在内核模式下的时间百分数都显示出来的应用程序</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>void main()<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:27.0pt;mso-char-indent-count:3.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:4.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>// </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>对当前系统中运行的进程拍取“快照”</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>HANDLE hSnapshot = :: CreateToolhelp32Snapshot(<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>TH32CS –
+SNAPPROCESS,<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>提取当前进程</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>0) ;<span style='mso-tab-count:
+7'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>如果是当前进程，就将其忽略</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>初始化进程入口</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span>PROCESSENTRY32 pe;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>::
+ZeroMemory(&amp;pe, sizeof(pe) ) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>pe.dwSize = sizeof(pe) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:36.0pt;mso-char-indent-count:4.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'>// </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>按所有进程循环</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>BOOL
+bMore = :: Process32First(hSnapshot, &amp;pe) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>while(bMore)<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>打开用于读取的进程</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>HANDLE
+hProcess = :: OpenProcess(<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>PROCESS_QUERY_INFORMATION,<span style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>指明要得到信息</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>FALSE,<span style='mso-tab-count:8'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>不必继承这一句柄</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>pe.th32ProcessID) ;<span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>要打开的进程</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if (hProcess
+!= NULL)<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>{<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;</span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>找出进程的时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>FILETIME ftCreation, ftExit, ftKernelMode, ftUserMode;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>:: GetProcessTimes(<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>hProcess,<span style='mso-tab-count:7'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所感兴趣的进程</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&amp;ftCreation,<span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程的启动时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'> (</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>绝对的</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>)<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&amp;ftExit,<span style='mso-tab-count:7'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>结束时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'> (</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>如果有的话</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'>)<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&amp;ftKernelMode,<span
+style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在内核模式下消耗的时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&amp;ftUserMode) ;<span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在用户模式下消耗的时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>// </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>计算内核模式消耗的时间百分比</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>DWORD dwPctKernel = :: GetKernelModePercentage(<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ftKernelMode,<span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在内核模式上消耗的时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>ftUserMode ) ;<span style='mso-tab-count:6'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>//
+</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在用户模式下消耗的时间</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>// </span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-size:9.0pt;font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>向用户显示进程的某些信息</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>std :: cout &lt;&lt; “Process ID: ” &lt;&lt; pe.th32ProcessID<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:18.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&lt;&lt; “, EXE file: ” &lt;&lt; pe.szExeFile<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&lt;&lt; “, % in kernel mode: ” &lt;&lt; dwPctKernel<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&lt;&lt; std :: endl;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>消除句柄</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>:: CloseHandle(hProcess) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>// </span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+style='font-size:9.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>转向下一个进程</span></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US style='font-size:9.0pt'><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span lang=EN-US
+style='font-size:9.0pt'><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>bMore =
+:: Process32Next(hSnapshot, &amp;pe) ;<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US style='font-size:9.0pt'><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}<o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>清单</span><span
+lang=EN-US>3-4</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序首先利用</span><span
+lang=EN-US>Windows 2000</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的新特性，即工具帮助库来获得当前运行的所有进程的快照。然后应用程序进入快照中的每一个进程，得到其以</span><span
+lang=EN-US>PROCESSENTRY32</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>结构表示的属性。这一结构用来向</span><span
+lang=EN-US>OpenProcess() API</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>函数提供进程的</span><span
+lang=EN-US>ID</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span><span
+lang=EN-US>Windows</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>跟踪每一进程的有关时间，示例中是通过打开的进程句柄和</span><span
+lang=EN-US>GetProcessTimes() API</span></span></span><span style='mso-bookmark:
+_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>来直询得到有关时间的。接下来，一个定制的帮助函数取得了几个返回的数值，然后计算进程在内核模式下消耗的时间占总时间的百分比。程序的其余部分比较简单，只是将有关信息显示给用户，清除进程句柄，然后继续循环，直到所有进程都计算过为止。</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span></span><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>10</span></b></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：在“命令提示符”窗口运行</span><span
+lang=EN-US>CL.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，产生</span><span
+lang=EN-US>3-4.EXE</span></span></span><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>文件：</span><span
+lang=EN-US><o:p></o:p></span></span></span></p>
+
+<p class=MsoNormal style='text-indent:31.5pt;mso-char-indent-count:3.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc16587483'><span style='mso-bookmark:_Toc36437031'><span
+lang=EN-US>C:\&gt; CL 3-4.cpp</span></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>运行结果：</span><span
+lang=EN-US>__________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span lang=EN-US>________________________________________________________________________</span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><a name="_Toc36947208"><span lang=EN-US>________________________________________________________________________</span></a></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='mso-bookmark:_Toc36947208'><span
+lang=EN-US>________________________________________________________________________</span></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='mso-bookmark:_Toc36947208'><span
+lang=EN-US>________________________________________________________________________</span></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='mso-bookmark:_Toc36947208'><span
+lang=EN-US>________________________________________________________________________</span></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='mso-bookmark:_Toc36947208'><span
+lang=EN-US>________________________________________________________________________</span></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='mso-bookmark:_Toc36947208'><span
+lang=EN-US>________________________________________________________________________</span></span></span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc16587483'><span
+style='mso-bookmark:_Toc36437031'><span style='mso-bookmark:_Toc36947208'><span
+lang=EN-US>________________________________________________________________________</span></span></span></span></p>
+
+<span style='mso-bookmark:_Toc36947208'></span><span style='mso-bookmark:_Toc36437031'></span><span
+style='mso-bookmark:_Toc16587483'></span>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;<span style='color:blue'><a
+href="#_top"><span style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1028" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-2.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-2.files/image003.gif" v:shapes="_x0000_i1028"><![endif]></span></a></span>
+<a href="Bookin.htm"><span style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:17.25pt;height:17.25pt'>
+ <v:imagedata src="./3-2.files/image004.gif" o:title="00"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=23 height=23
+src="./3-2.files/image005.jpg" v:shapes="_x0000_i1029"><![endif]></span></a></span></p>
+
+</div>
+
+</body>
+
+</html>

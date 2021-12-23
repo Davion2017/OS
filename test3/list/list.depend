@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1539702922 source:e:\studywork\os\test3\list\main.cpp
+	<malloc.h>
+	<stdio.h>
+	<string.h>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1541561039 source:c:\users\admin\desktop\新建文件夹\3_4_timeslice\main.cpp
+	<malloc.h>
+	<stdio.h>
+	<string.h>
+

@@ -1,0 +1,2735 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=GB2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./3-4.files/filelist.xml">
+<link rel=Edit-Time-Data href="./3-4.files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>实验3 进程描述与控制</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Zhou Su</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>mummer</o:LastAuthor>
+  <o:Revision>9</o:Revision>
+  <o:TotalTime>14</o:TotalTime>
+  <o:LastPrinted>2003-05-27T04:21:00Z</o:LastPrinted>
+  <o:Created>2003-07-13T22:23:00Z</o:Created>
+  <o:LastSaved>2003-07-20T12:09:00Z</o:LastSaved>
+  <o:Pages>7</o:Pages>
+  <o:Words>1070</o:Words>
+  <o:Characters>6103</o:Characters>
+  <o:Company>Zx co.</o:Company>
+  <o:Lines>50</o:Lines>
+  <o:Paragraphs>12</o:Paragraphs>
+  <o:CharactersWithSpaces>7494</o:CharactersWithSpaces>
+  <o:Version>9.2812</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>110</w:Zoom>
+  <w:HideSpellingErrors/>
+  <w:PunctuationKerning/>
+  <w:DrawingGridHorizontalSpacing>0.1 磅</w:DrawingGridHorizontalSpacing>
+  <w:DrawingGridVerticalSpacing>0.1 磅</w:DrawingGridVerticalSpacing>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery>
+  <w:Compatibility>
+   <w:SpaceForUL/>
+   <w:BalanceSingleByteDoubleByteWidth/>
+   <w:DoNotLeaveBackslashAlone/>
+   <w:ULTrailSpace/>
+   <w:DoNotExpandShiftReturn/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:黑体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimHei;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 135135232 16 0 262145 0;}
+@font-face
+	{font-family:"\@黑体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:楷体_GB2312;
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+@font-face
+	{font-family:"\@楷体_GB2312";
+	panose-1:2 1 6 9 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:1 135135232 16 0 262144 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h1
+	{mso-style-next:正文;
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:240%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:15.0pt;
+	mso-bidi-font-size:22.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:22.0pt;}
+h2
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:center;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:12.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:Arial;
+	mso-font-kerning:1.0pt;}
+h3
+	{mso-style-next:正文;
+	margin-top:13.0pt;
+	margin-right:0cm;
+	margin-bottom:13.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:170%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:10.5pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+h4
+	{mso-style-next:正文;
+	margin-top:14.0pt;
+	margin-right:0cm;
+	margin-bottom:14.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:155%;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:10.5pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:6.0pt;
+	margin-left:0cm;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	text-transform:uppercase;
+	mso-font-kerning:1.0pt;
+	font-weight:bold;}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:10.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	font-variant:small-caps;
+	mso-font-kerning:1.0pt;}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:21.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;
+	font-style:italic;}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:31.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:42.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:52.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:63.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:73.5pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:正文;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:84.0pt;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	background:navy;
+	font-size:10.5pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:宋体;
+	mso-font-kerning:1.0pt;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	mso-pagination:none;
+	font-size:10.5pt;
+	font-family:宋体;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";
+	mso-font-kerning:1.0pt;}
+p.a, li.a, div.a
+	{mso-style-name:图表标题;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	font-size:9.0pt;
+	mso-bidi-font-size:12.0pt;
+	font-family:黑体;
+	mso-hansi-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:1.0pt;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-facing-pages:yes;}
+@page Section1
+	{size:515.95pt 728.6pt;
+	margin:92.15pt 2.0cm 92.15pt 76.55pt;
+	mso-header-margin:42.55pt;
+	mso-footer-margin:49.6pt;
+	mso-page-numbers:46;
+	mso-title-page:yes;
+	mso-even-header:url("./3-4.files/header.htm") eh1;
+	mso-header:url("./3-4.files/header.htm") h1;
+	mso-first-header:url("./3-4.files/header.htm") fh1;
+	mso-paper-source:0;
+	layout-grid:15.6pt;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:1560826630;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1619597392 67698699 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0D8;
+	mso-level-tab-stop:21.0pt;
+	mso-level-number-position:left;
+	margin-left:21.0pt;
+	text-indent:-21.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1613">
+  <o:colormenu v:ext="edit" fillcolor="none" strokecolor="none"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+  <o:regrouptable v:ext="edit">
+   <o:entry new="1" old="0"/>
+   <o:entry new="2" old="0"/>
+   <o:entry new="3" old="0"/>
+   <o:entry new="4" old="0"/>
+   <o:entry new="5" old="0"/>
+   <o:entry new="6" old="0"/>
+   <o:entry new="7" old="0"/>
+   <o:entry new="8" old="0"/>
+   <o:entry new="9" old="0"/>
+   <o:entry new="10" old="0"/>
+   <o:entry new="11" old="10"/>
+   <o:entry new="12" old="11"/>
+   <o:entry new="13" old="12"/>
+   <o:entry new="14" old="12"/>
+   <o:entry new="15" old="12"/>
+   <o:entry new="16" old="0"/>
+   <o:entry new="17" old="0"/>
+   <o:entry new="18" old="17"/>
+   <o:entry new="19" old="18"/>
+   <o:entry new="20" old="19"/>
+   <o:entry new="21" old="20"/>
+   <o:entry new="22" old="21"/>
+   <o:entry new="23" old="22"/>
+   <o:entry new="24" old="23"/>
+   <o:entry new="25" old="24"/>
+   <o:entry new="26" old="0"/>
+  </o:regrouptable>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN link=blue vlink=purple style='tab-interval:21.0pt;text-justify-trim:
+punctuation'>
+
+<div class=Section1 style='layout-grid:15.6pt'>
+
+<p class=MsoNormal align=right style='text-align:right'><a name="_top"></a><b><span
+style='font-size:26.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";color:#993366'>实验</span></b><b><i
+style='mso-bidi-font-style:normal'><span lang=EN-US style='font-size:55.0pt;
+mso-bidi-font-size:12.0pt;color:#993366'>3</span></i><span lang=EN-US
+style='color:#993366'><o:p></o:p></span></b></p>
+
+<p class=MsoNormal align=right style='text-align:right'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_s1609" type="#_x0000_t75" style='position:absolute;
+ left:0;text-align:left;margin-left:0;margin-top:0;width:546.85pt;height:34.15pt;
+ z-index:-1;mso-wrap-edited:f;mso-position-horizontal:left;
+ mso-position-vertical:top;mso-position-vertical-relative:line' wrapcoords="-26 0 -26 21176 21600 21176 21600 0 -26 0"
+ o:allowoverlap="f">
+ <v:imagedata src="./3-4.files/image001.jpg" o:title="image_bk"/>
+ <w:wrap type="square" anchorx="page"/>
+</v:shape><![endif]--><![if !vml]><img width=729 height=46
+src="./3-4.files/image002.jpg" align=left hspace=12 v:shapes="_x0000_s1609"><![endif]><b><span
+style='font-size:24.0pt;mso-bidi-font-size:12.0pt;font-family:黑体;mso-ascii-font-family:
+"Times New Roman";color:navy'>进程控制与描述</span></b><b><span lang=EN-US
+style='font-size:16.0pt;mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体;
+color:navy'><span style="mso-spacerun: yes">&nbsp; </span></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h2><a name="_Toc45702468"></a><a name="_Toc39769791"></a><a name="_Toc36947210"><span
+style='mso-bookmark:_Toc39769791'><span style='mso-bookmark:_Toc45702468'><span
+lang=EN-US style='mso-bidi-font-family:宋体'>3.4<span style="mso-spacerun:
+yes">&nbsp; </span>管理Linux系统进程</span></span></span></a><span lang=EN-US
+style='mso-bidi-font-family:宋体'><o:p></o:p></span></h2>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>(</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验估计时间：</span><span lang=EN-US>90</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分钟</span><span lang=EN-US>)</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_背景知识"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>背景知识</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_实验目的"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验目的</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_工具/准备工作"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>工具</span>/<span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>准备工作</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt;mso-list:l0 level1 lfo2;
+tab-stops:list 21.0pt'><![if !supportLists]><span lang=EN-US style='font-family:
+Wingdings;mso-bidi-font-weight:bold'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span lang=EN-US><a href="#_实验内容与步骤"><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>实验内容与步骤</span></a><o:p></o:p></span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+<h3><a name="_Toc36947211"></a><a name="_Toc39769792"></a><a name="_Toc45702469"></a><a
+name="_背景知识"></a><span style='mso-bookmark:_Toc36947211'><span
+style='mso-bookmark:_Toc39769792'><span style='mso-bookmark:_Toc45702469'><span
+style='mso-bidi-font-family:宋体'>背景知识</span></span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><a name="_Toc36947212"><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在本实验中，我们将使用</span><span
+lang=EN-US>Linux</span></a><span style='mso-bookmark:_Toc36947212'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令工作，来标识和控制系统进程。</span><span lang=EN-US>Linux</span></span><span
+style='mso-bookmark:_Toc36947212'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统使用进程管理作业，进程由系统或者用户初始化。用户在</span><span
+lang=EN-US>Linux</span></span><span style='mso-bookmark:_Toc36947212'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>环境下执行的作业大多数都会启动一个进程。进程可以启动或者派生一个子进程，这样创建了一个进程层次结构或者进程树，类似于具有父子关系的文件系统层次结构。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947212'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可以使用</span><span lang=EN-US>ps (</span></span><span
+style='mso-bookmark:_Toc36947212'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程状态</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc36947212'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令工作，监控系统进程，使用</span><span lang=EN-US>kill</span></span><span
+style='mso-bookmark:_Toc36947212'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令终止不想要的进程。</span></span><a
+href="#_top"><span style='mso-bookmark:_Toc36947212'><span lang=EN-US
+style='text-decoration:none;text-underline:none'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1025" type="#_x0000_t75" style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-4.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-4.files/image003.gif" v:shapes="_x0000_i1025"><![endif]></span></span><span
+style='mso-bookmark:_Toc36947212'></span></a><span style='mso-bookmark:_Toc36947212'></span></p>
+
+<h3><span style='mso-bookmark:_Toc36947212'><a name="_Toc39769793"></a><a
+name="_Toc45702470"></a><a name="_实验目的"></a><span style='mso-bookmark:_Toc39769793'><span
+style='mso-bookmark:_Toc45702470'><span style='mso-bidi-font-family:宋体'>实验目的</span></span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>1) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>回顾系统进程的概念，加深对</span><span
+lang=EN-US>Linux / UNIX</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程管理的理解。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>2) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>回顾</span><span
+lang=EN-US>ps</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>命令和选项。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>3) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>列出当前</span><span
+lang=EN-US>shell</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>中的进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>4) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>列出运行在系统中的所有进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>5) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>根据命令名搜索特定的进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>6) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>确定一个进程，终止它。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>7) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用</span><span
+lang=EN-US>kill</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>命令终止进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>8) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>根据用户查找和终止进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>9) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>根据命令名终止进程。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-4.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-4.files/image003.gif" v:shapes="_x0000_i1026"><![endif]></span></a></span></p>
+
+<h3><a name="_Toc36947213"></a><a name="_Toc39769794"></a><a name="_Toc45702471"></a><a
+name="_工具/准备工作"></a><span style='mso-bookmark:_Toc36947213'><span
+style='mso-bookmark:_Toc39769794'><span style='mso-bookmark:_Toc45702471'><span
+style='mso-bidi-font-family:宋体'>工具<span lang=EN-US>/准备工作</span></span></span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在开始本实验之前，请回顾教科书的相关内容。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>您需要做以下准备：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>1) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>由指导老师分配的登录用户</span><span
+lang=EN-US> ID (</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>如</span><span lang=EN-US>user2) </span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和口令。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span lang=EN-US>2) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>一台运行</span><span
+lang=EN-US>Red Hat Linux</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>操作系统的计算机。</span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1027" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-4.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-4.files/image003.gif" v:shapes="_x0000_i1027"><![endif]></span></a></span></p>
+
+<h3><a name="_Toc36947214"></a><a name="_Toc39769795"></a><a name="_Toc45702472"></a><a
+name="_实验内容与步骤"></a><span style='mso-bookmark:_Toc36947214'><span
+style='mso-bookmark:_Toc39769795'><span style='mso-bookmark:_Toc45702472'><span
+style='mso-bidi-font-family:宋体'>实验内容与步骤</span></span></span></span><span
+lang=EN-US style='mso-bidi-font-family:宋体'><o:p></o:p></span></h3>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>1</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：登录进入</span><span lang=EN-US>GNOME</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>在</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>登录框中填写指导老师分配的用户名和口令，登录</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>系统。</span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>2</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：访问命令行。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>单击红帽子，在“</span><span
+lang=EN-US>GNOME</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>帮助”菜单中单击“系统工具”</span><span lang=EN-US>-</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>“终端”命令，打开“终端”窗口。</span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><b style='mso-bidi-font-weight:normal'><span
+style='font-family:楷体_GB2312;mso-ascii-font-family:"Times New Roman"'>步骤</span></b><b
+style='mso-bidi-font-weight:normal'><span lang=EN-US style='mso-fareast-font-family:
+楷体_GB2312'>3</span></b><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>：回顾系统进程概念。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>每个运行的程序都会创建一个进程，进程分配到一个唯一的进程标识符</span><span
+lang=EN-US> (PID) </span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span><span
+lang=EN-US>PID</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>被系统用于标识和跟踪进程，直到进程结束。操作系统内核管理所有进程的初始化和终止。每一个进程都要求系统资源</span><span
+lang=EN-US> (</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>例如</span><span lang=EN-US>CPU</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>时间和</span><span lang=EN-US>RAM</span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>空间</span><span
+lang=EN-US>) </span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>在其中工作。当进程启动的时候，操作系统把系统资源分配给每个进程，当进程终止的时候，系统回收这些资源。在</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>系统启动的时候，首先启动的两个进程是</span><span
+lang=EN-US>sched (</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>调度</span><span
+lang=EN-US>) </span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>和</span><span lang=EN-US>init (</span><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>初始化</span><span lang=EN-US>) </span><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，它们管理着其他进程。</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>系统中有几种不同类型的进程：</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>守护进程：由</span><span
+lang=EN-US>Linux</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>内核启动的进程，为了特定目的而存在。例如，</span><span
+lang=EN-US>lpsched</span><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>守护进程存在只是为了处理打印作业。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>父进程：派生其他进程的进程是父进程。一个叫做</span><span
+lang=EN-US>init</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>的守护进程是第一个调用的进程。每一个进程，除了</span><span
+lang=EN-US>init</span><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>之外，都有一个父进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>子进程：由其他进程派生出来的进程叫做子进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>孤儿进程：在进程返回输出之前，它的父进程结束了，这样的进程叫做孤儿进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>僵进程：子进程没有带着输出返回给父进程。这样的进程在系统中变成丢失的进程。</span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><a name="_Toc36947215"><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用此前的信息，完成以下填空：</span></a></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>1) Linux</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>系统中，几乎每一个启动的进程，都会由内核分配一个唯一的</span><span lang=EN-US>_______________</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程标识符，用于跟踪从进程启动到进程结束。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>当启动新进程的时候，内核也给它们分配系统资源，如</span><span lang=EN-US>________</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>________</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>永远不向父进程返回输出的进程叫做</span><span lang=EN-US>______________</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>4) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>由父进程派生出来的进程叫做</span><span lang=EN-US>__________________</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>5) ________________</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进程是一个派生另一个进程的进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>6) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>运行用于提供服务的</span><span lang=EN-US>Linux</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>系统进程是</span><span
+lang=EN-US>_______________</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>7) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果父进程在子进程之前结束，它创建了一个</span><span lang=EN-US>______________</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>4</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：回顾</span><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令和信息。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令用于列出当前系统中运行的进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果一个进程耗时太长，或者看上去好像已经终止了，表现为一个终端窗口不再响应或挂起，通常需要使用</span><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>查看系统中的进程。通过列出进程，可以查看初始化进程的命令或程序的名字，以及所有它派生出来的子进程。通过多次执行</span><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令，查看进程的时间——进程占用的</span><span lang=EN-US>CPU</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>时间，可以检查一个进程是否还在运行。如果时间小再增长，那么进程可能已经终止了。如果进程占用太长的时间或者已经停止，可以使用</span><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令检查进程的进程</span><span lang=EN-US>ID (PID) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，然后杀死进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令的输出将显示</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>号和与其相关的命令或程序。</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>号通常用于终止一个进程。</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令</span><span
+lang=EN-US> ( ps [-options] ) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的</span><span lang=EN-US>3</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>个主要选项如下表所示。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=a><span style='mso-bookmark:_Toc36947215'>表<span lang=EN-US>3-5<span
+style="mso-spacerun: yes">&nbsp; </span>ps命令选项<o:p></o:p></span></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.0pt;mso-yfti-irow:0'>
+  <td width=94 style='width:70.55pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=a><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>ps选项</span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=80 style='width:60.0pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=a><span style='mso-bookmark:_Toc36947215'>意义</span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=336 style='width:251.95pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=a><span style='mso-bookmark:_Toc36947215'>功能</span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:1'>
+  <td width=94 style='width:70.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>Ps<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoHeader style='tab-stops:21.0pt center 207.65pt right 415.3pt;
+  layout-grid-mode:both;border:none;mso-padding-alt:0cm 0cm 0cm 0cm'><span
+  style='mso-bookmark:_Toc36947215'><span style='mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>无选项</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=336 style='width:251.95pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>显示当前</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>shell</span></span><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>或终端窗口中，当前用户的进程信息</span></span><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:2'>
+  <td width=94 style='width:70.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>ps –e<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>每一个</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=336 style='width:251.95pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>显示系统中每一个进程的信息</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:3'>
+  <td width=94 style='width:70.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>ps –f<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>完全</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=336 style='width:251.95pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>产生一个完全列表，给出每个进程的所有可用信息</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:4;mso-yfti-lastrow:yes'>
+  <td width=94 style='width:70.55pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>ps -u userid<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=80 style='width:60.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>用户</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=336 style='width:251.95pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>显示特定用户的所有进程</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=a style='text-align:justify;text-justify:inter-ideograph'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-family:"Times New Roman";
+mso-ascii-font-family:黑体'>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>基本的</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令显示在当前</span><span
+lang=EN-US>shell</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中的进程信息，用户只能够查看在这个终端窗口中初始化的进程。输入</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，将结果填入表</span><span
+lang=EN-US>3-6</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=a><span style='mso-bookmark:_Toc36947215'>表<span lang=EN-US>3-6<span
+style="mso-spacerun: yes">&nbsp; </span>实验记录</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-family:"Times New Roman"'><o:p></o:p></span></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.0pt;mso-yfti-irow:0'>
+  <td width=124 style='width:92.95pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>PID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.35pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>TTY<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.4pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>TIME<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=124 style='width:92.8pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>CMD<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:1'>
+  <td width=124 style='width:92.95pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.4pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=124 style='width:92.8pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:2'>
+  <td width=124 style='width:92.95pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.4pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=124 style='width:92.8pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:3;mso-yfti-lastrow:yes'>
+  <td width=124 style='width:92.95pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.35pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=131 style='width:98.4pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=124 style='width:92.8pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt'>&nbsp;<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>从当前终端窗口中，练习使用给出的每个选项的</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入</span><span lang=EN-US> ps -f </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，显示运行在系统中的某个进程的完全信息，填入表</span><span
+lang=EN-US>3-7</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=a><span style='mso-bookmark:_Toc36947215'>表<span lang=EN-US>3-7<span
+style="mso-spacerun: yes">&nbsp; </span>实验记录</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-family:"Times New Roman"'><o:p></o:p></span></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:5.4pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.85pt;mso-yfti-irow:0'>
+  <td width=52 style='width:39.0pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-fareast-font-family:黑体'>UID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=54 style='width:40.5pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>PID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=59 style='width:44.3pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-fareast-font-family:黑体'>PPID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=34 style='width:25.85pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-fareast-font-family:黑体'>C<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.25pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-fareast-font-family:黑体'>STIME<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>TTY<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>TIME<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=93 style='width:70.0pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'>CMD<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.85pt;mso-yfti-irow:1'>
+  <td width=52 style='width:39.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=54 style='width:40.5pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=59 style='width:44.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=34 style='width:25.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.25pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=93 style='width:70.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.85pt;mso-yfti-irow:2'>
+  <td width=52 style='width:39.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=54 style='width:40.5pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=59 style='width:44.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=34 style='width:25.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.25pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=93 style='width:70.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.85pt;mso-yfti-irow:3'>
+  <td width=52 style='width:39.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=54 style='width:40.5pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=59 style='width:44.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=34 style='width:25.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.25pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=93 style='width:70.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.85pt;mso-yfti-irow:4;mso-yfti-lastrow:yes'>
+  <td width=52 style='width:39.0pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=54 style='width:40.5pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=59 style='width:44.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=34 style='width:25.85pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.25pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=72 style='width:54.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext 1.5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=93 style='width:70.0pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.85pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-ascii-font-family:黑体;mso-fareast-font-family:黑体'>&nbsp;</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>ps -f</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令输出的各栏标题见表</span><span lang=EN-US>3-8</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>所示。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=a><span style='mso-bookmark:_Toc36947215'>表<span lang=EN-US>3-8<span
+style="mso-spacerun: yes">&nbsp; </span>ps -f栏标题<o:p></o:p></span></span></p>
+
+<div align=center>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:7.65pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:solid windowtext 1.5pt;
+ mso-border-bottom-alt:solid windowtext 1.5pt;mso-padding-alt:0cm 5.4pt 0cm 5.4pt'>
+ <tr style='height:17.0pt;mso-yfti-irow:0'>
+  <td width=134 style='width:100.5pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:黑体;mso-ascii-font-family:"Times New Roman"'>值</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border-top:solid windowtext 1.5pt;
+  border-left:none;border-bottom:solid windowtext .5pt;border-right:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:黑体;mso-ascii-font-family:"Times New Roman"'>描述</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-bidi-font-size:12.0pt;mso-fareast-font-family:黑体'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:1'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>UID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>初始化进程的用户</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>ID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:2'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>PID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>进程的进程标识号。</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>PID</span></span><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>可以用来杀死进程</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:3'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>PPID<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><span style="mso-spacerun:
+  yes">&nbsp; </span></span></span><span style='mso-bookmark:_Toc36947215'><span
+  style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程的父进程标识号</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:4'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>C<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US
+  style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><span style="mso-spacerun:
+  yes">&nbsp; </span></span></span><span style='mso-bookmark:_Toc36947215'><span
+  style='font-size:9.0pt;mso-bidi-font-size:12.0pt;font-family:宋体;mso-ascii-font-family:
+  "Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程的优先级</span></span><span
+  style='mso-bookmark:_Toc36947215'><span lang=EN-US style='font-size:9.0pt;
+  mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:5'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>STIME<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>进程的启动时间</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:6'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>TTY<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>控制进程终端的终端举型</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:7'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>TIME<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>进程使用的</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>CPU</span></span><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>时间的数量</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'><o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+ <tr style='height:17.0pt;mso-yfti-irow:8;mso-yfti-lastrow:yes'>
+  <td width=134 style='width:100.5pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt'>CMD<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+  <td width=372 style='width:279.0pt;border:none;border-bottom:solid windowtext 1.5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:17.0pt'>
+  <p class=MsoNormal style='text-indent:9.0pt;mso-char-indent-count:1.0;
+  mso-char-indent-size:9.0pt;mso-char-indent-size:9pt'><span style='mso-bookmark:
+  _Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:12.0pt;
+  font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>命令名守护进程</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'> (</span></span><span
+  style='mso-bookmark:_Toc36947215'><span style='font-size:9.0pt;mso-bidi-font-size:
+  12.0pt;font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+  "Times New Roman"'>执行的程序的名字</span></span><span style='mso-bookmark:_Toc36947215'><span
+  lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:12.0pt'>)<o:p></o:p></span></span></p>
+  </td>
+  <span style='mso-bookmark:_Toc36947215'></span>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US>&nbsp;</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>5</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：列出系统中运行的所有进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入</span><span lang=EN-US> ps -ef </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，显示运行在系统中的各个进程的完全信息。执行该命令，并与</span><span
+lang=EN-US>ps –f</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令的输出结果对照，一致吗？有何不同？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>________________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>注意分析当前终端窗口中的输出结果：</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>a. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>显示了多少个进程？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>b. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进程</span><span lang=EN-US>ID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>c. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>启动进程的命令</span><span lang=EN-US> (CMD) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>d. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>请观察，什么命令的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>号是</span><span
+lang=EN-US>1</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>e. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>再次运行</span><span lang=EN-US>ps –ef</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，计算进程的数目：</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>然后执行下列命令把输出结果输入到</span><span lang=EN-US>wc</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令中：</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US><span
+style='mso-tab-count:2'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>ps
+-ef | wc -l</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>第一个数字显示的是行的数目，也是进程的数目：</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>执行</span><span lang=EN-US> man ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，可以打开</span><span
+lang=EN-US>Linux</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>用户命令手册，了解</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令的用法，输入</span><span
+lang=EN-US>wq</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令可退出用户手册的阅读。</span><span lang=EN-US>man</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令可以执行吗？结果如何？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>6</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：根据命令名搜索特定的进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>为了终止一个进程，必须找到该进程的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。大多数运行的系统中，有上百个进程在运行，</span><span
+lang=EN-US>ps -ef</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的列表可能很长。如果知道启动进程的执行程序的名字，可以更快地找到</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>通过把</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令的输出结果输入到</span><span
+lang=EN-US>grep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中，可以搜索想要终止的特定进程，确定正确的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>grep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令可以在其他命令的输出中搜索所有类型的特征字符串。</span><span lang=EN-US>-l (</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>长的输出</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>选项将显示和找到的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>相关的进程的名字；</span><span
+lang=EN-US>-e</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>选项显示</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和初始化命令的名字。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>a. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>单击红帽子，在“</span><span lang=EN-US>GNOME</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>帮助”菜单中单击“游戏”</span><span
+lang=EN-US>-</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>“堆麻将”命令，打开“堆麻将”游戏。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>b. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在当前的终端窗口中，执行命令：</span></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:21.75pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>ps –e | grep mahjongg</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;</span>(</span></span><span style='mso-bookmark:
+_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>“堆麻将”游戏的进程名是“</span><span lang=EN-US>mahjongg</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>”</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，查找和“堆麻将”游戏调度守护进程相关的所有进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>c. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>显示了多少个相关进程？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>d. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>显示进程中最小的进程</span><span lang=EN-US>ID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>号是多少？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>c. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在当前终端窗口中执行命令：</span></span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:21.0pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>pgrep –l mahjongg</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>查找所有和“堆麻将”游戏调度守护进程相关的进程。</span><span lang=EN-US>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>和</span><span
+lang=EN-US>pgrep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令输出之间有什么不同？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>7</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：确定一个要终止的进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>当试图终止一个程序，或者释放一个挂起的终端窗口的时候，杀死和不响应的应用相关的</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>可能还是不够的，一般需要杀死那个进程的父进程，在少数情况下，甚至要杀死父进程的父进程。为了沿着层次结构，从子进程追溯到派生它们的父进程，必须能够查找</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>和</span><span lang=EN-US>PPID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>必须首先确定最低级不响应进程的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。通常，可以试着去杀死那个进程。如果这样做不能够停止那个进程，可能需要杀死它的父进程。杀死父进程将杀死所有它派生的子进程。杀死一个父进程也比杀死几个子进程快得多。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>1) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在</span><span lang=EN-US>GNOME</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>当前终端窗口中，输入</span><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>有多少进程正在运行？为什么只有这么少的进程？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>2) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>正在运行的进程的名字是什么？它表示什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>这个进程的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是多少？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>4) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>在</span><span lang=EN-US>bash shell</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>中输入命令</span><span
+lang=EN-US>csh</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>，打开一个</span><span lang=EN-US>C shell</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>会话，当前系统的会话提示符是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>5) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入</span><span lang=EN-US> ps -f </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令，显示在当前</span><span
+lang=EN-US>shell</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中运行的进程的所有信息。现在什么进程正在运行？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>6) bash</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是</span><span
+lang=EN-US>-sh (csh) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的</span><span lang=EN-US>PPID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>吗？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>7) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令</span><span lang=EN-US>sleep l000&amp;</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，创建一个进程，把执行挂起</span><span
+lang=EN-US>1000</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>秒</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>大约</span><span
+lang=EN-US>15</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分钟</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。</span><span
+lang=EN-US>&amp;</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>表示在后台运行命令，返回</span><span lang=EN-US>shell</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>提示符，这样您可以继续工作。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>8) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>再次输入</span><span lang=EN-US>ps -f</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令。</span><span
+lang=EN-US>-sh (csh) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是</span><span
+lang=EN-US>sleep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令的</span><span lang=EN-US>PPID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>吗？哪个</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>是</span><span lang=EN-US>csh (C shell) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的子进程？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>________________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>9) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令</span><span lang=EN-US> kill -9 &lt;csh</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>的</span><span
+lang=EN-US>PID&gt; </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>退出</span><span lang=EN-US>C shell</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。然后再次键入</span><span
+lang=EN-US>ps -f</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令。什么</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>是</span><span
+lang=EN-US>sleep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>父命令的</span><span lang=EN-US>PPID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>sleep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进程现在是什么类型的进程？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>8</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：使用</span><span
+lang=EN-US>kill</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令终止一个进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>信号用于终止、挂起和继续进程。有时候使用</span><span lang=EN-US>Ctrl + c</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>可以终止一个不响应的进程。这样向进程发送一个中断</span><span
+lang=EN-US> (INT) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>信号，终止它及所有它派生的子进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>kill</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令提供了一个终止不想要的命令进程的直接方法。当想停止一个运行了很长时间的命令的时候，或者当需要终止一个不能够正常退出的进程的时候，它很有用。指定</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>正常地杀死一个进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US><span style="mso-spacerun: yes">&nbsp;</span><span
+style="mso-spacerun: yes">&nbsp;</span>kill [-signal] process -id</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>为了使用</span><span lang=EN-US>kill</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令终止一个进程，应该首先键入</span><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>找出进程的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，然后键入</span><span
+lang=EN-US>kill</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>紧跟着</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>。如果使用</span><span
+lang=EN-US>kill</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>而没有指定信号，则信号</span><span lang=EN-US>15 (SIGTERM) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>将被发送给特定</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>号的进程。这叫做软杀死，通常终止了进程。如果可能，最好软杀死进程，这样它可以正确地关闭文件，温和地终止进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>如果需要强制终止一个进程，可以使用带</span><span lang=EN-US> -9</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>选项的</span><span
+lang=EN-US>kill</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令。这个选项叫做强制杀死，当</span><span lang=EN-US>shell</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>对所有其他终止信号都不响应的时候，需要使用它来杀死</span><span
+lang=EN-US>shell</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US><span style="mso-spacerun: yes">&nbsp; </span>kill -9 process -id</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>注意：对于</span><span lang=EN-US>shell</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>之外的进程，把</span><span
+lang=EN-US>kill –9 (SIGKILL) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>作为最后的选项，因为它是一种生硬的方法，不允许正确的进程终止。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>a. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>输入命令</span><span lang=EN-US>ps –f </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，显示在当前</span><span
+lang=EN-US>shell</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中运行的进程的完整信息。现在什么进程正在运行？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>b. </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>因为</span><span lang=EN-US>sleep</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>进程现在是一个孤儿进程，已经被</span><span
+lang=EN-US>init</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>进程</span><span lang=EN-US> (PID #l) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>收养，输入命令，对</span><span
+lang=EN-US>sleep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>的</span><span lang=EN-US>PID</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>执行软杀死。如果</span><span
+lang=EN-US>sleep</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>已经终止</span><span lang=EN-US> (</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>超过</span><span
+lang=EN-US>15</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>分钟</span><span lang=EN-US>) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，则重复步骤</span><span
+lang=EN-US>7</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>中的</span><span lang=EN-US>8) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>、</span><span
+lang=EN-US>9) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>操作，然后软杀死</span><span lang=EN-US>sleep</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>程序。再次输入</span><span
+lang=EN-US>ps -f</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令。现在什么进程正在运行？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>9</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：按照用户查找和终止一个进程。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>ps</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令可以带</span><span lang=EN-US> -u (</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>用户</span><span
+lang=EN-US>) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>选项使用，查找指定用户的进程。这个命令比</span><span lang=EN-US>ps-ef</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用得更多，因为一般只能够管理属于自己的进程。我们可以通过用户登录名或者</span><span
+lang=EN-US>UID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>号来查找用户的进程。用户只能够终止自己的进程，但是超级用户可以终止系统中所有运行的进程。</span></span></p>
+
+<p class=MsoNormal><span style='mso-bookmark:_Toc36947215'><span lang=EN-US><span
+style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=FR style='mso-ansi-language:FR'>ps
+–u login-ID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>或</span></span><span style='mso-bookmark:_Toc36947215'><span
+lang=FR style='mso-ansi-language:FR'>UID<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=FR style='mso-ansi-language:FR'>1</span><span lang=EN-US>)</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US style='mso-ansi-language:
+FR'> </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>启动计算器和“堆麻将”游戏</span><span lang=EN-US>GNOME</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>应用程序。</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=FR style='mso-ansi-language:FR'><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=FR style='mso-ansi-language:FR'>2) </span></span><span style='mso-bookmark:
+_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>使用带</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=FR style='mso-ansi-language:FR'>
+-u</span></span><span style='mso-bookmark:_Toc36947215'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>选项的</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=FR style='mso-ansi-language:FR'>ps</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>命令</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-ansi-language:
+FR'>，</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>查找以登录</span></span><span style='mso-bookmark:_Toc36947215'><span
+lang=FR style='mso-ansi-language:FR'>ID (</span></span><span style='mso-bookmark:
+_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>例如</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-ansi-language:
+FR'>，</span></span><span style='mso-bookmark:_Toc36947215'><span lang=FR
+style='mso-ansi-language:FR'>userX) </span></span><span style='mso-bookmark:
+_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>或者数字</span></span><span
+style='mso-bookmark:_Toc36947215'><span lang=FR style='mso-ansi-language:FR'>UID
+(</span></span><span style='mso-bookmark:_Toc36947215'><span style='font-family:
+宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:"Times New Roman"'>例如</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman";mso-ansi-language:
+FR'>，</span></span><span style='mso-bookmark:_Toc36947215'><span lang=FR
+style='mso-ansi-language:FR'>1004) </span></span><span style='mso-bookmark:
+_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:"Times New Roman";
+mso-hansi-font-family:"Times New Roman"'>运行的所有进程。计算器应用程序的</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>是什么？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>3) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>使用软杀死终止计算器应用程序，“堆麻将”是否仍然在桌面上运行？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>4) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>使用</span><span
+lang=EN-US>ps -u</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>命令组合</span><span lang=EN-US>grep</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>，查找“堆麻将”程序的</span><span
+lang=EN-US>PID</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>号，而不是使用</span><span lang=EN-US>ps -u</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>查找整个列表。您使用什么命令？</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt'><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>提示：猜猜“堆麻将”程序的命令名中可能有哪个字母，使用</span><span lang=EN-US>grep</span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>搜索那些字母。</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style='mso-tab-count:
+1'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>____________________________________________________________________</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.75pt'><span style='mso-bookmark:_Toc36947215'><span
+lang=EN-US>5) </span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>终止“堆麻将”程序。它是否还在桌面上运行？</span></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US><span style="mso-spacerun:
+yes">&nbsp;&nbsp; </span><span style='mso-tab-count:1'>&nbsp; </span>____________________________________________________________________<o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='text-indent:21.0pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.5pt;mso-char-indent-size:10.5pt'><span
+style='mso-bookmark:_Toc36947215'><span lang=EN-US>6) </span></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>退出</span><span
+lang=EN-US> C shell</span></span><span style='mso-bookmark:_Toc36947215'><span
+style='font-family:宋体;mso-ascii-font-family:"Times New Roman";mso-hansi-font-family:
+"Times New Roman"'>。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>10</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：删除所有在本实验中创建的文件和目录。</span></span></p>
+
+<p class=MsoNormal style='text-indent:21.1pt;mso-char-indent-count:2.0;
+mso-char-indent-size:10.55pt'><span style='mso-bookmark:_Toc36947215'><b
+style='mso-bidi-font-weight:normal'><span style='font-family:楷体_GB2312;
+mso-ascii-font-family:"Times New Roman"'>步骤</span></b></span><span
+style='mso-bookmark:_Toc36947215'><b style='mso-bidi-font-weight:normal'><span
+lang=EN-US style='mso-fareast-font-family:楷体_GB2312'>11</span></b></span><span
+style='mso-bookmark:_Toc36947215'><span style='font-family:宋体;mso-ascii-font-family:
+"Times New Roman";mso-hansi-font-family:"Times New Roman"'>：关闭终端窗口，注销。</span></span><span
+lang=EN-US style='color:blue'><a href="#_top"><span style='text-decoration:
+none;text-underline:none'><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:45pt;height:17.25pt'>
+ <v:imagedata src="./3-4.files/image003.gif" o:title="02"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=60 height=23
+src="./3-4.files/image003.gif" v:shapes="_x0000_i1028"><![endif]></span></a></span><span
+lang=EN-US> <a href="Bookin.htm"><span style='text-decoration:none;text-underline:
+none'><!--[if gte vml 1]><v:shape id="_x0000_i1029" type="#_x0000_t75" style='width:17.25pt;
+ height:17.25pt'>
+ <v:imagedata src="./3-4.files/image004.gif" o:title="00"/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=23 height=23
+src="./3-4.files/image005.jpg" v:shapes="_x0000_i1029"><![endif]></span></a></span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
