@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1545763961 source:e:\studywork\os\test10\5_3_ elevator\main.cpp
-	<malloc.h>
-	<stdio.h>
-	<math.h>
-	<limits.h>
-
