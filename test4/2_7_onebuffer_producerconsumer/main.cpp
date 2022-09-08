@@ -4,56 +4,56 @@
 #include <string.h>
 #include <time.h>
 #include <windows.h>
-struct data //ĞÅºÅÁ¿½á¹¹Ìå
+struct data //ä¿¡å·é‡ç»“æ„ä½“
 {
-    sem_t empty; //¼ÇÂ¼¿Õ»º³åÇø¸öÊı
-    sem_t full; //¼ÇÂ¼×°ÂúÊı¾İ»º³åÇø¸öÊı
-    int buffer; //»º³åÇø
+    sem_t empty; //è®°å½•ç©ºç¼“å†²åŒºä¸ªæ•°
+    sem_t full; //è®°å½•è£…æ»¡æ•°æ®ç¼“å†²åŒºä¸ªæ•°
+    int buffer; //ç¼“å†²åŒº
 };
-pthread_mutex_t mutex; //»¥³âËø
-int num = 0; //¼ÇÂ¼»º³åÇøÊı¾İµÄ¸öÊı
+pthread_mutex_t mutex; //äº’æ–¥é”
+int num = 0; //è®°å½•ç¼“å†²åŒºæ•°æ®çš„ä¸ªæ•°
 struct data sem;
 void* Producer(void *arg)
 {
     while(1)
     {
-        Sleep(rand()%100); //Ëæ»úË¯Ãß
-        sem_wait(&sem.empty);//ĞÅºÅÁ¿µÄ P ²Ù×÷
-        pthread_mutex_lock(&mutex);//»¥³âËøÉÏËø
+        Sleep(rand()%100); //éšæœºç¡çœ 
+        sem_wait(&sem.empty);//ä¿¡å·é‡çš„ P æ“ä½œ
+        pthread_mutex_lock(&mutex);//äº’æ–¥é”ä¸Šé”
         num++;
-        printf("Producer Éú²úÁËÒ»ÌõÊı¾İ£º%d\n ÊäÈëÊı¾İ£º", num);
+        printf("Producer ç”Ÿäº§äº†ä¸€æ¡æ•°æ®ï¼š%d\n è¾“å…¥æ•°æ®ï¼š", num);
         scanf("%d", &sem.buffer);
-        pthread_mutex_unlock(&mutex);//»¥³âËø½âËø
-        sem_post(&sem.full);//ĞÅºÅÁ¿µÄ V ²Ù×÷
+        pthread_mutex_unlock(&mutex);//äº’æ–¥é”è§£é”
+        sem_post(&sem.full);//ä¿¡å·é‡çš„ V æ“ä½œ
     }
 }
 void* Consumer(void *arg)
 {
     while(1)
     {
-        Sleep(rand()%100); //Ëæ»úË¯Ãß
-        sem_wait(&sem.full);//ĞÅºÅÁ¿µÄ P ²Ù×÷
-        pthread_mutex_lock(&mutex);//»¥³âËøÉÏËø
+        Sleep(rand()%100); //éšæœºç¡çœ 
+        sem_wait(&sem.full);//ä¿¡å·é‡çš„ P æ“ä½œ
+        pthread_mutex_lock(&mutex);//äº’æ–¥é”ä¸Šé”
         num--;
-        printf("Consumer Ïû·ÑÁËÒ»ÌõÊı¾İ: %d\n", num);
-        printf("Ïû·ÑÊı¾İ: %d\n", sem.buffer);
-        pthread_mutex_unlock(&mutex);//»¥³âËø½âËø
-        sem_post(&sem.empty);//ĞÅºÅÁ¿µÄ V ²Ù×÷
+        printf("Consumer æ¶ˆè´¹äº†ä¸€æ¡æ•°æ®: %d\n", num);
+        printf("æ¶ˆè´¹æ•°æ®: %d\n", sem.buffer);
+        pthread_mutex_unlock(&mutex);//äº’æ–¥é”è§£é”
+        sem_post(&sem.empty);//ä¿¡å·é‡çš„ V æ“ä½œ
     }
 }
 int main()
 {
-    sem_init(&sem.empty, 0, 1); //ĞÅºÅÁ¿³õÊ¼»¯
+    sem_init(&sem.empty, 0, 1); //ä¿¡å·é‡åˆå§‹åŒ–
     sem_init(&sem.full, 0, 0);
-    pthread_mutex_init(&mutex, NULL); //»¥³âËø³õÊ¼»¯
+    pthread_mutex_init(&mutex, NULL); //äº’æ–¥é”åˆå§‹åŒ–
     pthread_t producid;
     pthread_t consumid;
-    pthread_create(&producid, NULL, Producer, NULL); //´´½¨Éú²úÕßÏß³Ì
-    pthread_create(&consumid, NULL, Consumer, NULL); //´´½¨Ïû·ÑÕßÏß³Ì
-    pthread_join(consumid, NULL); //Ïß³ÌµÈ´ı£¬Èç¹ûÃ»ÓĞÕâÒ»²½£¬Ö÷³ÌĞò»áÖ±½Ó½áÊø£¬
-    //µ¼ÖÂÏß³ÌÒ²Ö±½ÓÍË³ö¡£
-    sem_destroy(&sem.empty); //ĞÅºÅÁ¿µÄÏú»Ù
+    pthread_create(&producid, NULL, Producer, NULL); //åˆ›å»ºç”Ÿäº§è€…çº¿ç¨‹
+    pthread_create(&consumid, NULL, Consumer, NULL); //åˆ›å»ºæ¶ˆè´¹è€…çº¿ç¨‹
+    pthread_join(consumid, NULL); //çº¿ç¨‹ç­‰å¾…ï¼Œå¦‚æœæ²¡æœ‰è¿™ä¸€æ­¥ï¼Œä¸»ç¨‹åºä¼šç›´æ¥ç»“æŸï¼Œ
+    //å¯¼è‡´çº¿ç¨‹ä¹Ÿç›´æ¥é€€å‡ºã€‚
+    sem_destroy(&sem.empty); //ä¿¡å·é‡çš„é”€æ¯
     sem_destroy(&sem.full);
-    pthread_mutex_destroy(&mutex); //»¥³âËøµÄÏú»Ù
+    pthread_mutex_destroy(&mutex); //äº’æ–¥é”çš„é”€æ¯
     return 0;
 }

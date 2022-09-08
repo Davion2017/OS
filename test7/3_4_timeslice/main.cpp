@@ -4,14 +4,14 @@
 #define NULL 0
 typedef struct table
 {
-    int key; /* ½ø³Ì ID  ºÅ*/
-    int run_time; /* ½ø³Ì ÔËÐÐÊ±¼ä*/
-    char message[10]; /* ½ø³ÌËµÃ÷ÐÅÏ¢*/
+    int key; /* è¿›ç¨‹ ID  å·*/
+    int run_time; /* è¿›ç¨‹ è¿è¡Œæ—¶é—´*/
+    char message[10]; /* è¿›ç¨‹è¯´æ˜Žä¿¡æ¯*/
     struct table *next;
 } node;
-node *creat(void) /* ¶¨Òåº¯Êý£¬ÊäÈë ID  ºÅºÍ Ë³ÐòºÅ £¬°´ÕÕÊäÈë´ÎÐò½¨Á¢½ø³ÌÁ´±í*/
+node *creat(void) /* å®šä¹‰å‡½æ•°ï¼Œè¾“å…¥ ID  å·å’Œ é¡ºåºå· ï¼ŒæŒ‰ç…§è¾“å…¥æ¬¡åºå»ºç«‹è¿›ç¨‹é“¾è¡¨*/
 {
-    //Ìî²¹³ÌÐò
+    //å¡«è¡¥ç¨‹åº
     node *head, *p1, *p2;
     int n = 0;
     p1 = p2 = (node*)malloc(sizeof(node));
@@ -32,9 +32,9 @@ node *creat(void) /* ¶¨Òåº¯Êý£¬ÊäÈë ID  ºÅºÍ Ë³ÐòºÅ £¬°´ÕÕÊäÈë´ÎÐò½¨Á¢½ø³ÌÁ´±í*/
     p2->next = NULL;
     return head;
 }
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
-    //Ìî²¹³ÌÐò
+    //å¡«è¡¥ç¨‹åº
     if(head == NULL)
     {
         printf("distribute is over!");
@@ -49,9 +49,9 @@ void print (node *head) /* Êä³öÁ´±í*/
     }
     printf("\n");
 }
-node *insert(node *head,node *news) /* ½«½ø³Ì news  ²åÈëµ½¶ÓÁÐÎ²²¿*/
+node *insert(node *head,node *news) /* å°†è¿›ç¨‹ news  æ’å…¥åˆ°é˜Ÿåˆ—å°¾éƒ¨*/
 {
-    //Ìî²¹³ÌÐò
+    //å¡«è¡¥ç¨‹åº
     node *p = head;
     while(p->next)
         p = p->next;
@@ -60,9 +60,9 @@ node *insert(node *head,node *news) /* ½«½ø³Ì news  ²åÈëµ½¶ÓÁÐÎ²²¿*/
     return head;
 }
 node *timeslice(node *head,int cpu_base_time)
-/* Ä£ÄâÊ±¼äÆ¬ÂÖ×ªµ÷¶È¹ý³Ì: ¶ÓÁÐÊ×½ø³ÌÊ¹ÓÃÒ»¸öÊ±¼äÆ¬µÄ CPU*/
+/* æ¨¡æ‹Ÿæ—¶é—´ç‰‡è½®è½¬è°ƒåº¦è¿‡ç¨‹: é˜Ÿåˆ—é¦–è¿›ç¨‹ä½¿ç”¨ä¸€ä¸ªæ—¶é—´ç‰‡çš„ CPU*/
 {
-    //Ìî²¹³ÌÐò
+    //å¡«è¡¥ç¨‹åº
     node *p = head;
     if(head->run_time <= cpu_base_time)
     {
@@ -84,16 +84,16 @@ int main()
 {
     int count=0,cpu_base_time;
     node *p;
-    printf("ÐÂ½¨µÄ½ø³Ì¿ØÖÆ±íÎª:\nkey run_time message\n");
-    p=creat(); /* ÊäÈë½ø³Ì¿ØÖÆ±í*/
-    print(p); /* Êä³öÔ­Ê¼½ø³Ì¿ØÖÆ±í*/
-    printf("CPU ÔËÐÐµÄµ¥Î»Ê±¼äÆ¬ cpu_base_time Îª:\n");
+    printf("æ–°å»ºçš„è¿›ç¨‹æŽ§åˆ¶è¡¨ä¸º:\nkey run_time message\n");
+    p=creat(); /* è¾“å…¥è¿›ç¨‹æŽ§åˆ¶è¡¨*/
+    print(p); /* è¾“å‡ºåŽŸå§‹è¿›ç¨‹æŽ§åˆ¶è¡¨*/
+    printf("CPU è¿è¡Œçš„å•ä½æ—¶é—´ç‰‡ cpu_base_time ä¸º:\n");
     scanf("%d",&cpu_base_time);
-    while(p) /* Ä£Äâ°´µ¥Î»Ê±¼äÆ¬ ½ø³Ì Öð¸ö±»µ÷¶È²¢½øÈë CPU  ÔËÐÐµÄ¹ý³Ì*/
+    while(p) /* æ¨¡æ‹ŸæŒ‰å•ä½æ—¶é—´ç‰‡ è¿›ç¨‹ é€ä¸ªè¢«è°ƒåº¦å¹¶è¿›å…¥ CPU  è¿è¡Œçš„è¿‡ç¨‹*/
     {
-        //Ìî²¹³ÌÐò
+        //å¡«è¡¥ç¨‹åº
         count++;
-        printf("µÚ%d´Î±»µ÷¶ÈµÄ¾ÍÐ÷½ø³ÌÎª:\n", count);
+        printf("ç¬¬%dæ¬¡è¢«è°ƒåº¦çš„å°±ç»ªè¿›ç¨‹ä¸º:\n", count);
         p = timeslice(p, cpu_base_time);
         print(p);
     }

@@ -5,16 +5,16 @@
 #define MAXSIZE 1024
 typedef struct table
 {
-    int address; /* ´æ´¢·ÖÇøÆğÊ¼µØÖ·*/
-    int length; /* ´æ´¢·ÖÇø³¤¶È*/
-    int flag; /* ´æ´¢·ÖÇø±êÖ¾£¬0  Îª¿ÕÏĞ£¬1  Îª±»×÷ÒµÕ¼¾İ*/
-    char name[10]; /*µ± µ± flag==1  Ê±´æ´¢·ÖÇøÕ¼ÓÃ±êÖ¾×÷ÒµÃû£¬·ñÔò´æ´¢¿Õ nil*/
+    int address; /* å­˜å‚¨åˆ†åŒºèµ·å§‹åœ°å€*/
+    int length; /* å­˜å‚¨åˆ†åŒºé•¿åº¦*/
+    int flag; /* å­˜å‚¨åˆ†åŒºæ ‡å¿—ï¼Œ0  ä¸ºç©ºé—²ï¼Œ1  ä¸ºè¢«ä½œä¸šå æ®*/
+    char name[10]; /*å½“ å½“ flag==1  æ—¶å­˜å‚¨åˆ†åŒºå ç”¨æ ‡å¿—ä½œä¸šåï¼Œå¦åˆ™å­˜å‚¨ç©º nil*/
     struct table *next;
 } node;
-bool success; /* ·ÖÅä³É¹¦Óë·ñµÄ±êÖ¾*/
-node *insert(node *head, node *news) /* °´ÕÕ¡°µØÖ·µİÔö·½Ê½¡±½« news  ½áµã²åÈëÁ´±íÏàÓ¦Î»ÖÃ*/
+bool success; /* åˆ†é…æˆåŠŸä¸å¦çš„æ ‡å¿—*/
+node *insert(node *head, node *news) /* æŒ‰ç…§â€œåœ°å€é€’å¢æ–¹å¼â€å°† news  ç»“ç‚¹æ’å…¥é“¾è¡¨ç›¸åº”ä½ç½®*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     if(head->address > news->address)
     {
         news->next = head;
@@ -40,9 +40,9 @@ node *insert(node *head, node *news) /* °´ÕÕ¡°µØÖ·µİÔö·½Ê½¡±½« news  ½áµã²åÈëÁ´±
     }
     return head;
 }
-node *creat(FILE *fp) /* ¸ù¾İµØÖ·µİÔö·½Ê½½¨Á¢·ÖÅä·ÖÇø±í(flag==1) »ò¿ÕÏĞ·ÖÇø±í(flag==0)*/
+node *creat(FILE *fp) /* æ ¹æ®åœ°å€é€’å¢æ–¹å¼å»ºç«‹åˆ†é…åˆ†åŒºè¡¨(flag==1) æˆ–ç©ºé—²åˆ†åŒºè¡¨(flag==0)*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *head, *p;
     head = (node*)malloc(sizeof(node));
     printf("address length flag(0 or 1)\n");
@@ -76,10 +76,10 @@ node *creat(FILE *fp) /* ¸ù¾İµØÖ·µİÔö·½Ê½½¨Á¢·ÖÅä·ÖÇø±í(flag==1) »ò¿ÕÏĞ·ÖÇø±í(fl
 }
 
 //node *distribute(node *freehead, node *distributedhead, node *work)
-/* ÔÚ¿ÕÏĞ·ÖÇø±íÖĞÕÒ³öÊ×´ÎºÏÊÊ work  µÄ·ÖÇø£¬Í¬Ê±ĞŞ¸Ä¿ÕÏĞ·ÖÇø±íºÍ·ÖÅä·ÖÇø±í*/
+/* åœ¨ç©ºé—²åˆ†åŒºè¡¨ä¸­æ‰¾å‡ºé¦–æ¬¡åˆé€‚ work  çš„åˆ†åŒºï¼ŒåŒæ—¶ä¿®æ”¹ç©ºé—²åˆ†åŒºè¡¨å’Œåˆ†é…åˆ†åŒºè¡¨*/
 /*
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p1 = freehead;
     while(p1 != NULL && p1->length < work->length)
         p1 = p1->next;
@@ -142,12 +142,12 @@ node *distribute(node *freehead, node *distributedhead, node *work)
     }
     return NULL;
 }
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     if(head == NULL)
     {
-        printf("ÊÇ¿ÕµÄ");
+        printf("æ˜¯ç©ºçš„");
     }
     node *p = head;
     while(p)
@@ -164,18 +164,18 @@ int main()
     //char workn[10];
     FILE *fp;
     if((fp = fopen("data.txt", "r")) == NULL)
-        printf("´ò²»¿ª£¡");
+        printf("æ‰“ä¸å¼€ï¼");
     printf("The distributed table is:\n");
-    dtable=creat(fp); /*dtable  ÊäÈëÒÑ·ÖÅäÇé¿ö±í*/
+    dtable=creat(fp); /*dtable  è¾“å…¥å·²åˆ†é…æƒ…å†µè¡¨*/
     print(dtable);
     printf("The free table is:\n");
-    ftable=creat(fp); /*ftable  ÊäÈëÎ´·ÖÅäÇé¿ö±í*/
+    ftable=creat(fp); /*ftable  è¾“å…¥æœªåˆ†é…æƒ…å†µè¡¨*/
     fclose(fp);
     print(ftable);
-    /* ÒÔÏÂ Ä£ÄâÖğ¸ö ÄÚ´æÉêÇë ¹ı³Ì*/
+    /* ä»¥ä¸‹ æ¨¡æ‹Ÿé€ä¸ª å†…å­˜ç”³è¯· è¿‡ç¨‹*/
     while(1)
     {
-        //Ìî²¹³ÌĞò
+        //å¡«è¡¥ç¨‹åº
         printf("==================================\n");
         work = (node*)malloc(sizeof(node));
         printf("The length of worked job is:");

@@ -4,17 +4,17 @@
 #define NULL 0
 typedef struct table
 {
-    int key; /* ½ø³Ì ID  ºÅ*/
-    int priority; /* ÓÅÏÈÊıÖµ*/
-    char message[10]; /* ½ø³ÌËµÃ÷ĞÅÏ¢*/
+    int key; /* è¿›ç¨‹ ID  å·*/
+    int priority; /* ä¼˜å…ˆæ•°å€¼*/
+    char message[10]; /* è¿›ç¨‹è¯´æ˜ä¿¡æ¯*/
     struct table *next;
 } node;
-node *creat(void) /* ¶¨Òåº¯Êı£¬ÊäÈë ID  ºÅºÍÓÅÏÈ¼¶£¬°´ÕÕÊäÈë´ÎĞò½¨Á¢½ø³ÌÁ´±í*/
+node *creat(void) /* å®šä¹‰å‡½æ•°ï¼Œè¾“å…¥ ID  å·å’Œä¼˜å…ˆçº§ï¼ŒæŒ‰ç…§è¾“å…¥æ¬¡åºå»ºç«‹è¿›ç¨‹é“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     int n = 0;
     node *head, *p1, *p2;
-    printf("ĞÂ½¨µÄ½ø³Ì¿ØÖÆ±íÎª£º\nkey priority message\n");
+    printf("æ–°å»ºçš„è¿›ç¨‹æ§åˆ¶è¡¨ä¸ºï¼š\nkey priority message\n");
     p1 = p2 = (node*)malloc(sizeof(node));
     scanf("%d", &p1->key);
     head = NULL;
@@ -33,9 +33,9 @@ node *creat(void) /* ¶¨Òåº¯Êı£¬ÊäÈë ID  ºÅºÍÓÅÏÈ¼¶£¬°´ÕÕÊäÈë´ÎĞò½¨Á¢½ø³ÌÁ´±í*/
     p2->next = NULL;
     return head;
 }
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     printf("The table is:\n");
     node *p = head;
     while(p)
@@ -45,9 +45,9 @@ void print (node *head) /* Êä³öÁ´±í*/
     }
     printf("\n");
 }
-node *processdo(node *head) /* Ä£Äâµ±Ç°×î´óÓÅÏÈÊı½ø³Ì³ö¶ÓµÄ¹ı³Ì*/
+node *processdo(node *head) /* æ¨¡æ‹Ÿå½“å‰æœ€å¤§ä¼˜å…ˆæ•°è¿›ç¨‹å‡ºé˜Ÿçš„è¿‡ç¨‹*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p, *p_max, *pre, *pp_max;
     pre = pp_max = NULL;
     p = p_max = head;
@@ -81,7 +81,7 @@ node *processdo(node *head) /* Ä£Äâµ±Ç°×î´óÓÅÏÈÊı½ø³Ì³ö¶ÓµÄ¹ı³Ì*/
 }
 int main()
 {
-    //Ìî²¹³ÌĞò£ºÄ£Äâ´´½¨½ø³Ì¿ØÖÆ¿é¶ÓÁĞ£¬²¢°´ÕÕÓÅÏÈ¼¶Öğ¸ö³ö¶Ó¹ı³Ì
+    //å¡«è¡¥ç¨‹åºï¼šæ¨¡æ‹Ÿåˆ›å»ºè¿›ç¨‹æ§åˆ¶å—é˜Ÿåˆ—ï¼Œå¹¶æŒ‰ç…§ä¼˜å…ˆçº§é€ä¸ªå‡ºé˜Ÿè¿‡ç¨‹
     node *head;
     head = creat();
     print(head);
@@ -89,7 +89,7 @@ int main()
     while(head)
     {
         count++;
-        printf("µÚ%d´Î³ö¶ÓµÄ½ø³ÌÎª£º\n", count);
+        printf("ç¬¬%dæ¬¡å‡ºé˜Ÿçš„è¿›ç¨‹ä¸ºï¼š\n", count);
         head = processdo(head);
         printf("\n");
         print(head);

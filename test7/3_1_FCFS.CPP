@@ -3,12 +3,12 @@
 #include <string.h>
 #define NULL 0
 typedef struct table
- { int key;              /*½ø³ÌIDºÅ*/
-   int sequence;         /*½ø³Ì½øÈë¶ÓÁĞË³ĞòºÅ*/
-   char message[10];     /*½ø³ÌËµÃ÷ĞÅÏ¢*/
+ { int key;              /*è¿›ç¨‹IDå·*/
+   int sequence;         /*è¿›ç¨‹è¿›å…¥é˜Ÿåˆ—é¡ºåºå·*/
+   char message[10];     /*è¿›ç¨‹è¯´æ˜ä¿¡æ¯*/
    struct table *next;
  }node;
- node *creat(void) /*¶¨Òåº¯Êı£¬½¨Á¢½ø³ÌÁ´±í*/
+ node *creat(void) /*å®šä¹‰å‡½æ•°ï¼Œå»ºç«‹è¿›ç¨‹é“¾è¡¨*/
  { node *head;
    node *p1,*p2;
    int n=0;
@@ -16,7 +16,7 @@ typedef struct table
    scanf("%d %d",&p1->key,&p1->sequence);
    gets(p1->message);
    head=NULL;
-   while (p1->key!=0)  /*ÊäÈë0±íÊ¾½áÊø*/
+   while (p1->key!=0)  /*è¾“å…¥0è¡¨ç¤ºç»“æŸ*/
      {
      n=n+1;
      if (n==1) head=p1;
@@ -29,7 +29,7 @@ typedef struct table
    p2->next=NULL;
    return(head);
  }
- void print (node *head)  /*Êä³öÁ´±í*/
+ void print (node *head)  /*è¾“å‡ºé“¾è¡¨*/
  { node *p;
    printf("\n The table is:\n");
    p=head;
@@ -40,7 +40,7 @@ typedef struct table
      }
   }
  
- node *fcfs(node *head) /*Ä£Äâ¾ÍĞ÷½ø³Ì¶ÓÁĞÖĞ×îÏÈ½øÈë½ø³Ì(¶ÓÊ×½ø³Ì)³ö¶Ó*/
+ node *fcfs(node *head) /*æ¨¡æ‹Ÿå°±ç»ªè¿›ç¨‹é˜Ÿåˆ—ä¸­æœ€å…ˆè¿›å…¥è¿›ç¨‹(é˜Ÿé¦–è¿›ç¨‹)å‡ºé˜Ÿ*/
  { node *p;
    p=head;
    printf("key=%d,sequence=%d,message=%s\n",p->key,p->sequence,p->message);
@@ -51,12 +51,12 @@ typedef struct table
  void main()
  { int count=0;
    node *p,*q;
-   printf("ĞÂ½¨µÄ½ø³Ì¿ØÖÆ±íÎª:\nkey sequence message\n");
-   p=creat();  /*ÊäÈë½ø³Ì¿ØÖÆ±í*/
-   print(p);   /*Êä³öÔ­Ê¼½ø³Ì¿ØÖÆ±í*/
-   while(p)    /*Ä£Äâ½ø³ÌÖğ¸ö±»µ÷¶È²¢½øÈëCPUÔËĞĞµÄ¹ı³Ì*/
+   printf("æ–°å»ºçš„è¿›ç¨‹æ§åˆ¶è¡¨ä¸º:\nkey sequence message\n");
+   p=creat();  /*è¾“å…¥è¿›ç¨‹æ§åˆ¶è¡¨*/
+   print(p);   /*è¾“å‡ºåŸå§‹è¿›ç¨‹æ§åˆ¶è¡¨*/
+   while(p)    /*æ¨¡æ‹Ÿè¿›ç¨‹é€ä¸ªè¢«è°ƒåº¦å¹¶è¿›å…¥CPUè¿è¡Œçš„è¿‡ç¨‹*/
     {count++;
-     printf("\nµÚ%d´Î±»µ÷¶ÈµÄ¾ÍĞ÷½ø³ÌÎª:\n",count);
+     printf("\nç¬¬%dæ¬¡è¢«è°ƒåº¦çš„å°±ç»ªè¿›ç¨‹ä¸º:\n",count);
      q=fcfs(p);
      p=q;
     }

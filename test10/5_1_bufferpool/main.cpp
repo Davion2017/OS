@@ -1,22 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define Buff_MAX 10 // ³õÊ¼ ¿ÕÏĞ»º³åÇøµÄ¸öÊı
+#define Buff_MAX 10 // åˆå§‹ ç©ºé—²ç¼“å†²åŒºçš„ä¸ªæ•°
 typedef struct buffernode
 {
     int buf_type;
-//"0" ¿ÕÏĞ»º³åÇø£¬"-1" ×°ÊäÈëÊı¾İµÄ»º³åÇø£¬"1" ×°Êä³öÊı¾İµÄ»º³åÇø
-    int buf_data; // Ñ­»·ÇøÊı¾İ
-    struct buffernode *next; // Ö¸ÏòÏÂÒ»¸öÖ¸Õë
+//"0" ç©ºé—²ç¼“å†²åŒºï¼Œ"-1" è£…è¾“å…¥æ•°æ®çš„ç¼“å†²åŒºï¼Œ"1" è£…è¾“å‡ºæ•°æ®çš„ç¼“å†²åŒº
+    int buf_data; // å¾ªç¯åŒºæ•°æ®
+    struct buffernode *next; // æŒ‡å‘ä¸‹ä¸€ä¸ªæŒ‡é’ˆ
 } node;
-node *tempnode; // È«¾Ö±äÁ¿
+node *tempnode; // å…¨å±€å˜é‡
 /********************************************************************
-create  º¯ÊıËµÃ÷: ½¨Á¢¿ÕÏĞ»º³å¶ÓÁĞ, Ã¿¸ö¿ÕÏĞ»º³åÇøÄÚµÄÊı¾İ´æ·Å¡°-32768 ¡±¡£
-·µ»ØÖµ:  ·µ»Ø¶ÓÁĞµÄÍ·Ö¸Õë
+create  å‡½æ•°è¯´æ˜: å»ºç«‹ç©ºé—²ç¼“å†²é˜Ÿåˆ—, æ¯ä¸ªç©ºé—²ç¼“å†²åŒºå†…çš„æ•°æ®å­˜æ”¾â€œ-32768 â€ã€‚
+è¿”å›å€¼:  è¿”å›é˜Ÿåˆ—çš„å¤´æŒ‡é’ˆ
 ********************************************************************/
-node *creat( ) /* ½¨Á¢¿ÕÏĞ»º³å¶ÓÁĞ*/
+node *creat( ) /* å»ºç«‹ç©ºé—²ç¼“å†²é˜Ÿåˆ—*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *head, *p, *temp;
     head = (node*)malloc(sizeof(node));
     head->buf_data = -32768;
@@ -36,14 +36,14 @@ node *creat( ) /* ½¨Á¢¿ÕÏĞ»º³å¶ÓÁĞ*/
     return head;
 }
 /********************************************************************
-print_buf  º¯ÊıËµÃ÷: ¸Ãº¯Êı´òÓ¡ Èı¸ö»º³å¶ÓÁĞ µÄÊı¾İÇé¿ö
-·µ»ØÖµ:  ÎŞ
+print_buf  å‡½æ•°è¯´æ˜: è¯¥å‡½æ•°æ‰“å° ä¸‰ä¸ªç¼“å†²é˜Ÿåˆ— çš„æ•°æ®æƒ…å†µ
+è¿”å›å€¼:  æ— 
 ********************************************************************/
 void print_buf(node *emq, node *inq, node *outq)
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p;
-    printf("¿ÕÏĞ»º³åÇø¶ÓÁĞemqÄÚÈİ£º\n");
+    printf("ç©ºé—²ç¼“å†²åŒºé˜Ÿåˆ—emqå†…å®¹ï¼š\n");
     p = emq;
     while(p)
     {
@@ -51,7 +51,7 @@ void print_buf(node *emq, node *inq, node *outq)
         p = p->next;
     }
     printf("\n\n");
-    printf("ÊäÈë»º³åÇø¶ÓÁĞinqÄÚÈİ£º\n");
+    printf("è¾“å…¥ç¼“å†²åŒºé˜Ÿåˆ—inqå†…å®¹ï¼š\n");
     p = inq;
     if(p == NULL)
     {
@@ -66,7 +66,7 @@ void print_buf(node *emq, node *inq, node *outq)
         }
     }
     printf("\n\n");
-    printf("Êä³ö»º³åÇø¶ÓÁĞoutqÄÚÈİ£º\n");
+    printf("è¾“å‡ºç¼“å†²åŒºé˜Ÿåˆ—outqå†…å®¹ï¼š\n");
     p = outq;
     if(p == NULL)
     {
@@ -83,23 +83,23 @@ void print_buf(node *emq, node *inq, node *outq)
     printf("\n\n");
 }
 /********************************************************************
-Getbuf  º¯ÊıËµÃ÷: £¬ ¸Ãº¯Êı´Ó¶ÓÊ×¶ÁÒ»¸öÊı¾İ³öÀ´£¬ Ê¹ÓÃ tempnode  Ö¸Ïò¶ÓÊ×µÚÒ»¸ö½áµã
-·µ»ØÖµ: ¶ÓÁĞÖ¸Õë head
+Getbuf  å‡½æ•°è¯´æ˜: ï¼Œ è¯¥å‡½æ•°ä»é˜Ÿé¦–è¯»ä¸€ä¸ªæ•°æ®å‡ºæ¥ï¼Œ ä½¿ç”¨ tempnode  æŒ‡å‘é˜Ÿé¦–ç¬¬ä¸€ä¸ªç»“ç‚¹
+è¿”å›å€¼: é˜Ÿåˆ—æŒ‡é’ˆ head
 ********************************************************************/
 node *Getbuf(node *head)
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     tempnode = head;
     head = head->next;
     return head;
 }
 /********************************************************************
-Putbuf  º¯ÊıËµÃ÷:  ¸Ãº¯ Êı´Ó²åÈëÒ»¸ö½áµãµ½¶ÓÎ´¡£
-·µ»ØÖµ: ¶ÓÁĞÖ¸Õë head
+Putbuf  å‡½æ•°è¯´æ˜:  è¯¥å‡½ æ•°ä»æ’å…¥ä¸€ä¸ªç»“ç‚¹åˆ°é˜Ÿæœªã€‚
+è¿”å›å€¼: é˜Ÿåˆ—æŒ‡é’ˆ head
 ********************************************************************/
 node *Putbuf(node *head, node *newnode)
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p = head;
     if(head == NULL)
     {
@@ -115,7 +115,7 @@ node *Putbuf(node *head, node *newnode)
     }
     return head;
 }
-/**************MAIN  ³ÌĞò**********************/
+/**************MAIN  ç¨‹åº**********************/
 int main(int argc, char *argv[])
 {
     int flag;
@@ -127,22 +127,22 @@ int main(int argc, char *argv[])
     print_buf(emq,inq,outq);
     printf("\n######################\n");
     printf("what do you want to do?\n");
-    printf("1. ÊÕÈİÊäÈë\n");
-    printf("2. Ìá³öÊäÈë\n");
-    printf("3. ÊÕÈİÊä³ö\n");
-    printf("4. Ìá³öÊä³ö\n");
-    printf("5. ÍË³ö\n");
+    printf("1. æ”¶å®¹è¾“å…¥\n");
+    printf("2. æå‡ºè¾“å…¥\n");
+    printf("3. æ”¶å®¹è¾“å‡º\n");
+    printf("4. æå‡ºè¾“å‡º\n");
+    printf("5. é€€å‡º\n");
     printf("\nInput your choice:");
     scanf("%d",&flag);
     while(flag !=5)
     {
         switch(flag)
         {
-            //Ìî²¹³ÌĞò
+            //å¡«è¡¥ç¨‹åº
         case 1:
                 emq = Getbuf(emq);
                 hin = tempnode;
-                printf("ÊÕÈİÊäÈë--ÇëÊäÈë¡°ÊäÈëÊı¾İ¡±£º");
+                printf("æ”¶å®¹è¾“å…¥--è¯·è¾“å…¥â€œè¾“å…¥æ•°æ®â€ï¼š");
                 scanf("%d", &hin->buf_data);
                 hin->buf_type = -1;
                 inq = Putbuf(inq, hin);
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
                 {
                     inq = Getbuf(inq);
                     sin = tempnode;
-                    printf("ÌáÈ¡ÊäÈë--Êä³ö¡°ÌáÈ¡Êı¾İ¡±£º%d\n", sin->buf_data);
+                    printf("æå–è¾“å…¥--è¾“å‡ºâ€œæå–æ•°æ®â€ï¼š%d\n", sin->buf_data);
                     sin->buf_type = 0;
                     sin->buf_data = -32768;
                     emq = Putbuf(emq, sin);
@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
         case 3:
                 emq = Getbuf(emq);
                 hout = tempnode;
-                printf("ÌáÈ¡ÊäÈë--ÇëÊäÈë¡°ÌáÈ¡Êı¾İ¡±£º\n");
+                printf("æå–è¾“å…¥--è¯·è¾“å…¥â€œæå–æ•°æ®â€ï¼š\n");
                 scanf("%d", &hout->buf_data);
                 hout->buf_type = 1;
                 outq = Putbuf(outq, hout);
@@ -179,7 +179,7 @@ int main(int argc, char *argv[])
                 {
                     outq = Getbuf(outq);
                     sout = tempnode;
-                    printf("ÊÕÈİÊä³ö--Êä³ö¡°ÌáÈ¡Êı¾İ¡±£º%d\n", sout->buf_data);
+                    printf("æ”¶å®¹è¾“å‡º--è¾“å‡ºâ€œæå–æ•°æ®â€ï¼š%d\n", sout->buf_data);
                     sout->buf_data = -32768;
                     sout->buf_type = 0;
                     emq = Putbuf(emq, sout);
@@ -190,11 +190,11 @@ int main(int argc, char *argv[])
         print_buf(emq,inq,outq);
         printf("\n######################\n");
         printf("what do you want to do?\n");
-        printf("1. ÊÕÈİÊäÈë\n");
-        printf("2. Ìá³öÊäÈë\n");
-        printf("3. ÊÕÈİÊä³ö\n");
-        printf("4. Ìá³öÊä³ö\n");
-        printf("5. ÍË³ö\n");
+        printf("1. æ”¶å®¹è¾“å…¥\n");
+        printf("2. æå‡ºè¾“å…¥\n");
+        printf("3. æ”¶å®¹è¾“å‡º\n");
+        printf("4. æå‡ºè¾“å‡º\n");
+        printf("5. é€€å‡º\n");
         printf("\nInput your choice:");
         scanf("%d",&flag);
     }

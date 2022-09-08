@@ -4,14 +4,14 @@
 #define NULL 0
 typedef struct table
 {
-    int key; /* ½ø³Ì ID  ºÅ*/
-    int priority; /* ÓÅÏÈÊıÖµ*/
-    char message[10]; /* ½ø³ÌËµÃ÷ĞÅÏ¢*/
+    int key; /* è¿›ç¨‹ ID  å·*/
+    int priority; /* ä¼˜å…ˆæ•°å€¼*/
+    char message[10]; /* è¿›ç¨‹è¯´æ˜ä¿¡æ¯*/
     struct table *next;
 } node;
 node *insert(node *head,node *news)
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     int flag = 1;
     node *p = head, *pre = NULL;
     if(head == NULL)
@@ -44,15 +44,15 @@ node *insert(node *head,node *news)
         }
     }
     return head;
-} /* ½«ĞÂ½ø³Ì²åÈëµ½ÒÑ¾­ÅÅĞòµÄ¶ÓÁĞÖĞ£¬¶Ô½ø³Ì±í°´ÓÅÏÈÊı´Ó´óµ½Ğ¡ÅÅĞò*/
-node *creat(void) /* ¶¨Òåº¯Êı£¬µ÷ÓÃ insert  º¯Êı½¨Á¢ÅÅºÃĞòµÄ½ø³ÌÁ´±í*/
+} /* å°†æ–°è¿›ç¨‹æ’å…¥åˆ°å·²ç»æ’åºçš„é˜Ÿåˆ—ä¸­ï¼Œå¯¹è¿›ç¨‹è¡¨æŒ‰ä¼˜å…ˆæ•°ä»å¤§åˆ°å°æ’åº*/
+node *creat(void) /* å®šä¹‰å‡½æ•°ï¼Œè°ƒç”¨ insert  å‡½æ•°å»ºç«‹æ’å¥½åºçš„è¿›ç¨‹é“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *head, *p;
     head = (node*)malloc(sizeof(node));
     p = (node*)malloc(sizeof(node));
     head = NULL;
-    printf("ĞÂ½¨µÄ½ø³Ì¿ØÖÆ±íÎª£º\nkey priority message\n");
+    printf("æ–°å»ºçš„è¿›ç¨‹æ§åˆ¶è¡¨ä¸ºï¼š\nkey priority message\n");
     scanf("%d", &p->key);
     while(p->key > 0)
     {
@@ -63,9 +63,9 @@ node *creat(void) /* ¶¨Òåº¯Êı£¬µ÷ÓÃ insert  º¯Êı½¨Á¢ÅÅºÃĞòµÄ½ø³ÌÁ´±í*/
     }
     return head;
 }
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     printf("The table is:\n");
     node *p = head;
     while(p)
@@ -75,9 +75,9 @@ void print (node *head) /* Êä³öÁ´±í*/
     }
     printf("\n");
 }
-void rank_out(node *head) /* Ä£Äâ°´ÓÅÏÈÊı´óĞ¡½ø³Ì·Ö¼¶³ö¶ÓµÄ¹ı³Ì*/
+void rank_out(node *head) /* æ¨¡æ‹ŸæŒ‰ä¼˜å…ˆæ•°å¤§å°è¿›ç¨‹åˆ†çº§å‡ºé˜Ÿçš„è¿‡ç¨‹*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p;
     printf("key=%d, priority=%d, message=%s\n\n", head->key, head->priority, head->message);
     *p = *head;
@@ -88,7 +88,7 @@ void rank_out(node *head) /* Ä£Äâ°´ÓÅÏÈÊı´óĞ¡½ø³Ì·Ö¼¶³ö¶ÓµÄ¹ı³Ì*/
 }
 int main()
 {
-    //Ìî²¹³ÌĞò£ºÄ£Äâ½ø³Ì¿ØÖÆ¿é¶ÓÁĞ°´ÕÕÓÅÏÈ¼¶Öğ¸ö³ö¶Ó¹ı³Ì
+    //å¡«è¡¥ç¨‹åºï¼šæ¨¡æ‹Ÿè¿›ç¨‹æ§åˆ¶å—é˜Ÿåˆ—æŒ‰ç…§ä¼˜å…ˆçº§é€ä¸ªå‡ºé˜Ÿè¿‡ç¨‹
     node *head;
     int count = 0;
     head = creat();
@@ -96,7 +96,7 @@ int main()
     while(head)
     {
         count++;
-        printf("µÚ%d¸ö³ö¶Ó½ø³ÌÎª£º\n", count);
+        printf("ç¬¬%dä¸ªå‡ºé˜Ÿè¿›ç¨‹ä¸ºï¼š\n", count);
         rank_out(head);
     }
     return 0;

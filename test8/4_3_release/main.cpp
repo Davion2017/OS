@@ -4,18 +4,18 @@
 #define NULL 0
 typedef struct table
 {
-    int address; /* ´æ´¢·ÖÇøÆğÊ¼µØÖ·*/
-    int length; /* ´æ´¢·ÖÇø³¤¶È*/
-    int flag; /* ´æ´¢·ÖÇø±êÖ¾£¬0  Îª¿ÕÏĞ£¬1  Îª±»×÷ÒµÕ¼¾İ*/
-    char name[10]; /*µ± µ± flag==1  Ê±´æ´¢·ÖÇøÕ¼ÓÃ±êÖ¾×÷ÒµÃû£¬·ñÔò´æ´¢¿Õ nil*/
+    int address; /* å­˜å‚¨åˆ†åŒºèµ·å§‹åœ°å€*/
+    int length; /* å­˜å‚¨åˆ†åŒºé•¿åº¦*/
+    int flag; /* å­˜å‚¨åˆ†åŒºæ ‡å¿—ï¼Œ0  ä¸ºç©ºé—²ï¼Œ1  ä¸ºè¢«ä½œä¸šå æ®*/
+    char name[10]; /*å½“ å½“ flag==1  æ—¶å­˜å‚¨åˆ†åŒºå ç”¨æ ‡å¿—ä½œä¸šåï¼Œå¦åˆ™å­˜å‚¨ç©º nil*/
     struct table *next;
 } node;
-node *work; /* ÉèÖÃÒ»¸öÈ«¾Ö±äÁ¿ work £º¶¨Î»ĞèÒªÊÍ·ÅµÄ½áµã*/
-char type; /* ÉèÖÃÒ»¸öÈ«¾Ö±äÁ¿ type */
-bool success; /* ·ÖÅä³É¹¦Óë·ñµÄ±êÖ¾*/
-node *insert(node *head, node *news) /* °´ÕÕ¡°µØÖ·µİÔö·½Ê½¡±½« news  ½áµã²åÈëÁ´±íÏàÓ¦Î»ÖÃ*/
+node *work; /* è®¾ç½®ä¸€ä¸ªå…¨å±€å˜é‡ work ï¼šå®šä½éœ€è¦é‡Šæ”¾çš„ç»“ç‚¹*/
+char type; /* è®¾ç½®ä¸€ä¸ªå…¨å±€å˜é‡ type */
+bool success; /* åˆ†é…æˆåŠŸä¸å¦çš„æ ‡å¿—*/
+node *insert(node *head, node *news) /* æŒ‰ç…§â€œåœ°å€é€’å¢æ–¹å¼â€å°† news  ç»“ç‚¹æ’å…¥é“¾è¡¨ç›¸åº”ä½ç½®*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     if(head->address > news->address)
     {
         news->next = head;
@@ -41,9 +41,9 @@ node *insert(node *head, node *news) /* °´ÕÕ¡°µØÖ·µİÔö·½Ê½¡±½« news  ½áµã²åÈëÁ´±
     }
     return head;
 }
-node *creat(FILE *fp) /* ¸ù¾İµØÖ·µİÔö·½Ê½½¨Á¢·ÖÅä·ÖÇø±í(flag==1) »ò¿ÕÏĞ·ÖÇø±í(flag==0)*/
+node *creat(FILE *fp) /* æ ¹æ®åœ°å€é€’å¢æ–¹å¼å»ºç«‹åˆ†é…åˆ†åŒºè¡¨(flag==1) æˆ–ç©ºé—²åˆ†åŒºè¡¨(flag==0)*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *head, *p;
     head = (node*)malloc(sizeof(node));
     //printf("address length flag(0 or 1)\n");
@@ -76,9 +76,9 @@ node *creat(FILE *fp) /* ¸ù¾İµØÖ·µİÔö·½Ê½½¨Á¢·ÖÅä·ÖÇø±í(flag==1) »ò¿ÕÏĞ·ÖÇø±í(fl
     return head;
 }
 node *distribute(node *freehead, node *distributedhead, node *work)
-/* ÔÚ¿ÕÏĞ·ÖÇø±íÖĞÕÒ³öÊ×´ÎºÏÊÊ work  µÄ·ÖÇø£¬Í¬Ê±ĞŞ¸Ä¿ÕÏĞ·ÖÇø±íºÍ·ÖÅä·ÖÇø±í*/
+/* åœ¨ç©ºé—²åˆ†åŒºè¡¨ä¸­æ‰¾å‡ºé¦–æ¬¡åˆé€‚ work  çš„åˆ†åŒºï¼ŒåŒæ—¶ä¿®æ”¹ç©ºé—²åˆ†åŒºè¡¨å’Œåˆ†é…åˆ†åŒºè¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p1 = freehead;
     while(p1 != NULL && p1->length < work->length)
         p1 = p1->next;
@@ -113,28 +113,28 @@ node *distribute(node *freehead, node *distributedhead, node *work)
     }
     return NULL;
 }
-node *found(node *distributedhead,char workn[10]) /* ²éÕÒÒÑ·ÖÅä±íÖĞÒª»ØÊÕµÄ·ÖÇøÎ»ÖÃ*/
+node *found(node *distributedhead,char workn[10]) /* æŸ¥æ‰¾å·²åˆ†é…è¡¨ä¸­è¦å›æ”¶çš„åˆ†åŒºä½ç½®*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p = distributedhead;
     node *pre  = NULL;
     while(p)
     {
         if(strcmp(p->name, workn) == 0)
         {
-            printf("Òª»ØÊÕµÄ·ÖÇø´æÔÚ£¡\n");
+            printf("è¦å›æ”¶çš„åˆ†åŒºå­˜åœ¨ï¼\n");
             pre->next = p->next;
             return p;
         }
         pre = p;
         p = p->next;
     }
-    printf("Òª»ØÊÕµÄ·ÖÇø²»´æÔÚ£¡\n");
+    printf("è¦å›æ”¶çš„åˆ†åŒºä¸å­˜åœ¨ï¼\n");
     return NULL;
 }
-node *release(node *freehead,node *work) /* ·ÖËÄÖÖÇé¿öÍê³É¿ÕÏĞ·ÖÇø»ØÊÕ¹ı³Ì*/
+node *release(node *freehead,node *work) /* åˆ†å››ç§æƒ…å†µå®Œæˆç©ºé—²åˆ†åŒºå›æ”¶è¿‡ç¨‹*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     if(work == NULL)
         return NULL;
     node *p = freehead;
@@ -177,30 +177,30 @@ node *release(node *freehead,node *work) /* ·ÖËÄÖÖÇé¿öÍê³É¿ÕÏĞ·ÖÇø»ØÊÕ¹ı³Ì*/
             type = 'D';
         }
     }
-    else if((pre->address + pre->length) == work->address)   //ÉÏÃæÏàÁ¬
+    else if((pre->address + pre->length) == work->address)   //ä¸Šé¢ç›¸è¿
     {
-        if((work->address + work->length) == p->address)    //ÉÏÏÂ¶¼ÏàÁ¬ C
+        if((work->address + work->length) == p->address)    //ä¸Šä¸‹éƒ½ç›¸è¿ C
         {
             pre->length = pre->length + work->length + p->length;
             pre->next = p->next;
             free(p);
             type = 'C';
         }
-        else                        //ÉÏÁ¬ÏÂ²»Á¬ A
+        else                        //ä¸Šè¿ä¸‹ä¸è¿ A
         {
             pre->length += work->length;
             type = 'A';
         }
     }
-    else           //ÉÏ²»Á¬
+    else           //ä¸Šä¸è¿
     {
-        if((work->address + work->length) == p->address)    //ÉÏ²»Á¬ÏÂÁ¬ B
+        if((work->address + work->length) == p->address)    //ä¸Šä¸è¿ä¸‹è¿ B
         {
             p->length += work->length;
             p->address = work->address;
             type = 'B';
         }
-        else            //ÉÏÏÂ¶¼²»Á¬ D
+        else            //ä¸Šä¸‹éƒ½ä¸è¿ D
         {
             work->flag = 0;
             strcpy(work->name, "nil");
@@ -212,12 +212,12 @@ node *release(node *freehead,node *work) /* ·ÖËÄÖÖÇé¿öÍê³É¿ÕÏĞ·ÖÇø»ØÊÕ¹ı³Ì*/
     printf("\nThe type of release is %c!\n\n", type);
     return freehead;
 }
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     if(head == NULL)
     {
-        printf("ÊÇ¿ÕµÄ");
+        printf("æ˜¯ç©ºçš„");
     }
     node *p = head;
     printf("%s\t%s\t%s\t%s\n", "address", "length", "flag", "name");
@@ -235,22 +235,22 @@ int main()
     char workn[10];
     FILE *fp;
     if((fp = fopen("data.txt", "r")) == NULL)
-        printf("´ò²»¿ª£¡");
+        printf("æ‰“ä¸å¼€ï¼");
     printf("The distributed table is:\n");
-    dtable=creat(fp); /*dtable  ÊäÈëÒÑ·ÖÅäÇé¿ö±í*/
+    dtable=creat(fp); /*dtable  è¾“å…¥å·²åˆ†é…æƒ…å†µè¡¨*/
     print(dtable);
     printf("The free table is:\n");
-    ftable=creat(fp); /*ftable  ÊäÈëÎ´·ÖÅäÇé¿ö±í*/
+    ftable=creat(fp); /*ftable  è¾“å…¥æœªåˆ†é…æƒ…å†µè¡¨*/
     fclose(fp);
     print(ftable);
-    /* ÒÔÏÂ Ä£ÄâÖğ¸ö ÄÚ´æÉêÇë ¹ı³Ì*/
+    /* ä»¥ä¸‹ æ¨¡æ‹Ÿé€ä¸ª å†…å­˜ç”³è¯· è¿‡ç¨‹*/
     printf("Input the released work segment sum:");
     scanf("%d", &sum);
     while(i < sum)
     {
         printf("===============================================\n");
         i++;
-        printf("%d£ºinput the released work segment name:", i);
+        printf("%dï¼šinput the released work segment name:", i);
         scanf("%s", workn);
         work = found(dtable, workn);
         ftable = release(ftable, work);

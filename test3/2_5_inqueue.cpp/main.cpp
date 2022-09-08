@@ -4,13 +4,13 @@
 #define NULL 0
 typedef struct processpcb
 {
-    int id; /* ½ø³Ì¿ØÖÆ¿é±àºÅ*/
+    int id; /* è¿›ç¨‹æ§åˆ¶å—ç¼–å·*/
     struct processpcb *next;
 } node;
 int n;
-node *creat(void) /* ½¨Á¢½ø³Ì¿ØÖÆ¿é¶ÓÁĞ±í*/
+node *creat(void) /* å»ºç«‹è¿›ç¨‹æ§åˆ¶å—é˜Ÿåˆ—è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *head, *p1, *p2;
     head = p1 = (node*)malloc(sizeof(node));
     p1->next = NULL;
@@ -34,15 +34,15 @@ node *creat(void) /* ½¨Á¢½ø³Ì¿ØÖÆ¿é¶ÓÁĞ±í*/
     }
     return head;
 }
-node *append(node *head,node *q) /* Ôö¼ÓÒ»¸ö½ø³Ì½øÈë¶ÓÁĞ*/
+node *append(node *head,node *q) /* å¢åŠ ä¸€ä¸ªè¿›ç¨‹è¿›å…¥é˜Ÿåˆ—*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p = head, *pre = NULL;
     while(p)
     {
         if(p->id == q->id)
         {
-            printf("½ø³ÌÒÑ´æÔÚ£¡\n");
+            printf("è¿›ç¨‹å·²å­˜åœ¨ï¼\n");
             return head;
         }
         pre = p;
@@ -52,9 +52,9 @@ node *append(node *head,node *q) /* Ôö¼ÓÒ»¸ö½ø³Ì½øÈë¶ÓÁĞ*/
     q->next = NULL;
     return head;
 }
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     node *p = head;
     while(p)
     {
@@ -65,12 +65,12 @@ void print (node *head) /* Êä³öÁ´±í*/
 }
 int main()
 {
-    //Ìî²¹³ÌĞò£ºÄ£Äâ½¨Á¢½ø³Ì¿ØÖÆ¿é¶ÓÁĞºÍÈë¶Ó¹ı³Ì
+    //å¡«è¡¥ç¨‹åºï¼šæ¨¡æ‹Ÿå»ºç«‹è¿›ç¨‹æ§åˆ¶å—é˜Ÿåˆ—å’Œå…¥é˜Ÿè¿‡ç¨‹
     node *head, *p;
-    printf("´´½¨½ø³Ì¶ÓÁĞ£º");
+    printf("åˆ›å»ºè¿›ç¨‹é˜Ÿåˆ—ï¼š");
     head = creat();
     print(head);
-    printf("ÇëÊäÈëÒ»¸ö½ø³Ì¶ÓÁĞ£º");
+    printf("è¯·è¾“å…¥ä¸€ä¸ªè¿›ç¨‹é˜Ÿåˆ—ï¼š");
     p = (node*)malloc(sizeof(node));
     scanf("%d",&p->id);
     while(p->id > 0)
@@ -78,7 +78,7 @@ int main()
         append(head, p);
         print(head);
         p = (node*)malloc(sizeof(node));
-        printf("ÇëÊäÈëÒ»¸ö½ø³Ì¶ÓÁĞ£º");
+        printf("è¯·è¾“å…¥ä¸€ä¸ªè¿›ç¨‹é˜Ÿåˆ—ï¼š");
         scanf("%d",&p->id);
     }
     return 0;

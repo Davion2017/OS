@@ -3,11 +3,11 @@
 #include <string.h>
 #define NULL 0
 typedef struct processpcb
- { int id;/*½ø³Ì¿ØÖÆ¿é±àºÅ*/
+ { int id;/*è¿›ç¨‹æ§åˆ¶å—ç¼–å·*/
    struct processpcb *next;
  }node;
  int n; 
- node *creat(void)   /*½¨Á¢½ø³Ì¿ØÖÆ¿é¶ÓÁĞ±í*/
+ node *creat(void)   /*å»ºç«‹è¿›ç¨‹æ§åˆ¶å—é˜Ÿåˆ—è¡¨*/
  { node *head,*p1,*p2;
    n=0;
    printf("Input processpcb table:ID\n");
@@ -25,10 +25,10 @@ typedef struct processpcb
    p2->next=NULL;
    return(head);
  }
-node *append(node *head,node *q)  /*Ôö¼ÓÒ»¸ö½ø³Ì½øÈë¶ÓÁĞ*/
+node *append(node *head,node *q)  /*å¢åŠ ä¸€ä¸ªè¿›ç¨‹è¿›å…¥é˜Ÿåˆ—*/
   {
  }
- void print (node *head)  /*Êä³öÁ´±í*/
+ void print (node *head)  /*è¾“å‡ºé“¾è¡¨*/
  { 
  }
 void main()

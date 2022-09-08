@@ -4,11 +4,11 @@
 #define NULL 0
 typedef struct processpcb
 {
-    int id; /* ½ø³Ì¿ØÖÆ¿é±àºÅ*/
+    int id; /* è¿›ç¨‹æ§åˆ¶å—ç¼–å·*/
     struct processpcb *next;
 } node;
 int n;
-node *append(node *head,node *q) /* Ôö¼ÓÒ»¸ö½ø³Ì½øÈë¶ÓÁĞ*/
+node *append(node *head,node *q) /* å¢åŠ ä¸€ä¸ªè¿›ç¨‹è¿›å…¥é˜Ÿåˆ—*/
 {
     node * p = head;
     while(p)
@@ -16,7 +16,7 @@ node *append(node *head,node *q) /* Ôö¼ÓÒ»¸ö½ø³Ì½øÈë¶ÓÁĞ*/
     p->next = q;
     return head;
 }
-node *creat(void) /* ½¨Á¢½ø³Ì¿ØÖÆ¿é¶ÓÁĞ±í*/
+node *creat(void) /* å»ºç«‹è¿›ç¨‹æ§åˆ¶å—é˜Ÿåˆ—è¡¨*/
 {
     node * head = (node*)malloc(sizeof(node));
     node * p;
@@ -33,7 +33,7 @@ node *creat(void) /* ½¨Á¢½ø³Ì¿ØÖÆ¿é¶ÓÁĞ±í*/
     return head;
 }
 
-void print (node *head) /* Êä³öÁ´±í*/
+void print (node *head) /* è¾“å‡ºé“¾è¡¨*/
 {
     node * p;
     while(p)

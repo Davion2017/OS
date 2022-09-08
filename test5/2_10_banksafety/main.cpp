@@ -10,23 +10,23 @@ int Need[N][M];
 int Available[M];
 int Work[M];
 bool Finish[N];
-int List[N]; // ´æ·Å°²È«ĞòÁĞµÄÏÂ±êĞòÁĞ
+int List[N]; // å­˜æ”¾å®‰å…¨åºåˆ—çš„ä¸‹æ ‡åºåˆ—
 void initial()
-// ´´½¨³õÊ¼×´Ì¬£ºÏÈÊäÈë Resource ¡¢Max ºÍ ºÍ Allocation £¬ÔÙ¼ÆËã³ö Need ¡¢Available ¡£
+// åˆ›å»ºåˆå§‹çŠ¶æ€ï¼šå…ˆè¾“å…¥ Resource ã€Max å’Œ å’Œ Allocation ï¼Œå†è®¡ç®—å‡º Need ã€Available ã€‚
 {
     FILE *fp;
     //if((fp=fopen("date.txt","r")) == NULL)
-    if((fp=fopen("date.txt","r")) == NULL)//´ò¿ª²Ù×÷²»³É¹¦
+    if((fp=fopen("date.txt","r")) == NULL)//æ‰“å¼€æ“ä½œä¸æˆåŠŸ
     {
-        printf("´ò²»¿ª\n");
+        printf("æ‰“ä¸å¼€\n");
     }
-    //printf("Resource--ÊäÈëMÖÖ×ÊÔ´×ÜÊıÁ¿£º\n");
+    //printf("Resource--è¾“å…¥Mç§èµ„æºæ€»æ•°é‡ï¼š\n");
     for(int i = 0; i < M; i++)
     {
         fscanf(fp, "%d", &Resource[i]);
         //scanf("%d", &Resource[i]);
     }
-    //printf("Max--ÊäÈëN¸ö½ø³Ì·Ö±ğ¶ÔMÖÖ×ÊÔ´µÄ×î´óĞèÇóÁ¿£º\n");
+    //printf("Max--è¾“å…¥Nä¸ªè¿›ç¨‹åˆ†åˆ«å¯¹Mç§èµ„æºçš„æœ€å¤§éœ€æ±‚é‡ï¼š\n");
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < M; j++)
@@ -35,7 +35,7 @@ void initial()
             //scanf("%d", &Max[i][j]);
         }
     }
-    //printf("Allocation--ÊäÈëN¸ö½ø³Ì»ñµÃMÖÖ×ÊÔ´µÄÊıÁ¿£º\n");
+    //printf("Allocation--è¾“å…¥Nä¸ªè¿›ç¨‹è·å¾—Mç§èµ„æºçš„æ•°é‡ï¼š\n");
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < M; j++)
@@ -63,9 +63,9 @@ void initial()
     }
 }
 void printState()
-// Êä³öµ±Ç°µÄ×´Ì¬±í|Process |Max |Allocation |Need |Available |
+// è¾“å‡ºå½“å‰çš„çŠ¶æ€è¡¨|Process |Max |Allocation |Need |Available |
 {
-    printf("×´Ì¬±í£º\n");
+    printf("çŠ¶æ€è¡¨ï¼š\n");
     printf("|%-12s|%-12s|%-12s|%-12s|%-12s|\n","Process", "Max", "Allocation", "Need", "Available");
     for(int i = 0; i < N; i++)
     {
@@ -100,7 +100,7 @@ void printState()
     printf("\n");
 }
 int isfinish()
-// ·µ»ØÍ¬Ê±Âú×ãÁ½¸öÌõ¼ş{ ¢ÙFinish[i]=false;  ¢ÚNeed[i][j] ¡ÜWork[j]}±ê µÄ½ø³ÌÏÂ±ê i( ĞŞ¸ÄFinish[i]=true) £¬·ñÔò·µ»Ø-1 ¡£
+// è¿”å›åŒæ—¶æ»¡è¶³ä¸¤ä¸ªæ¡ä»¶{ â‘ Finish[i]=false;  â‘¡Need[i][j] â‰¤Work[j]}æ ‡ çš„è¿›ç¨‹ä¸‹æ ‡ i( ä¿®æ”¹Finish[i]=true) ï¼Œå¦åˆ™è¿”å›-1 ã€‚
 {
     int flag;
     for(int i = 0; i < N; i++)
@@ -117,7 +117,7 @@ int isfinish()
     return -1;
 }
 bool issafe()
-//Ì¬ ÅĞ¶¨µ±Ç°×´Ì¬ÊÇ·ñÎª°²È«×´Ì¬ £¨·µ»Ø true »ò »ò false £©£¬°Ñ°²È«ĞòÁĞµÄÏÂ±ê·ÅÈë List[N] Êı×é¡£
+//æ€ åˆ¤å®šå½“å‰çŠ¶æ€æ˜¯å¦ä¸ºå®‰å…¨çŠ¶æ€ ï¼ˆè¿”å› true æˆ– æˆ– false ï¼‰ï¼ŒæŠŠå®‰å…¨åºåˆ—çš„ä¸‹æ ‡æ”¾å…¥ List[N] æ•°ç»„ã€‚
 {
     int i, j = 0;
     Work[0] = Available[0];
@@ -140,12 +140,12 @@ bool issafe()
     return true;
 }
 void printList( )
-// Êä³ö°²È«ĞòÁĞ±í|Process |Work |Need |Allocation |Work+Alloc |Finish |
+// è¾“å‡ºå®‰å…¨åºåˆ—è¡¨|Process |Work |Need |Allocation |Work+Alloc |Finish |
 {
     Work[0] = Available[0];
     Work[1] = Available[1];
     Work[2] = Available[2];
-    printf("°²È«ĞòÁĞ±íÈçÏÂ£º\n");
+    printf("å®‰å…¨åºåˆ—è¡¨å¦‚ä¸‹ï¼š\n");
     printf("|%-12s|%-12s|%-12s|%-12s|%-12s|%-12s|\n","Process", "Work", "Need", "Allocation", "Work+Alloc", "Finish");
     for(int i = 0; i < N; i++)
     {
@@ -179,36 +179,36 @@ void printList( )
     }
     printf("\n");
 }
-void reqresource(int i, int request[M])             // ±íÊ¾µÚ i  ¸ö½ø³ÌÇëÇó M  Àà×ÊÔ´ request[M]
+void reqresource(int i, int request[M])             // è¡¨ç¤ºç¬¬ i  ä¸ªè¿›ç¨‹è¯·æ±‚ M  ç±»èµ„æº request[M]
 {
     bool flag;
     int j;
-    //Step1:  ÅĞ¶ÏÌõ¼ş Request[j] ¡ÜNeed[i][j]
+    //Step1:  åˆ¤æ–­æ¡ä»¶ Request[j] â‰¤Need[i][j]
     for(j = 0 ; j < M; j++)
     {
         if(request[j] > Need[i][j])
         {
-            printf("ÊäÈë´íÎó£¡ÇëÖØĞÂÊäÈë£º\n");
+            printf("è¾“å…¥é”™è¯¯ï¼è¯·é‡æ–°è¾“å…¥ï¼š\n");
             return;
         }
     }
-    //Step2:  ÅĞ¶ÏÌõ¼ş Request[j] ¡ÜAvailable[j]
+    //Step2:  åˆ¤æ–­æ¡ä»¶ Request[j] â‰¤Available[j]
     for(j = 0; j < M; j++)
     {
         if(request[j] > Available[j])
         {
-            printf("ÉĞÎŞ×ã¹»×ÊÔ´£¬µÚ%d¸ö½ø³Ì¶ÂÈû¡£\n", i);
+            printf("å°šæ— è¶³å¤Ÿèµ„æºï¼Œç¬¬%dä¸ªè¿›ç¨‹å µå¡ã€‚\n", i);
             return;
         }
     }
-    //Step3:  Ô¤ÏÈ·ÖÅä
+    //Step3:  é¢„å…ˆåˆ†é…
     for(j = 0; j < M; j++)
     {
         Available[j] -= request[j];
         Allocation[i][j] += request[j];
         Need[i][j] -= request[j];
     }
-    //Step4: ¼ì²âÊÇ·ñÎª°²È«×´Ì¬
+    //Step4: æ£€æµ‹æ˜¯å¦ä¸ºå®‰å…¨çŠ¶æ€
     for(j = 0; j < N; j++)
         Finish[j] = false;
     if(issafe() != true)
@@ -219,11 +219,11 @@ void reqresource(int i, int request[M])             // ±íÊ¾µÚ i  ¸ö½ø³ÌÇëÇó M  À
             Allocation[i][j] -= request[j];
             Need[i][j] += request[j];
         }
-        printf("²»´æÔÚ°²È«ĞòÁĞ£¬ ²»ÊÇ°²È«×´Ì¬¡£\n");
+        printf("ä¸å­˜åœ¨å®‰å…¨åºåˆ—ï¼Œ ä¸æ˜¯å®‰å…¨çŠ¶æ€ã€‚\n");
     }
     else
     {
-        printf("ÊÇ°²È«×´Ì¬£¬·ÖÅä³É¹¦£¡\n");
+        printf("æ˜¯å®‰å…¨çŠ¶æ€ï¼Œåˆ†é…æˆåŠŸï¼\n");
         printList();
     }
 }
@@ -242,7 +242,7 @@ int main()
         printList();
         printf("Input the id of request process:");
         scanf("%d",&reqid);
-        while(reqid>=0 && reqid<N) // ÊäÈë½ø³Ì id  ÊÇ·ñºÏ·¨
+        while(reqid>=0 && reqid<N) // è¾“å…¥è¿›ç¨‹ id  æ˜¯å¦åˆæ³•
         {
             printf("Input request resources:");
             for(j=0; j<M; j++)

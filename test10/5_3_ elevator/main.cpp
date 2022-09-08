@@ -7,15 +7,15 @@ typedef struct track
     int column;
     struct track *next;
 } node;
-int location; /* µ±Ç°´ÅÍ·Î»ÖÃ*/
-int sum_move; /* ´ÅÍ·ÒÆ¶¯×Ü´ÅµÀÊı*/
-float ave_move; /* ´ÅÍ·ÒÆ¶¯Æ½¾ù´ÅµÀÊı*/
-int direction; /* ´ÅÍ·ÒÆ¶¯µÄ·½Ïò£ºdirection=1  ±íÊ¾´ÓÀïÏòÍâÒÆ¶¯£¬direction=-1  ±íÊ¾´ÓÍâ
-ÏòÀïÒÆ¶¯*/
-node *del;      //É¾³ıµÄ½áµã
-node *found_node(node *head) /* ÕÒµ½Àëµ±Ç°´ÅÍ·×î½üÇÒÓë direction  Í¬·½ÏòµÄ´ÅµÀ*/
+int location; /* å½“å‰ç£å¤´ä½ç½®*/
+int sum_move; /* ç£å¤´ç§»åŠ¨æ€»ç£é“æ•°*/
+float ave_move; /* ç£å¤´ç§»åŠ¨å¹³å‡ç£é“æ•°*/
+int direction; /* ç£å¤´ç§»åŠ¨çš„æ–¹å‘ï¼šdirection=1  è¡¨ç¤ºä»é‡Œå‘å¤–ç§»åŠ¨ï¼Œdirection=-1  è¡¨ç¤ºä»å¤–
+å‘é‡Œç§»åŠ¨*/
+node *del;      //åˆ é™¤çš„ç»“ç‚¹
+node *found_node(node *head) /* æ‰¾åˆ°ç¦»å½“å‰ç£å¤´æœ€è¿‘ä¸”ä¸ direction  åŒæ–¹å‘çš„ç£é“*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     int min = 10000;
     node *p, *temp;
     p = head;
@@ -46,10 +46,10 @@ node *found_node(node *head) /* ÕÒµ½Àëµ±Ç°´ÅÍ·×î½üÇÒÓë direction  Í¬·½ÏòµÄ´ÅµÀ*/
     }
     return temp;
 }
-node *SCAN(node *head) /* µ÷ÓÃ found_node  ÕÒµ½Âú×ãÌõ¼şµÄ´ÅµÀ£¬²¢´Ó head  Á´±íÖĞÉ¾³ı
-¸Ã½áµã*/
+node *SCAN(node *head) /* è°ƒç”¨ found_node  æ‰¾åˆ°æ»¡è¶³æ¡ä»¶çš„ç£é“ï¼Œå¹¶ä» head  é“¾è¡¨ä¸­åˆ é™¤
+è¯¥ç»“ç‚¹*/
 {
-    //Ìî²¹³ÌĞò
+    //å¡«è¡¥ç¨‹åº
     del = found_node(head);
     if(!del)
     {
@@ -70,16 +70,16 @@ int main()
     int i,num,disk_length;
     node *head,*p,*pre;
     FILE *fp = fopen("date.txt", "r");
-    printf("ÊäÈë´ÅÅÌÖùÃæ×ÜÊı:\n");
+    printf("è¾“å…¥ç£ç›˜æŸ±é¢æ€»æ•°:\n");
     //scanf("%d",&disk_length);
     fscanf(fp,"%d",&disk_length);
-    printf("ÊäÈë´ÅÅÌ¶ÁĞ´ÇëÇó×ÜÊı:\n");
+    printf("è¾“å…¥ç£ç›˜è¯»å†™è¯·æ±‚æ€»æ•°:\n");
     //scanf("%d",&num);
     fscanf(fp,"%d",&num);
-    printf("ÊäÈë´ÅÅÌ¶ÁĞ´ÇëÇóÖùÃæºÅĞòÁĞ:\n");
+    printf("è¾“å…¥ç£ç›˜è¯»å†™è¯·æ±‚æŸ±é¢å·åºåˆ—:\n");
     for(i=1; i<=num; i++)
     {
-        //Ìî²¹³ÌĞò
+        //å¡«è¡¥ç¨‹åº
         if(i == 1)
         {
             head = (node*)malloc(sizeof(node));
@@ -97,17 +97,17 @@ int main()
         }
     }
     p->next = NULL;
-    printf("ÊäÈë´ÅÅÌµ±Ç°Î»ÖÃÎª:\n");
+    printf("è¾“å…¥ç£ç›˜å½“å‰ä½ç½®ä¸º:\n");
     //scanf("%d",&location);
     fscanf(fp,"%d",&location);
-    printf("ÊäÈë´ÅÅÌÒÆ¶¯·½Ïò(1 ±íÊ¾´ÓÀïÏòÍâÒÆ¶¯£¬-1 ±íÊ¾´ÓÍâÏòÀïÒÆ¶¯):\n");
+    printf("è¾“å…¥ç£ç›˜ç§»åŠ¨æ–¹å‘(1 è¡¨ç¤ºä»é‡Œå‘å¤–ç§»åŠ¨ï¼Œ-1 è¡¨ç¤ºä»å¤–å‘é‡Œç§»åŠ¨):\n");
     fscanf(fp,"%d",&direction);
     fclose(fp);
-    printf("\n ÒÀ´Î·ÃÎÊµÄÖùÃæºÅÎª:\n");
+    printf("\n ä¾æ¬¡è®¿é—®çš„æŸ±é¢å·ä¸º:\n");
     sum_move=0;
     for(i=1; i<=num-1; i++)
     {
-        //Ìî²¹³ÌĞò
+        //å¡«è¡¥ç¨‹åº
         head = SCAN(head);
         printf("%5d", del->column);
         sum_move += abs(location - del->column);
@@ -115,7 +115,7 @@ int main()
         location = del->column;
     }
     ave_move=(float)sum_move/num;
-    printf("\n ×ÜµÄÒÆ¶¯ÖùÃæ´ÎÊıÎª:%d\n ",sum_move);
-    printf("\n Æ½¾ùÒÆ¶¯´ÎÊıÎª£º%.2f \n",ave_move);
+    printf("\n æ€»çš„ç§»åŠ¨æŸ±é¢æ¬¡æ•°ä¸º:%d\n ",sum_move);
+    printf("\n å¹³å‡ç§»åŠ¨æ¬¡æ•°ä¸ºï¼š%.2f \n",ave_move);
     return 0;
 }

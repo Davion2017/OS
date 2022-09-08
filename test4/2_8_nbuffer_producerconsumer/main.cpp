@@ -8,22 +8,22 @@
 #define FALSE 0
 #define SIZE 10
 typedef int QueueData;
-typedef struct _queue //¶ÓÁÐ½á¹¹Ìå
+typedef struct _queue //ï¿½ï¿½ï¿½Ð½á¹¹ï¿½ï¿½
 {
     int data[SIZE];
-    int front; // Ö¸Ïò¶ÓÍ·µÄÏÂ±ê
-    int rear; // Ö¸Ïò¶ÓÎ²µÄÏÂ±ê
+    int front; // Ö¸ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Â±ï¿½
+    int rear; // Ö¸ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½Â±ï¿½
 } Queue;
-struct data //ÐÅºÅÁ¿½á¹¹Ìå
+struct data //ï¿½Åºï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
 {
-    sem_t empty; //¼ÇÂ¼¿Õ»º³åÇø¸öÊý
-    sem_t full; //¼ÇÂ¼×°ÂúÊý¾Ý»º³åÇø¸öÊý
-    Queue q; //»º³å²Ö¿â£º¶ÓÁÐ
+    sem_t empty; //ï¿½ï¿½Â¼ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    sem_t full; //ï¿½ï¿½Â¼×°ï¿½ï¿½ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    Queue q; //ï¿½ï¿½ï¿½ï¿½Ö¿â£ºï¿½ï¿½ï¿½ï¿½
 };
-pthread_mutex_t mutex; //»¥³âËø
+pthread_mutex_t mutex; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 struct data sem;
 int num1 = 0, num2 = 0;
-int InitQueue (Queue *q) // ¶ÓÁÐ³õÊ¼»¯
+int InitQueue (Queue *q) // ï¿½ï¿½ï¿½Ð³ï¿½Ê¼ï¿½ï¿½
 {
     if (q == NULL)
     {
@@ -33,14 +33,14 @@ int InitQueue (Queue *q) // ¶ÓÁÐ³õÊ¼»¯
     q->rear = 0;
     return TRUE;
 }
-int QueueEmpty (Queue *q) //ÅÐ¶Ï¿Õ¶ÔÇé¿ö
+int QueueEmpty (Queue *q) //ï¿½Ð¶Ï¿Õ¶ï¿½ï¿½ï¿½ï¿½
 {
     if(q->front == q->rear)
         return TRUE;
     else
         return FALSE;
 }
-int QueueFull (Queue *q) //ÅÐ¶Ï¶ÓÂúµÄÇé¿ö
+int QueueFull (Queue *q) //ï¿½Ð¶Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
     if((q->front+SIZE)%SIZE == q->rear - 1)
         return TRUE;
@@ -48,7 +48,7 @@ int QueueFull (Queue *q) //ÅÐ¶Ï¶ÓÂúµÄÇé¿ö
         return FALSE;
 
 }
-int DeQueue (Queue *q, int *x) //³ö¶Óº¯Êý
+int DeQueue (Queue *q, int *x) //ï¿½ï¿½ï¿½Óºï¿½ï¿½ï¿½
 {
     if(QueueEmpty(q))
         return FALSE;
@@ -58,7 +58,7 @@ int DeQueue (Queue *q, int *x) //³ö¶Óº¯Êý
         return *x;
     }
 }
-int EnQueue (Queue *q, int x) //½ø¶Óº¯Êý
+int EnQueue (Queue *q, int x) //ï¿½ï¿½ï¿½Óºï¿½ï¿½ï¿½
 {
     if(QueueFull(q))
         return FALSE;
@@ -73,15 +73,15 @@ void* Producer(void *arg)
     while(1)
     {
         int x;
-        Sleep(rand()%100); //Ëæ»úË¯Ãß
-        sem_wait(&sem.empty);//ÐÅºÅÁ¿µÄ P ²Ù×÷
-        pthread_mutex_lock(&mutex);//»¥³âËøÉÏËø
+        Sleep(rand()%100); //ï¿½ï¿½ï¿½Ë¯ï¿½ï¿½
+        sem_wait(&sem.empty);//ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ P ï¿½ï¿½ï¿½ï¿½
+        pthread_mutex_lock(&mutex);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         num1++;
-        printf("Producer Éú²úÁËÒ»ÌõÊý¾Ý£º%d\n ÊäÈëÊý¾Ý£º", num1);
+        printf("Producer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½%d\n ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½", num1);
         scanf("%d", &x);
         EnQueue(&sem.q, x);
-        pthread_mutex_unlock(&mutex);//»¥³âËø½âËø
-        sem_post(&sem.full);//ÐÅºÅÁ¿µÄ V ²Ù×÷
+        pthread_mutex_unlock(&mutex);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        sem_post(&sem.full);//ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ V ï¿½ï¿½ï¿½ï¿½
     }
 }
 void* Consumer(void *arg)
@@ -90,31 +90,31 @@ void* Consumer(void *arg)
     {
         int y;
         Sleep(3000);
-        //Sleep(rand()%100); //Ëæ»úË¯Ãß
-        sem_wait(&sem.full);//ÐÅºÅÁ¿µÄ P ²Ù×÷
-        pthread_mutex_lock(&mutex);//»¥³âËøÉÏËø
+        //Sleep(rand()%100); //ï¿½ï¿½ï¿½Ë¯ï¿½ï¿½
+        sem_wait(&sem.full);//ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ P ï¿½ï¿½ï¿½ï¿½
+        pthread_mutex_lock(&mutex);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         num2++;
-        printf("Consumer Ïû·ÑÁËÒ»ÌõÊý¾Ý: %d\n", num2);
-        printf("Ïû·ÑÊý¾Ý: %d\n", DeQueue(&sem.q, &y));
-        pthread_mutex_unlock(&mutex);//»¥³âËø½âËø
-        sem_post(&sem.empty);//ÐÅºÅÁ¿µÄ V ²Ù×÷
+        printf("Consumer ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: %d\n", num2);
+        printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: %d\n", DeQueue(&sem.q, &y));
+        pthread_mutex_unlock(&mutex);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        sem_post(&sem.empty);//ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ V ï¿½ï¿½ï¿½ï¿½
     }
 }
 int main()
 {
-    sem_init(&sem.empty, 0, 10); //ÐÅºÅÁ¿³õÊ¼»¯
-    //£¨×ö¶àÈÝÄÉ 10 ÌõÏûÏ¢£¬ÈÝÄÉÁË 10 ÌõÉú²úÕß½«²»»áÉú²úÏûÏ¢£©
+    sem_init(&sem.empty, 0, 10); //ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10 ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
     sem_init(&sem.full, 0, 0);
-    pthread_mutex_init(&mutex, NULL); //»¥³âËø³õÊ¼»¯
-    InitQueue(&(sem.q)); //¶ÓÁÐ³õÊ¼»¯
+    pthread_mutex_init(&mutex, NULL); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+    InitQueue(&(sem.q)); //ï¿½ï¿½ï¿½Ð³ï¿½Ê¼ï¿½ï¿½
     pthread_t producid;
     pthread_t consumid;
-    pthread_create(&producid, NULL, Producer, NULL); //´´½¨Éú²úÕßÏß³Ì
-    pthread_create(&consumid, NULL, Consumer, NULL); //´´½¨Ïû·ÑÕßÏß³Ì
-    pthread_join(consumid, NULL); //Ïß³ÌµÈ´ý£¬Èç¹ûÃ»ÓÐÕâÒ»²½£¬Ö÷³ÌÐò»áÖ±½Ó½áÊø£¬
-    //µ¼ÖÂÏß³ÌÒ²Ö±½ÓÍË³ö¡£
-    sem_destroy(&sem.empty); //ÐÅºÅÁ¿µÄÏú»Ù
+    pthread_create(&producid, NULL, Producer, NULL); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+    pthread_create(&consumid, NULL, Consumer, NULL); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+    pthread_join(consumid, NULL); //ï¿½ß³ÌµÈ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½Ò²Ö±ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½
+    sem_destroy(&sem.empty); //ï¿½Åºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     sem_destroy(&sem.full);
-    pthread_mutex_destroy(&mutex); //»¥³âËøµÄÏú»Ù
+    pthread_mutex_destroy(&mutex); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     return 0;
 }
