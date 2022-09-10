@@ -3,7 +3,8 @@
 #include <semaphore.h>
 #include <string.h>
 #include <time.h>
-#include <windows.h>
+#include <stdlib.h>
+#include <unistd.h>
 #define TRUE 1
 #define FALSE 0
 #define SIZE 10
@@ -73,7 +74,7 @@ void* Producer(void *arg)
     while(1)
     {
         int x;
-        Sleep(rand()%100); //随机睡眠
+        sleep(rand()%100); //随机睡眠
         sem_wait(&sem.empty);//信号量的 P 操作
         pthread_mutex_lock(&mutex);//互斥锁上锁
         num1++;
@@ -89,7 +90,7 @@ void* Consumer(void *arg)
     while(1)
     {
         int y;
-        Sleep(3000);
+        sleep(3000);
         //Sleep(rand()%100); //随机睡眠
         sem_wait(&sem.full);//信号量的 P 操作
         pthread_mutex_lock(&mutex);//互斥锁上锁

@@ -1,5 +1,5 @@
-#include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #define NULL 0
 typedef struct processpcb

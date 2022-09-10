@@ -3,7 +3,8 @@
 #include <semaphore.h>
 #include <string.h>
 #include <time.h>
-#include <windows.h>
+#include <stdlib.h>
+#include <unistd.h>
 struct data //信号量结构体
 {
     sem_t empty; //记录空缓冲区个数
@@ -17,7 +18,7 @@ void* Producer(void *arg)
 {
     while(1)
     {
-        Sleep(rand()%100); //随机睡眠
+        sleep(rand()%100); //随机睡眠
         sem_wait(&sem.empty);//信号量的 P 操作
         pthread_mutex_lock(&mutex);//互斥锁上锁
         num++;
@@ -31,7 +32,7 @@ void* Consumer(void *arg)
 {
     while(1)
     {
-        Sleep(rand()%100); //随机睡眠
+        sleep(rand()%100); //随机睡眠
         sem_wait(&sem.full);//信号量的 P 操作
         pthread_mutex_lock(&mutex);//互斥锁上锁
         num--;
